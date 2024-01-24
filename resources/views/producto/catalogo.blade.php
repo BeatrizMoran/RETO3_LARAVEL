@@ -20,6 +20,14 @@
             </div>
         @endforelse
     </div>
+
+    <div class="card-body">
+        @if (auth()->check())
+        <p>Bienvenido, {{ auth()->user()->name }}!</p>
+    @else
+        <p>No has iniciado sesión.</p>
+    @endif
+    </div>
 </div>
 
 @endsection

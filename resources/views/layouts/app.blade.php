@@ -16,7 +16,7 @@
             <div class="container">
                 <!-- Brand -->
                 <a class="navbar-brand" href="#">
-                    <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
+                    <img src="{{url('r1.jpg')}}" width="30" height="30" class="d-inline-block align-top" alt="">
                     Cerveza Killer
                   </a>
                 <!-- Toggler/Collapsible Button -->
@@ -36,14 +36,32 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Sobre nosotros</a>
                         </li>
+                        @if(auth()->check())
                         <li class="nav-item">
-                            <div class="ml-auto" style="width: 200px; display: flex; justify-content: flex-end;margin-left:70%">
-                                <a class="nav-link" href="{{ route("login") }}">Iniciar sesión</a>
-                                <a class="nav-link" href="{{ route("register") }}">Registrarme</a>
-                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                                @csrf
+                                <button type="submit" class="nav-link" >Cerrar sesión</button>
+                            </form>
                         </li>
+                            @if(auth()->user()->hasRole('responsable'))
+                                <!-- Contenido visible solo para usuarios con el rol 'responsable' -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Hola respon</a>
+                                </li>
+
+                            @endif
+                        @else
+                            <!-- Mostrar estos elementos solo si el usuario no está autenticado -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route("login") }}">Iniciar sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route("register") }}">Registrarme</a>
+                            </li>
+                        @endif
                         <!-- Más elementos del menú aquí -->
                     </ul>
+
                 </div>
             </div>
         </nav>

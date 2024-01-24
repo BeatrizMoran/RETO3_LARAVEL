@@ -29,7 +29,5 @@ Route::get('/home', [ProductoController::class, 'index'])->name('productos.index
 
 Route::get('/', [ProductoController::class, 'index'])->name('productos.index');
 
-Route::get('/login', [HomeController::class, 'login'])->name('login');
 
-Route::get('/register', [HomeController::class, 'register'])->name('register');
 
