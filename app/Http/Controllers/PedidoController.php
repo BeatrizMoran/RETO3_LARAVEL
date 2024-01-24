@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Pedido;
+use App\Models\Producto;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -61,5 +64,17 @@ class PedidoController extends Controller
     public function destroy(Pedido $pedido)
     {
         //
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
+
+    public function productos(){
+        return $this->belongsToMany(Producto::class)->witPivot("cantidad");
+    }
+
+    public function cliente(){
+        return $this->belongsTo(Cliente::class);
     }
 }

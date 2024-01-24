@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
+use App\Models\Pedido;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::all();
+        return response()->json($productos);
     }
 
     /**
@@ -61,5 +64,13 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         //
+    }
+
+    public function pedidos(){
+        return $this->belongsToMany(Pedido::class)->witPivot("cantidad");
+    }
+
+    public function categorias(){
+        return $this->belongsToMany(Categoria::class);
     }
 }

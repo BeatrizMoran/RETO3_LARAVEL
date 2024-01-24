@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Pedido;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -61,5 +62,9 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         //
+    }
+
+    public function pedidos(){
+        return $this->hasMany(Pedido::class);
     }
 }
