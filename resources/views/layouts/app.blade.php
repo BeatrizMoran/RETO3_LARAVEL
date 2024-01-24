@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupported">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Inicio</a>
+                            <a class="nav-link" href="{{ route("productos.index") }}">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Productos</a>
@@ -36,7 +36,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Sobre nosotros</a>
                         </li>
-
+                        <li class="nav-item">
+                            <div class="ml-auto" style="width: 200px; display: flex; justify-content: flex-end;margin-left:70%">
+                                <a class="nav-link" href="{{ route("login") }}">Iniciar sesión</a>
+                                <a class="nav-link" href="{{ route("register") }}">Registrarme</a>
+                            </div>
+                        </li>
                         <!-- Más elementos del menú aquí -->
                     </ul>
                 </div>
