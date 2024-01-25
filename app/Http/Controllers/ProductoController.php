@@ -14,8 +14,8 @@ class ProductoController extends Controller
      */
     public function index()
 {
-    $productos = Producto::with('categorias')->paginate(10);
-    return view("producto.index", compact("productos"));
+    $productos = Producto::with('categorias')->get();
+    return view("producto.catalogo", compact("productos"));
 }
 
 
@@ -28,8 +28,15 @@ class ProductoController extends Controller
     public function dashboard()
     {
         return view("panelAdministracion");
-
     }
+
+    public function dashboardProductos()
+    {
+        $productos = Producto::with('categorias')->paginate(10);
+
+        return view("producto.index", compact("productos"));
+    }
+    
 
     /**
      * Show the form for creating a new resource.

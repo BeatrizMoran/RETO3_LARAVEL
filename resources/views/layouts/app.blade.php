@@ -53,10 +53,10 @@
                         @else
                             <!-- Mostrar estos elementos solo si el usuario no está autenticado -->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("login") }}">Iniciar sesión</a>
+                                <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("register") }}">Registrarme</a>
+                                <a class="nav-link" href="{{ route('register') }}">Registrarme</a>
                             </li>
                         @endif
                         <!-- Más elementos del menú aquí -->

@@ -22,7 +22,7 @@ class ProductoFactory extends Factory
      */
     public function definition(): array
     {
-        $this->faker->unique(true); // Reiniciar el contador de valores únicos
+        $this->faker->unique()->word; // Reiniciar el contador de valores únicos
 
         return [
             'codigo_referencia' => $this->faker->unique()->word,

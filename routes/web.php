@@ -26,13 +26,14 @@ Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [ProductoController::class, 'index'])->name('productos.index');
+//Route::get('/home', [ProductoController::class, 'index'])->name('productos.index');
 
 Route::get('/', [ProductoController::class, 'index'])->name('productos.index');
 
-Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('productos.dashboard');
+Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
 
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 
+Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
 
 

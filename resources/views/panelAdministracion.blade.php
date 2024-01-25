@@ -15,7 +15,7 @@
                     <i class="bi bi-clipboard-check"></i>
                     <div class="card-body">
                         <h5 class="card-title">Productos</h5>
-                        <a href="{{ route("productos.index") }}">ENTRAR</a>
+                        <a href="{{ route('dashboard.productos') }}">ENTRAR</a>
                     </div>
                 </div>
 

@@ -7,7 +7,6 @@
     <title>@yield('title')</title>
     <!-- Enlace al archivo CSS de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         .nav-pills li a:hover{
@@ -41,12 +40,18 @@
                             </li>
                             <li class="nav-item ">
                                 <a href="#" class="nav-link text-white" aria-current="page">Usuarios</a>
-                                <i class="fs-5 fa fa-table-list"></i><span class="fs-4 ms-1 d-none d-sm-inlineDashboard"></span>
+                                <i class="fa-solid fa-user"></i></span>
                             </li>
                             <li class="nav-item ">
-                                <a href="{{ route("clientes.index") }}" class="nav-link text-white" aria-current="page">Clientes</a>
+                                <a href="{{ route('clientes.index') }}" class="nav-link text-white" aria-current="page">Clientes</a>
                                 <i class="fa-solid fa-user"></i><span class="fs-4 ms-1 d-none d-sm-inlineDashboard"></span>
                             </li>
+                            <li class="nav-item">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                                @csrf
+                                <button type="submit" class="nav-link" >Cerrar sesión</button>
+                            </form>
+                        </li>
                         </ul>
                     </a>
                 </div>
@@ -59,7 +64,7 @@
 
 
     <!-- Contenido Principal -->
-
+    <script src="https://kit.fontawesome.com/2f23627a24.js" crossorigin="anonymous"></script>
     <!-- Enlace al archivo JS de Bootstrap 5 y Popper.js (necesario para algunas funcionalidades) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
