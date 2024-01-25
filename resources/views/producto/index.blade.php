@@ -50,17 +50,17 @@
                     </ul>
                 </td>
                 <td>
-                    <a href="##" class="btn btn-primary btn-sm">Entrar</a>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-product-id="{{ $producto->id }}">
-                            Borrar
-                    </button>
+                <a href="##" class="btn btn-primary btn-sm">Entrar</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal_{{ $producto->id }}" data-product-id="{{ $producto->id }}">
+                    Borrar
+                </button>
 
                         <!-- VENTANA MODAL -->
-                            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="confirmDeleteModal_{{ $producto->id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Borrado</h5>
+                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Borrado {{ $producto->id}}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                         </div>
                                         <div class="modal-body">
