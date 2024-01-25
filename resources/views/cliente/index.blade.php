@@ -37,6 +37,33 @@
             @endforelse
         </tbody>
     </table>
+
+    <!--paginacion -->
+    <div class="d-flex justify-content-center mt-4"> <!-- Alineación central y margen superior -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @if ($clientes->previousPageUrl())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $clientes->previousPageUrl() }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                @endif
+
+                <li class="page-item disabled">
+                    <span class="page-link">Página {{ $clientes->currentPage() }} de {{ $clientes->lastPage() }}</span>
+                </li>
+
+                @if ($clientes->nextPageUrl())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $clientes->nextPageUrl() }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                @endif
+            </ul>
+        </nav>
+    </div>
 </div>
 
 @endsection
