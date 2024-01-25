@@ -66,15 +66,5 @@ class PedidoController extends Controller
         //
     }
 
-    public function users(){
-        return $this->belongsToMany(User::class);
-    }
 
-    public function productos(){
-        return $this->belongsToMany(Producto::class)->witPivot("cantidad");
-    }
-
-    public function cliente(){
-        return $this->belongsTo(Cliente::class);
-    }
 }

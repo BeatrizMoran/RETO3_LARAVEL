@@ -64,7 +64,5 @@ class CategoriaController extends Controller
         //
     }
 
-    public function productos(){
-        return $this->belongsToMany(Producto::class);
-    }
+
 }

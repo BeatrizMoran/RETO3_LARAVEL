@@ -13,10 +13,22 @@ class ProductoController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+{
+    $productos = Producto::with('categorias')->paginate(10);
+    return view("producto.index", compact("productos"));
+}
+
+
+    public function productosAPI()
     {
         $productos = Producto::all();
-        //return response()->json($productos); API
-        return view("producto.catalogo", compact("productos"));
+        return response()->json($productos);
+    }
+
+    public function dashboard()
+    {
+        return view("panelAdministracion");
+
     }
 
     /**
@@ -67,11 +79,5 @@ class ProductoController extends Controller
         //
     }
 
-    public function pedidos(){
-        return $this->belongsToMany(Pedido::class)->witPivot("cantidad");
-    }
 
-    public function categorias(){
-        return $this->belongsToMany(Categoria::class);
-    }
 }

@@ -13,7 +13,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Cliente::all();
+        return view("cliente.index", compact("clientes"));
     }
 
     /**
@@ -64,7 +65,5 @@ class ClienteController extends Controller
         //
     }
 
-    public function pedidos(){
-        return $this->hasMany(Pedido::class);
-    }
+
 }

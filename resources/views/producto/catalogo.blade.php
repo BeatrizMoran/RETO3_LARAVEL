@@ -12,7 +12,11 @@
                     @slot("nombre", $producto->nombre)
                     @slot("precio", $producto->precio)
                     @slot("formato", $producto->formato)
+
                 @endcomponent
+                @foreach ($producto->categorias as $categoria)
+                    <p>Catgeoria: {{  $categoria->nombre}}</p>
+                 @endforeach
             </div>
         @empty
             <div class="col-12">

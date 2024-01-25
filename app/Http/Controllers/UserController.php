@@ -63,7 +63,5 @@ class UserController extends Controller
         //
     }
 
-    public function pedidos(){
-        return $this->belongsToMany(Pedido::class);
-    }
+
 }

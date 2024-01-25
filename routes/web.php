@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,10 @@ Auth::routes();
 Route::get('/home', [ProductoController::class, 'index'])->name('productos.index');
 
 Route::get('/', [ProductoController::class, 'index'])->name('productos.index');
+
+Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('productos.dashboard');
+
+Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 
 
 

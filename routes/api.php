@@ -18,4 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/productos', [ProductoController::class, 'index']);
+
+
+Route::get('/productos', [ProductoController::class, 'productosAPI']);
