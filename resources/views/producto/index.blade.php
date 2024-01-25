@@ -9,6 +9,11 @@
             {{ session('success') }}
         </div>
     @endif
+    @if(session('danger'))
+        <div class="alert alert-danger">
+            {{ session('danger') }}
+        </div>
+    @endif
 
 <div class="container">
     <h1 class="my-4">Catálogo de Productos</h1>
@@ -46,9 +51,32 @@
                 </td>
                 <td>
                     <a href="##" class="btn btn-primary btn-sm">Entrar</a>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-product-id="{{ $producto->id }}">
                             Borrar
                     </button>
+
+                        <!-- VENTANA MODAL -->
+                            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Borrado</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Estás seguro de que deseas borrar este producto?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <form  method="post" action="{{ route('productos.destroy', $producto) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="submit" class="btn btn-danger" value="Eliminar">
+                                            </form>                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                 </td>
             </tr>
             @empty
@@ -85,24 +113,7 @@
         </nav>
     </div>
 
-    <!-- VENTANA MODAL -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Borrado</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body">
-                    ¿Estás seguro de que deseas borrar este producto?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger">Borrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 

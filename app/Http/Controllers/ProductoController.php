@@ -57,10 +57,12 @@ class ProductoController extends Controller
 
         // Insertar el artículo en la BBDD tras su validación.
         Producto::create($request->all());
+        $totalPages = Producto::with('categorias')->paginate(10)->lastPage();
+
         session()->flash('success', 'Producto creado correctamente');
 
 
-        return redirect(route('dashboard.productos'));
+        return redirect(route('dashboard.productos', ['page' => $totalPages]));
     }
 
     /**
@@ -92,7 +94,13 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+        
+        $totalPages = Producto::with('categorias')->paginate(10)->lastPage();
+
+        session()->flash('danger', 'Producto borrado correctamente');
+        return redirect(route('dashboard.productos', ['page' => $totalPages]));
+
     }
 
 
