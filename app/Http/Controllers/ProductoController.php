@@ -6,6 +6,8 @@ use App\Models\Categoria;
 use App\Models\Pedido;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductoRequest;
+
 
 class ProductoController extends Controller
 {
@@ -43,15 +45,22 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view("producto.create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductoRequest $request)
     {
-        //
+        //la validacion se hace mediante un custom request
+
+        // Insertar el artículo en la BBDD tras su validación.
+        Producto::create($request->all());
+        session()->flash('success', 'Producto creado correctamente');
+
+
+        return redirect(route('dashboard.productos'));
     }
 
     /**
@@ -73,9 +82,9 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(ProductoRequest $request, Producto $producto)
     {
-        //
+        $producto->update($request->all());
     }
 
     /**

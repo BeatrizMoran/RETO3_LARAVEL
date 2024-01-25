@@ -36,4 +36,6 @@ Route::get('/dashboard/clientes', [ClienteController::class, 'index'])->name('cl
 
 Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
 
+Route::get('/dashboard/productos/create', [ProductoController::class, 'create'])->name('productos.create');
 
+Route::post('/dashboard/productos/store', [ProductoController::class, 'store'])->name('productos.store');

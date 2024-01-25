@@ -1,5 +1,6 @@
 .nav-pills li {
     margin-bottom: 10px;
+    background-color: red;
 }
 
 .nav-pills li a {
@@ -15,4 +16,12 @@ i, span{
     background-color: blue;
     color: white;
 
+}
+
+.card-body i:hover {
+    transform: scale(1.2);
+}
+
+.page-link{
+    background: darkgray;
 }

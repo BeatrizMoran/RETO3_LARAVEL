@@ -7,34 +7,36 @@
     <title>@yield('title')</title>
     <!-- Enlace al archivo CSS de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 
     <style>
-        .nav-pills li {
-            margin-bottom: 10px;
-        }
+            .nav-pills li {
+                margin-bottom: 10px;
+            }
 
-        .nav-pills li a {
-            background-color: transparent;
-        }
+            .nav-pills li a {
+                background-color: transparent;
+            }
 
-        i, span{
-            color:white;
-        }
+            i, span{
+                color:white;
+            }
 
-        .nav-pills li a.active,
-        .nav-pills li a:hover {
-            background-color: blue;
-            color: white;
+            .nav-pills li a.active,
+            .nav-pills li a:hover {
+                background-color: blue;
+                color: white;
 
-        }
+            }
 
-        .card-body i:hover {
-            transform: scale(1.2);
-        }
+            .card-body i:hover {
+                transform: scale(1.2);
+            }
 
-        .page-link{
-            background: darkgray;
-        }
+            .page-link{
+                background: darkgray;
+            }
     </style>
 </head>
 

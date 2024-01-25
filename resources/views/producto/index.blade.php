@@ -3,9 +3,19 @@
 @section('title', 'Página Específica')
 
 @section('content')
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
 <div class="container">
     <h1 class="my-4">Catálogo de Productos</h1>
-    <a href="##" class="btn btn-primary mb-3">Añadir Producto</a>
+    @if(auth()->user()->hasRole('responsable') || auth()->user()->hasRole('administrativo'))
+        <!-- Comercial no puede crear productos -->
+        <a href="{{ route('productos.create') }}" class="btn btn-primary mb-3">Añadir Producto</a>
+     @endif
 
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
@@ -36,7 +46,9 @@
                 </td>
                 <td>
                     <a href="##" class="btn btn-primary btn-sm">Entrar</a>
-                    <a href="#" class="btn btn-danger btn-sm">Borrar</a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                            Borrar
+                    </button>
                 </td>
             </tr>
             @empty
@@ -72,7 +84,27 @@
             </ul>
         </nav>
     </div>
+
+    <!-- VENTANA MODAL -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Borrado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas borrar este producto?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger">Borrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 @endsection
 
