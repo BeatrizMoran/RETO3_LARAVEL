@@ -19,21 +19,23 @@
                     </div>
                 </div>
 
-                <div class="card shadow col-3 mx-3">
-                    <i class="bi bi-clipboard-check"></i>
-                    <div class="card-body">
+                <div class="card shadow col-3 mx-3 text-center">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <h5 class="card-title">Pedidos</h5>
+                        <a href="#">
+                            <i class="fa-solid fa-clipboard fa-3x mb-3"></i>
+                        </a>
                         <a href="#">ENTRAR</a>
                     </div>
                 </div>
+
                 @if(auth()->user()->hasRole('comercial'))
                     <p>¡Bienvenido Comercial! Aquí encontrarás funciones para comerciales.</p>
                     <!-- Agrega aquí los elementos específicos para el rol de Comercial -->
                 @endif
 
-                @if(auth()->user()->hasRole('administrativo'))
-                    <p>¡Hola Administrativo! Aquí encontrarás funciones para administrativos.</p>
-                    <div class="card shadow col-auto">
+                @if(auth()->user()->hasRole('administrativo') || auth()->user()->hasRole('responsable'))
+                    <div class="card shadow col-3">
                         <i class="bi bi-clipboard-check"></i>
                         <div class="card-body">
                             <h5 class="card-title">Clientes</h5>
@@ -45,13 +47,7 @@
 
                 @if(auth()->user()->hasRole('responsable'))
                     <!-- Agrega aquí los elementos específicos para el rol de Responsable -->
-                    <div class="card shadow col-3 mx-3">
-                        <i class="bi bi-clipboard-check"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">Clientes</h5>
-                            <a href="#">ENTRAR</a>
-                        </div>
-                    </div>
+                 
                 @endif
 
             </div>

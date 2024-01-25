@@ -12,6 +12,10 @@
         .nav-pills li a:hover{
             background-color: blue;
         }
+
+        .card-body i:hover {
+        transform: scale(1.2); /* Ajusta el valor para el aumento de tamaño deseado */
+    }
         </style>
 </head>
 
