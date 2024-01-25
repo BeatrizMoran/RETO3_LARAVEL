@@ -4,18 +4,19 @@
 
 @section('content')
 <div class="container">
-    <h1 class="my-4">catalogo de productos</h1>
+    <h1 class="my-4">Catálogo de Productos</h1>
     <a href="##" class="btn btn-primary mb-3">Añadir Producto</a>
 
-    <table class="table">
-        <thead>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
-                <th>Codigo referencia</th>
+                <th>Código de Referencia</th>
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Formato</th>
-                <th>Categoria/s</th>
+                <th>Categorías</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -27,10 +28,10 @@
                 <td>{{ $producto->precio }}</td>
                 <td>{{ $producto->formato }}</td>
                 <td>
-                    <ul>
-                @foreach($producto->categorias as $categoria)
-                        <li>{{ $categoria->nombre }}</li>
-                @endforeach
+                    <ul class="list-unstyled">
+                        @foreach($producto->categorias as $categoria)
+                            <li>{{ $categoria->nombre }}</li>
+                        @endforeach
                     </ul>
                 </td>
                 <td>
@@ -40,11 +41,12 @@
             </tr>
             @empty
             <tr>
-                <td colspan="5" class="text-center">No hay Productos</td>
+                <td colspan="7" class="text-center">No hay Productos</td>
             </tr>
             @endforelse
         </tbody>
     </table>
+    
     <div class="d-flex justify-content-center mt-4"> <!-- Alineación central y margen superior -->
         <nav aria-label="Page navigation example">
             <ul class="pagination">
@@ -70,11 +72,8 @@
             </ul>
         </nav>
     </div>
-
-
-
 </div>
 
 @endsection
 
-@section('footer', '©️ Cervezas killer')
+@section('footer', '©️ Cervezas Killer')

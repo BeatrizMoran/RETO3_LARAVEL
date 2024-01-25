@@ -1,0 +1,18 @@
+.nav-pills li {
+    margin-bottom: 10px;
+}
+
+.nav-pills li a {
+    background-color: transparent;
+}
+
+i, span{
+    color:white;
+}
+
+.nav-pills li a.active,
+.nav-pills li a:hover {
+    background-color: blue;
+    color: white;
+
+}

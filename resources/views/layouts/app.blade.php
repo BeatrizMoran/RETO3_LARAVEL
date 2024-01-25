@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupported">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("productos.index") }}">Inicio</a>
+                            <a class="nav-link" href="{{ route('productos.index') }}">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Productos</a>
