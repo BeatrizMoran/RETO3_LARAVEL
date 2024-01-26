@@ -41,3 +41,5 @@ Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProduct
 Route::get('/dashboard/productos/create', [ProductoController::class, 'create'])->name('productos.create');
 
 Route::post('/dashboard/productos/store', [ProductoController::class, 'store'])->name('productos.store');
+
+Route::delete('/dashboard/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');

@@ -46,6 +46,17 @@
                 </select>
             </div>
 
+            <!-- CATEGORIAS -->
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoria</label>
+                @foreach ($categorias as $categoria)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="categorias[]" value="{{ $categoria->id}}" id="{{ $categoria->nombre }}">
+                        <label class="form-check-label" for="{{ $categoria->nombre }}">{{ $categoria->nombre }}</label>
+                    </div>
+                @endforeach
+            </div>
+
             <!-- Botón de Envío -->
             <button type="submit" class="btn btn-primary">Crear Producto</button>
         </form>
