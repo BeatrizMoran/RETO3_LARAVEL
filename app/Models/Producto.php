@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $guarded = ["codigo_referencia"];
     public function pedidos(){
         return $this->belongsToMany(Pedido::class)->witPivot("cantidad");
     }

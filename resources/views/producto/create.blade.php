@@ -10,11 +10,6 @@
         <form method="post" action="{{ route('productos.store') }}" enctype="multipart/form-data">
             @csrf
 
-            <!-- Código de Referencia -->
-            <div class="mb-3">
-                <label for="codigo_referencia" class="form-label">Código de Referencia</label>
-                <input type="text" class="form-control" id="codigo_referencia" name="codigo_referencia" required>
-            </div>
 
             <!-- Nombre -->
             <div class="mb-3">

@@ -19,15 +19,15 @@ class ProductoRequest extends FormRequest
             case 'productos.index':
             case 'productos.show':
                 return $user->hasAnyRole(['admin', 'responsable', 'comercial']); // Todos los roles pueden ver la lista y detalles de productos
-    
+
             case 'productos.create':
                 return $user->hasAnyRole(['admin', 'responsable']); // Solo los usuarios con los roles 'admin' y 'responsable' pueden crear productos
-    
+
             case 'productos.edit':
             case 'productos.update':
             case 'productos.destroy':
                 return $user->hasAnyRole(['admin', 'responsable']); // Solo los usuarios con los roles 'admin' y 'responsable' pueden actualizar o borrar productos
-    
+
             default:
                 return false; // Acción no reconocida, denegar por defecto
         }
@@ -44,7 +44,6 @@ class ProductoRequest extends FormRequest
     public function rules()
     {
         return [
-            'codigo_referencia' => 'required|unique:productos,codigo_referencia',
             'nombre' => 'required',
             'precio' => 'required|numeric|min:0',
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif',

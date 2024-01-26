@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string("codigo_referencia")->unique();
+            $table->string("codigo_referencia")->unique()->default('PROD-' . uniqid());
             $table->string("nombre");
             $table->double("precio", 10);
             $table->string("imagen");

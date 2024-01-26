@@ -25,7 +25,7 @@ class ProductoFactory extends Factory
         $this->faker->unique()->word; // Reiniciar el contador de valores únicos
 
         return [
-            'codigo_referencia' => $this->faker->unique()->word,
+            'codigo_referencia' => 'PROD-' . $this->faker->unique()->regexify('[A-Za-z0-9]{5}'),
             'nombre' => $this->faker->sentence,
             'precio' => $this->faker->randomFloat(2, 1, 100),
             'imagen' => $this->faker->imageUrl(),
