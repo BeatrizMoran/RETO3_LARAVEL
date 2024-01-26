@@ -11,57 +11,40 @@
 <body class="bg-light d-flex flex-column" style="min-height: 100vh;"> <!-- Ajuste para la altura y flexibilidad -->
 
     <header>
-        <!-- Navbar de Bootstrap -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-            <div class="container">
-                <!-- Brand -->
-                <a class="navbar-brand" href="#">
-                    <img src="{{url('r1.jpg')}}" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Cerveza Killer
-                  </a>
-                <!-- Toggler/Collapsible Button -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupported"
-                    aria-controls="navbarSupported" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ route('welcome') }}">
+                    <img src="{{ url('Killerlogo.png') }}" alt="" width="50" height="50">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <!-- Navbar links -->
-                <div class="collapse navbar-collapse" id="navbarSupported">
-                    <ul class="navbar-nav ml-auto">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos.index') }}">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('welcome') }}">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Productos</a>
+                            <a class="nav-link" href="{{ route('productos.catalogo') }}">Catalogo</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre nosotros</a>
-                        </li>
-                        @if(auth()->check())
-                        <li class="nav-item">
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
-                                @csrf
-                                <button type="submit" class="nav-link" >Cerrar sesión</button>
-                            </form>
-                        </li>
-                            @if(auth()->user()->hasRole('responsable'))
-                                <!-- Contenido visible solo para usuarios con el rol 'responsable' -->
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Hola respon</a>
-                                </li>
 
-                            @endif
-                        @else
-                            <!-- Mostrar estos elementos solo si el usuario no está autenticado -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">Registrarme</a>
-                            </li>
-                        @endif
-                        <!-- Más elementos del menú aquí -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Sobre nosotros
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Empresa</a></li>
+                                <li><a class="dropdown-item" href="#">Servicios</a></li>
+                                <li><a class="dropdown-item" href="#">Terminos legales</a></li>
+                            </ul>
+                        </li>
                     </ul>
-
+                </div>
+                <div class="d-flex">
+                    <a class="btn btn-success" href="login" >Iniciar sesion</a>
                 </div>
             </div>
         </nav>

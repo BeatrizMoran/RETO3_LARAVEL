@@ -11,7 +11,7 @@
     @endif
 
 <div class="container">
-    <h1 class="my-4">Catálogo de Productos</h1>
+    <h1 class="my-4">Productos</h1>
     @if(auth()->user()->hasRole('responsable') || auth()->user()->hasRole('administrativo'))
         <!-- Comercial no puede crear productos -->
         <a href="{{ route('productos.create') }}" class="btn btn-primary mb-3">Añadir Producto</a>
