@@ -20,7 +20,7 @@ class ProductoController extends Controller
         return view("productos.catalogo", compact("productos"));
     }
 
-   /*  public function index()
+    /*  public function index()
     {
         $productos = Producto::with('categorias')->get();
         return view("productos.catalogo", compact("productos"));
@@ -83,7 +83,14 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        $producto = Producto::with('categorias')->find($producto->id);
+        $categorias = Categoria::all();
+
+        return view("productos.show", [
+            "producto" => $producto,
+            "categorias" => $categorias,
+            "edit" => false
+        ]);
     }
 
     /**
@@ -91,7 +98,14 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //
+        $producto = Producto::with('categorias')->find($producto->id);
+
+        $categorias = Categoria::all();
+        return view("productos.show", [
+            "producto" => $producto,
+            "categorias" => $categorias,
+            "edit" => true
+        ]);
     }
 
     /**
@@ -99,23 +113,41 @@ class ProductoController extends Controller
      */
     public function update(ProductoRequest $request, Producto $producto)
     {
-        $producto->update($request->all());
+        // Obtener las categorías seleccionadas del formulario
+        $categoriasSeleccionadas = $request->input('categorias', []);
+
+        // Comprobar si el campo categorias está vacío
+        if (empty($categoriasSeleccionadas)) {
+            return redirect()->back()->withErrors(['categorias' => 'Debes seleccionar al menos una categoría.'])->withInput();
+        }
+
+        // Excluir el campo categorias de la request
+        $datosProducto = $request->except('categorias');
+
+        // Actualizar los atributos del producto
+        $producto->update($datosProducto);
+
+        // Sincronizar las categorías del producto
+        $producto->categorias()->sync($categoriasSeleccionadas);
+
+        session()->flash('success', 'Producto actualizado correctamente');
+
+        return redirect()->route('productos.show', $producto);
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Producto $producto)
-    {
-        $producto->delete();
+{
+    $currentPage = Producto::with('categorias')->paginate(10)->currentPage();
 
-        $totalPages = Producto::with('categorias')->paginate(10)->lastPage();
+    $producto->delete();
 
-        session()->flash('danger', 'Producto borrado correctamente');
-        return redirect(route('dashboard.productos', ['page' => $totalPages]));
+    session()->flash('danger', 'Producto borrado correctamente');
 
-    }
-
-
-
+    return redirect(route('dashboard.productos', ['page' => $currentPage]));
+}
 }

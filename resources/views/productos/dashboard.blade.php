@@ -50,7 +50,7 @@
                     </ul>
                 </td>
                 <td>
-                <a href="##" class="btn btn-primary btn-sm">Entrar</a>
+                <a href="{{ route('productos.show', $producto) }}" class="btn btn-primary btn-sm">Entrar</a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal_{{ $producto->id }}" data-product-id="{{ $producto->id }}">
                     Borrar
                 </button>
