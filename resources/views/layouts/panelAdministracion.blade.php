@@ -38,14 +38,14 @@
                         </li>
                         <li class="nav-item my-3">
                             <a href="#"
-                                class="nav-link{{ request()->is('dashboard/usuarios') ? ' active' : '' }}">
+                                class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
                                 <i class="fa-solid fa-user  me-3 fs-5"></i>
                                 <span class="d-none d-md-inline">Usuarios</span>
                             </a>
                         </li>
                         <li class="nav-item my-3">
                             <a href="{{ route('clientes.index') }}"
-                                class="nav-link{{ request()->is('dashboard/clientes') ? ' active' : '' }}">
+                                class="nav-link{{ request()->is('clientes') ? ' active' : '' }}">
                                 <i class="fa-solid fa-people-group  me-3 fs-5"></i>
                                 <span class="d-none d-md-inline">Clientes</span>
                             </a>

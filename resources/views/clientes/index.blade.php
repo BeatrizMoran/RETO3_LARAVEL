@@ -4,17 +4,17 @@
 
 @section('content')
 <div class="container">
-    <h1 class="my-4">catalogo de productos</h1>
-    <a href="##" class="btn btn-primary mb-3">Añadir Producto</a>
+    <h1 class="my-4">Lista de Clientes</h1>
+    <a href="##" class="btn btn-primary mb-3">Añadir Cliente</a>
 
-    <table class="table">
-        <thead>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
-                <th>Codigo cliente</th>
                 <th>Nombre</th>
-                <th>Direccion</th>
-                <th>telefono</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,6 @@
                 <td>{{ $cliente->nombre }}</td>
                 <td>{{ $cliente->direccion }}</td>
                 <td>{{ $cliente->telefono }}</td>
-
                 <td>
                     <a href="##" class="btn btn-primary btn-sm">Entrar</a>
                     <a href="#" class="btn btn-danger btn-sm">Borrar</a>
@@ -32,14 +31,14 @@
             </tr>
             @empty
             <tr>
-                <td colspan="5" class="text-center">No hay bodegas</td>
+                <td colspan="5" class="text-center">No hay clientes</td>
             </tr>
             @endforelse
         </tbody>
     </table>
 
-    <!--paginacion -->
-    <div class="d-flex justify-content-center mt-4"> <!-- Alineación central y margen superior -->
+    <!-- Paginación -->
+    <div class="d-flex justify-content-center mt-4">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 @if ($clientes->previousPageUrl())
@@ -68,4 +67,4 @@
 
 @endsection
 
-@section('footer', '©️ Cervezas killer')
+@section('footer', '©️ Cervezas Killer')

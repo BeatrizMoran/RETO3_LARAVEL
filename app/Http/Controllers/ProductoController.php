@@ -148,6 +148,6 @@ class ProductoController extends Controller
 
     session()->flash('danger', 'Producto borrado correctamente');
 
-    return redirect(route('dashboard.productos', ['page' => $currentPage]));
+    return redirect()->back();
 }
 }
