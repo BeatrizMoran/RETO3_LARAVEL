@@ -26,7 +26,32 @@
                 <td>{{ $cliente->telefono }}</td>
                 <td>
                     <a href="##" class="btn btn-primary btn-sm">Entrar</a>
-                    <a href="#" class="btn btn-danger btn-sm">Borrar</a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal_{{ $cliente->id }}" data-product-id="{{ $cliente->id }}">
+                        Borrar
+                    </button>
+
+                     <!-- VENTANA MODAL -->
+                     <div class="modal fade" id="confirmDeleteModal_{{ $cliente->id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Borrado {{ $cliente->id}}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Estás seguro de que deseas borrar este cliente?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <form  method="post" action="{{ route('clientes.destroy', $cliente) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" class="btn btn-danger" value="Eliminar">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             @empty

@@ -26,6 +26,8 @@ Route::middleware(['role:responsable'])->group(function () {
     Route::resource('/productos', ProductoController::class);
 
     Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+    Route::resource('/clientes', ClienteController::class);
+
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

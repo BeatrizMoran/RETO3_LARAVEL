@@ -62,7 +62,11 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+
+        session()->flash('danger', 'Cliente borrado correctamente');
+
+        return redirect()->back();
     }
 
 
