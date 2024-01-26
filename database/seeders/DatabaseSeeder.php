@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
 
        Cliente::factory(10)->create();
        Producto::factory(30)->create();
-        
+
        $this->call([
-       
+
              RoleSeeder::class,
               UserSeeder::class,
               CategoriaSeeder::class,
@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
               //ProductoSeeder::class,
              // Producto::factory(30)->create()
 
-             
+
 
           ]);
-          
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

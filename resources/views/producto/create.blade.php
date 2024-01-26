@@ -49,12 +49,19 @@
             <!-- CATEGORIAS -->
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoria</label>
-                @foreach ($categorias as $categoria)
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="categorias[]" value="{{ $categoria->id}}" id="{{ $categoria->nombre }}">
-                        <label class="form-check-label" for="{{ $categoria->nombre }}">{{ $categoria->nombre }}</label>
-                    </div>
-                @endforeach
+
+                <div class="row">
+                    @foreach ($categorias as $categoria)
+                        <div class="col-6 col-md-4"> <!-- Utiliza col-md-4 para pantallas medianas y grandes -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="categorias[]"
+                                    value="{{ $categoria->id }}" id="{{ $categoria->nombre }}">
+                                <label class="form-check-label"
+                                    for="{{ $categoria->nombre }}">{{ $categoria->nombre }}</label>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
 
             <!-- Botón de Envío -->
