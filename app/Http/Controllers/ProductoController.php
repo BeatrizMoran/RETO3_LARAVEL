@@ -41,7 +41,7 @@ class ProductoController extends Controller
     {
         $productos = Producto::with('categorias')->paginate(10);
 
-        return view("productos.index", compact("productos"));
+        return view("productos.dashboard", compact("productos"));
     }
 
 
@@ -51,7 +51,7 @@ class ProductoController extends Controller
     public function create()
     {
         $categorias = Categoria::all();
-        return view("producto.create", compact("categorias"));
+        return view("productos.create", compact("categorias"));
     }
 
 

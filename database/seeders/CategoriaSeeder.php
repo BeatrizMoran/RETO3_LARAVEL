@@ -13,17 +13,36 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categorias')->insert([
-            'nombre' => 'Electrónicos',
-        ]);
 
-        DB::table('categorias')->insert([
-            'nombre' => 'Ropa',
-        ]);
+        $categorias = [
+            'Lager',
+            'Ale',
+            'IPA (Indian Pale Ale)',
+            'Stout',
+            'Porter',
+            'Pilsner',
+            'Wheat Beer',
+            'Saison',
+            'Sour',
+            'Amber Ale',
+            'Brown Ale',
+            'Belgian Dubbel',
+            'Belgian Tripel',
+            'Belgian Quadrupel',
+            'Barleywine',
+            'Pale Ale',
+            'Bock',
+            'Blonde Ale',
+            'Cream Ale',
+        ];
 
-        DB::table('categorias')->insert([
-            'nombre' => 'Hogar',
-        ]);
+        // Inserta las categorías en la base de datos
+        foreach ($categorias as $categoria) {
+            DB::table('categorias')->insert([
+                'nombre' => $categoria
+            ]);
+        }
+
 
     }
 }
