@@ -14,12 +14,17 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-{
-    $productos = Producto::with('categorias')->get();
-    return view("producto.catalogo", compact("productos"));
-}
+    public function catalogo()
+    {
+        $productos = Producto::with('categorias')->get();
+        return view("productos.catalogo", compact("productos"));
+    }
 
+   /*  public function index()
+    {
+        $productos = Producto::with('categorias')->get();
+        return view("productos.catalogo", compact("productos"));
+    } */
 
     public function productosAPI()
     {
@@ -29,14 +34,14 @@ class ProductoController extends Controller
 
     public function dashboard()
     {
-        return view("panelAdministracion");
+        return view("dashboard");
     }
 
     public function dashboardProductos()
     {
         $productos = Producto::with('categorias')->paginate(10);
 
-        return view("producto.index", compact("productos"));
+        return view("productos.index", compact("productos"));
     }
 
 
@@ -48,6 +53,7 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
         return view("producto.create", compact("categorias"));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -109,6 +115,7 @@ class ProductoController extends Controller
         return redirect(route('dashboard.productos', ['page' => $totalPages]));
 
     }
+
 
 
 }
