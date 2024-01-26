@@ -6,16 +6,25 @@ use App\Models\Categoria;
 use App\Models\Pedido;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductoRequest;
+
 
 class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function catalogo()
     {
+        $productos = Producto::with('categorias')->get();
+        return view("productos.catalogo", compact("productos"));
     }
 
+   /*  public function index()
+    {
+        $productos = Producto::with('categorias')->get();
+        return view("productos.catalogo", compact("productos"));
+    } */
 
     public function productosAPI()
     {
@@ -25,10 +34,14 @@ class ProductoController extends Controller
 
     public function dashboard()
     {
+        return view("dashboard");
     }
 
     public function dashboardProductos()
     {
+        $productos = Producto::with('categorias')->paginate(10);
+
+        return view("productos.index", compact("productos"));
     }
 
 
@@ -37,17 +50,34 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = Categoria::all();
+        return view("producto.create", compact("categorias"));
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductoRequest $request)
     {
-        //
-    }
 
+        //excluir el campo categorias de la request
+        $datosProducto = $request->except('categorias');
+        $producto = Producto::create($datosProducto);
+
+
+        // Obtener las categorías seleccionadas del formulario
+        $categoriasSeleccionadas = $request->input('categorias', []);
+
+        // Asociar las categorías al producto
+        $producto->categorias()->attach($categoriasSeleccionadas);
+
+        $totalPages = Producto::with('categorias')->paginate(10)->lastPage();
+
+        session()->flash('success', 'Producto creado correctamente');
+
+        return redirect(route('dashboard.productos', ['page' => $totalPages]));
+    }
     /**
      * Display the specified resource.
      */
@@ -67,9 +97,9 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(ProductoRequest $request, Producto $producto)
     {
-        //
+        $producto->update($request->all());
     }
 
     /**
@@ -77,6 +107,15 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+
+        $totalPages = Producto::with('categorias')->paginate(10)->lastPage();
+
+        session()->flash('danger', 'Producto borrado correctamente');
+        return redirect(route('dashboard.productos', ['page' => $totalPages]));
+
     }
+
+
+
 }

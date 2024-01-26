@@ -17,24 +17,24 @@ class DatabaseSeeder extends Seeder
     {
         //Producto::factory(30)->create();
 
-       // Cliente::factory(10)->create();
+        // Cliente::factory(10)->create();
 
-       Cliente::factory(10)->create();
-       Producto::factory(30)->create();
-        
-       $this->call([
-       
-             RoleSeeder::class,
-              UserSeeder::class,
-              CategoriaSeeder::class,
-              ProductoCategoriaSeeder::class,
-              //ProductoSeeder::class,
-             // Producto::factory(30)->create()
+        Cliente::factory(10)->create();
+        Producto::factory(30)->create();
 
-             
+        $this->call([
 
-          ]);
-          
+            RoleSeeder::class,
+            UserSeeder::class,
+            CategoriaSeeder::class,
+            ProductoCategoriaSeeder::class,
+            //ProductoSeeder::class,
+            // Producto::factory(30)->create()
+
+
+
+        ]);
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

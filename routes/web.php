@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
@@ -28,7 +28,9 @@ Auth::routes();
 
 //Route::get('/home', [ProductoController::class, 'index'])->name('productos.index');
 
-Route::get('/', [ProductoController::class, 'index'])->name('productos.index');
+
+
+Route::get('/productos', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
 
 Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
 
@@ -36,4 +38,8 @@ Route::get('/dashboard/clientes', [ClienteController::class, 'index'])->name('cl
 
 Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
 
+Route::get('/dashboard/productos/create', [ProductoController::class, 'create'])->name('productos.create');
 
+Route::post('/dashboard/productos/store', [ProductoController::class, 'store'])->name('productos.store');
+
+Route::delete('/dashboard/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
