@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
@@ -32,14 +33,18 @@ Auth::routes();
 
 Route::get('/productos', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
 
-Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
+Route::middleware(['role:responsable'])->group(function () {
+    Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
+    Route::get('/register', [RegisterController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/dashboard/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 
-Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
-
-Route::get('/dashboard/productos/create', [ProductoController::class, 'create'])->name('productos.create');
-
-Route::post('/dashboard/productos/store', [ProductoController::class, 'store'])->name('productos.store');
-
-Route::delete('/dashboard/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+        Route::prefix('productos')->name('productos.')->group(function () {
+            Route::get('/', [ProductoController::class, 'dashboardProductos'])->name('index');
+            Route::get('/create', [ProductoController::class, 'create'])->name('create');
+            Route::post('/store', [ProductoController::class, 'store'])->name('store');
+            Route::delete('/destroy/{producto}', [ProductoController::class, 'destroy'])->name('destroy');
+        });
+    });
+});
