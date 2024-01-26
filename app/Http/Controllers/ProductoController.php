@@ -38,14 +38,15 @@ class ProductoController extends Controller
 
         return view("producto.index", compact("productos"));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view("producto.create");
+        $categorias = Categoria::all();
+        return view("producto.create", compact("categorias"));
     }
 
     /**
@@ -53,18 +54,24 @@ class ProductoController extends Controller
      */
     public function store(ProductoRequest $request)
     {
-        //la validacion se hace mediante un custom request
 
-        // Insertar el artículo en la BBDD tras su validación.
-        Producto::create($request->all());
+        //excluir el campo categorias de la request
+        $datosProducto = $request->except('categorias');
+        $producto = Producto::create($datosProducto);
+
+
+        // Obtener las categorías seleccionadas del formulario
+        $categoriasSeleccionadas = $request->input('categorias', []);
+
+        // Asociar las categorías al producto
+        $producto->categorias()->attach($categoriasSeleccionadas);
+
         $totalPages = Producto::with('categorias')->paginate(10)->lastPage();
 
         session()->flash('success', 'Producto creado correctamente');
 
-
         return redirect(route('dashboard.productos', ['page' => $totalPages]));
     }
-
     /**
      * Display the specified resource.
      */
@@ -95,7 +102,7 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         $producto->delete();
-        
+
         $totalPages = Producto::with('categorias')->paginate(10)->lastPage();
 
         session()->flash('danger', 'Producto borrado correctamente');

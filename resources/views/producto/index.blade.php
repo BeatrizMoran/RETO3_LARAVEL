@@ -72,7 +72,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="submit" class="btn btn-danger" value="Eliminar">
-                                            </form>                
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -86,8 +86,8 @@
             @endforelse
         </tbody>
     </table>
-    
-    <div class="d-flex justify-content-center mt-4"> <!-- Alineación central y margen superior -->
+
+    <div class="d-flex justify-content-center mt-4">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 @if ($productos->previousPageUrl())
@@ -113,7 +113,7 @@
         </nav>
     </div>
 
-    
+
 </div>
 
 
