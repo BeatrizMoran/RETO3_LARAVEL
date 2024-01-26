@@ -124,7 +124,6 @@ class ProductoController extends Controller
         // Excluir el campo categorias de la request
         $datosProducto = $request->except('categorias');
 
-        // Actualizar los atributos del producto
         $producto->update($datosProducto);
 
         // Sincronizar las categorías del producto
@@ -142,7 +141,6 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
 {
-    $currentPage = Producto::with('categorias')->paginate(10)->currentPage();
 
     $producto->delete();
 
