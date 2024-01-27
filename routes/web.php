@@ -15,6 +15,11 @@ Auth::routes();
 
 Route::get('/catalogo', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
 
+Route::get('/dashboard/profile', function (){
+    return view("profile");
+})->name("profile");
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
 });

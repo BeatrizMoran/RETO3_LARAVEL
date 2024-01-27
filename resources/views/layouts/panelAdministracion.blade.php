@@ -15,13 +15,15 @@
 
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="bg-dark col-auto col-md-4 col-lg-2  min-vh-100">
-                <div class="bg-dark p-2">
+        <div class="bg-light bg-gradient col-auto col-md-4 col-lg-2 d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="bg-dark bg-gradient rounded-4  p-4" style="height: 900px; width: 95%;">
                     <a class="d-flex text-decoration-none mt-1 align-items-center text-white">
                         <img src="{{ url('Killerlogo.png') }}" width="30" height="30"
                             class="d-inline-block align-top me-3" alt="">
-                        <span class="fs-4 d-none d-sm-inline">Cervezas killer</span>
+                        <span class="fs-4 d-none d-sm-inline ">Cervezas killer</span>
                     </a>
+                    <hr class="border-bottom border-gray-500 border-opacity-50 w-95 my-4">
+
                     <ul class="nav nav-pills flex-column mt-4">
                         <li class="nav-item my-3">
                             <a href="{{ route('dashboard.productos') }}"

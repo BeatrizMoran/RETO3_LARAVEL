@@ -11,7 +11,7 @@
             <p>¡Bienvenido {{ auth()->user()->name }}!</p>
 
             <div class="row">
-                <div class="card shadow col-3 mx-3 text-center">
+                <div class="card shadow col-3 mx-3 text-center bg-info bg-gradient ">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <h5 class="card-title">Productos</h5>
                         <a href="#">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
 
-                <div class="card shadow col-3 mx-3 text-center">
+                <div class="card shadow col-3 mx-3 text-center bg-warning bg-gradient">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <h5 class="card-title">Pedidos</h5>
                         <a href="#">
@@ -38,7 +38,7 @@
                 @endif
 
                 @if(auth()->user()->hasRole('administrativo') || auth()->user()->hasRole('responsable'))
-                <div class="card shadow col-3 mx-3 text-center">
+                <div class="card shadow col-3 mx-3 text-center bg-success bg-gradient">
 
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <h5 class="card-title">Clientes</h5>
