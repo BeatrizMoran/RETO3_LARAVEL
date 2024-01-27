@@ -17,9 +17,9 @@
 
 <div class="container">
      <div class="row">
-     <div class="col-12 d-flex justify-content-center align-items-center my-4">
+     <div class="col-12 d-flex justify-content-center align-items-center my-4 ">
         <div class="card my-4 shadow-lg">
-            <div class="card-header p-0 position-relative mx-3 z-index-2" style="margin-top: -1.5rem;">
+            <div class="card-header p-0 position-relative mx-3 z-index-2" style="margin-top: -1.8rem;">
             <div class="bg-primary bg-gradient rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">
                     <h6 class="text-white text-capitalize ps-3">Tabla productos</h6>
                     @if(auth()->user()->hasRole('responsable') || auth()->user()->hasRole('administrativo'))
@@ -52,11 +52,11 @@
                                     <td class="p-2">{{ $producto->precio }}</td>
                                     <td class="p-2">{{ $producto->formato }}</td>
                                     <td class="p-2">
-                                        <ul class="list-unstyled">
+                                        <select class="form-select" multiple disabled size="2">
                                             @foreach($producto->categorias as $categoria)
-                                                <li>{{ $categoria->nombre }}</li>
+                                                <option>{{ $categoria->nombre }}</option>
                                             @endforeach
-                                        </ul>
+                                        </select>
                                     </td>
                                     <td class="p-2">
                                         <a href="{{ route('productos.show', $producto) }}" class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i></a>
