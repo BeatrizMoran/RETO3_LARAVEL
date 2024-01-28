@@ -25,30 +25,35 @@
                         <!-- Nombre -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name"
+                                value="{{ auth()->user()->name }}" disabled>
                         </div>
 
                         <!-- Correo Electrónico -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="{{ auth()->user()->email }}" disabled>
                         </div>
 
                         <!-- Contraseña -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" id="password" name="password"
+                                value="{{ auth()->user()->password }}" disabled>
                         </div>
 
                         <!-- Imagen -->
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen (URL)</label>
-                            <input type="text" class="form-control" id="imagen" name="imagen" value="./avatar.png">
+                            <input type="text" class="form-control" id="imagen" name="imagen"
+                                value="{{ auth()->user()->imagen ?? './avatar.png' }}" disabled>
                         </div>
 
                         <!-- Botón de Enviar -->
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary" disabled>Enviar</button>
                     </form>
+
                 </div>
             </div>
             <label class="switch" for="dark-mode-toggle">
@@ -58,7 +63,7 @@
                     <i class="fas fa-sun"></i>
                 </span>
             </label>
-            
+
 
         </div>
 

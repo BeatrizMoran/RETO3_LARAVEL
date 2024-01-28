@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PedidoController;
+
 use App\Http\Controllers\HomeController;
 
 use Illuminate\Support\Facades\Route;
@@ -13,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/perfil', function () {
-    return view('perfil');
-})->name('perfil');
+
 
 Route::post('/toggle-dark-mode', [HomeController::class, "modoClaroOscuro"])->name('toggle-dark-mode');
 
@@ -31,6 +31,11 @@ Route::get('/dashboard/profile', function (){
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/perfil', function () {
+        return view('perfil');
+    })->name('perfil');
+
 });
 Route::middleware(['role:responsable'])->group(function () {
 
@@ -40,6 +45,11 @@ Route::middleware(['role:responsable'])->group(function () {
     Route::resource('/productos', ProductoController::class);
 
     Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+
+    //pedidos
+
+    Route::resource('/pedidos', PedidoController::class);
+
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

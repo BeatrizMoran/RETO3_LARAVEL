@@ -14,21 +14,20 @@
 
 </head>
 
-<body>
+<body >
 
-    <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <div class="bg-light bg-gradient col-auto col-md-4 col-lg-2 d-flex justify-content-center align-items-center"
-                style="height: 100vh;">
-                <div class="bg-dark bg-gradient rounded-4  p-4" style="height: 900px; width: 95%;">
+    <div class="container-fluid ">
+        <div class="row flex-nowrap min-vh-100">
+            <div class="bg-light bg-gradient col-auto  d-flex justify-content-center align-items-center min-vh-100" >
+                <div class="bg-dark bg-gradient rounded-4 p-4 min-vh-100 w-100">
                     <a class="d-flex text-decoration-none mt-1 align-items-center text-white">
                         <img src="{{ url('Killerlogo.png') }}" width="30" height="30"
                             class="d-inline-block align-top me-3" alt="">
-                        <span class="fs-4 d-none d-sm-inline ">Cervezas killer</span>
+                        <span class="fs-2 d-none d-md-inline ">Cervezas killer</span>
                     </a>
                     <hr class="border-bottom border-gray-500 border-opacity-50 w-95 my-4">
 
-                    <ul class="nav nav-pills flex-column mt-4">
+                    <ul class="nav nav-pills flex-column mt-4 min-vh-100">
                         <li class="nav-item my-3">
                             <a href="{{ route('dashboard.productos') }}"
                                 class="nav-link{{ request()->is('dashboard/productos') ? ' active' : '' }}">
@@ -37,7 +36,7 @@
                             </a>
                         </li>
                         <li class="nav-item my-3">
-                            <a href="#" class="nav-link{{ request()->is('dashboard/pedidos') ? ' active' : '' }}">
+                            <a href="{{route('pedidos.create')}}" class="nav-link{{ request()->is('dashboard/pedidos') ? ' active' : '' }}">
                                 <i class="fa-solid fa-clipboard me-3 fs-5"></i>
                                 <span class="d-none d-md-inline">Pedidos</span>
                             </a>
@@ -85,8 +84,11 @@
                     </ul>
                 </div>
             </div>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main class="col-sm-auto col-md-9 col-lg-10 px-md-4 min-vh-100">
+                @include('layouts._partials.messages')
+
                 @yield('content')
+
             </main>
         </div>
     </div>
