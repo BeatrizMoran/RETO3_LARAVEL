@@ -8,7 +8,7 @@
     @vite(['resources/sass/app.scss'])
 </head>
 
-<body class="bg-light d-flex flex-column" style="min-height: 100vh;"> <!-- Ajuste para la altura y flexibilidad -->
+<body class="bg-light d-flex flex-column" style="min-height: 100vh;"> 
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -50,11 +50,11 @@
         </nav>
     </header>
 
-    <main class="container my-4 flex-grow-1"> <!-- Ajuste para crecimiento flexible -->
+    <main class="container my-4 flex-grow-1"> 
         @yield('content')
     </main>
 
-    <footer class="bg-white text-center text-dark py-4 mt-auto"> <!-- Clase mt-auto para empujar al fondo -->
+    <footer class="bg-white text-center text-dark py-4 mt-auto"> 
         <div class="container">
             @yield('footer')
         </div>
