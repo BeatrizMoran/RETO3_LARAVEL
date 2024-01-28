@@ -4,7 +4,7 @@
 
 
 @section('content')
-    <div class="container">
+    <div class="container dashboard">
         <h1>Dashboard</h1>
 
         @if(auth()->check())
