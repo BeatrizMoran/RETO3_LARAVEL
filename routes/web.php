@@ -11,6 +11,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/perfil', function () {
+    return view('perfil');
+})->name('perfil');
+
+
 Auth::routes();
 
 Route::get('/catalogo', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
