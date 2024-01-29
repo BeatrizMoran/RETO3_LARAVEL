@@ -14,7 +14,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('welcome') }}">
-                    <img src="{{ url('Killerlogo.png') }}" alt="" width="50" height="50">
+                    <img src="{{ URL::asset('images/Killerlogo.png') }}" alt="LogoKiller" width="50" height="50">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -44,7 +44,7 @@
                     </ul>
                 </div>
                 <div class="d-flex">
-                    <a class="btn btn-success" href="login" >Iniciar sesion</a>
+                    <a class="btn btn-success" href="login">Iniciar sesion</a>
                 </div>
             </div>
         </nav>
