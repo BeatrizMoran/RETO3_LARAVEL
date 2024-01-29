@@ -5,24 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <!-- Enlace al archivo CSS de Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @vite(['resources/sass/app.scss'])
+
     @vite(['resources/css/app.css'])
+
+
+
 
 </head>
 
-<body>
+<body >
 
-    <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <div class="bg-dark col-auto col-md-4 col-lg-2  min-vh-100">
-                <div class="bg-dark p-2">
+    <div class="container-fluid ">
+        <div class="row flex-nowrap min-vh-100">
+            <div class="bg-light bg-gradient col-auto  d-flex justify-content-center align-items-center min-vh-100" >
+                <div class="bg-dark bg-gradient rounded-4 p-4 min-vh-100 w-100">
                     <a class="d-flex text-decoration-none mt-1 align-items-center text-white">
                         <img src="{{ url('Killerlogo.png') }}" width="30" height="30"
                             class="d-inline-block align-top me-3" alt="">
-                        <span class="fs-4 d-none d-sm-inline">Cervezas killer</span>
+                        <span class="fs-2 d-none d-md-inline ">Cervezas killer</span>
                     </a>
-                    <ul class="nav nav-pills flex-column mt-4">
+                    <hr class="border-bottom border-gray-500 border-opacity-50 w-95 my-4">
+
+                    <ul class="nav nav-pills flex-column mt-4 min-vh-100">
                         <li class="nav-item my-3">
                             <a href="{{ route('dashboard.productos') }}"
                                 class="nav-link{{ request()->is('dashboard/productos') ? ' active' : '' }}">
@@ -31,14 +36,13 @@
                             </a>
                         </li>
                         <li class="nav-item my-3">
-                            <a href="#" class="nav-link{{ request()->is('dashboard/pedidos') ? ' active' : '' }}">
+                            <a href="{{route('pedidos.index')}}" class="nav-link{{ request()->is('dashboard/pedidos') ? ' active' : '' }}">
                                 <i class="fa-solid fa-clipboard me-3 fs-5"></i>
                                 <span class="d-none d-md-inline">Pedidos</span>
                             </a>
                         </li>
                         <li class="nav-item my-3">
-                            <a href="#"
-                                class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
+                            <a href="{{ route('usuarios.index') }}" class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
                                 <i class="fa-solid fa-user  me-3 fs-5"></i>
                                 <span class="d-none d-md-inline">Usuarios</span>
                             </a>
@@ -62,7 +66,7 @@
                             <a href="#"
                                 class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ url('r1.jpg') }}" alt="" width="32" height="32"
+                                <img src="{{ url('Killerlogo.png') }}" alt="" width="32" height="32"
                                     class="rounded-circle me-2">
                                 <strong>{{ auth()->user()->name }}</strong>
                             </a>
@@ -70,7 +74,7 @@
                                 aria-labelledby="dropdownUser1">
                                 <li><a class="dropdown-item" href="#">New project...</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ route('perfil') }}">Profile</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -78,11 +82,13 @@
                             </ul>
                         </div>
                     </ul>
-                    </a>
                 </div>
             </div>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main class="col-sm-auto col-md-9 col-lg-10 px-md-4 min-vh-100">
+                @include('layouts._partials.messages')
+
                 @yield('content')
+
             </main>
         </div>
     </div>
@@ -92,7 +98,7 @@
     <!-- Contenido Principal -->
     <script src="https://kit.fontawesome.com/2f23627a24.js" crossorigin="anonymous"></script>
     <!-- Enlace al archivo JS de Bootstrap 5 y Popper.js (necesario para algunas funcionalidades) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @vite(['resources/js/app.js'])
 </body>
 
 </html>

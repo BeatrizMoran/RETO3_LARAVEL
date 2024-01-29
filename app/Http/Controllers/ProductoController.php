@@ -63,8 +63,18 @@ class ProductoController extends Controller
 
         //excluir el campo categorias de la request
         $datosProducto = $request->except('categorias');
-        $producto = Producto::create($datosProducto);
+        $codigo_referencia = $this->generateUniqueCodigoReferencia();
 
+
+        $producto = new Producto([
+            'nombre' => $request->input('nombre'),
+            'precio' => $request->input('precio'),
+            'imagen' => $request->input('imagen'),
+            'formato' => $request->input('formato'),
+            'codigo_referencia' => $codigo_referencia,
+        ]);
+
+        $producto->save();
 
         // Obtener las categorías seleccionadas del formulario
         $categoriasSeleccionadas = $request->input('categorias', []);
@@ -77,6 +87,20 @@ class ProductoController extends Controller
         session()->flash('success', 'Producto creado correctamente');
 
         return redirect(route('dashboard.productos', ['page' => $totalPages]));
+    }
+
+    private function generateUniqueCodigoReferencia(): string
+    {
+            $codigoReferencia = 'PROD-' . uniqid();
+
+            // Validar si el código de referencia ya existe
+            while (Producto::where('codigo_referencia', $codigoReferencia)->exists()) {
+                $codigoReferencia = 'PROD-' . uniqid();
+            }
+
+            return $codigoReferencia;
+
+
     }
     /**
      * Display the specified resource.

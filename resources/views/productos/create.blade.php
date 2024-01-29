@@ -47,7 +47,7 @@
 
                 <div class="row">
                     @foreach ($categorias as $categoria)
-                        <div class="col-6 col-md-4"> <!-- Utiliza col-md-4 para pantallas medianas y grandes -->
+                        <div class="col-6 col-md-4"> 
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="categorias[]"
                                     value="{{ $categoria->id }}" id="{{ $categoria->nombre }}">

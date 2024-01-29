@@ -4,19 +4,18 @@
 
 @section('content')
 
-
     <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center my-3 ">
             <div class="card my-4 shadow-lg w-75 ">
                 <div class="card-header p-0 position-relative mx-3 z-index-2" style="margin-top: -1.8rem;">
                     <div
                         class="bg-dark bg-gradient rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">
-                        <h6 class="text-white text-capitalize ps-3">Tabla productos</h6>
+                        <h6 class="text-white text-capitalize ps-3">Tabla usuarios</h6>
                         @if (auth()->user()->hasRole('responsable') ||
                                 auth()->user()->hasRole('administrativo'))
                             <!-- Comercial no puede crear productos -->
-                            <a href="{{ route('productos.create') }}" class="btn bg-success bg-gradient mb-3 mx-3"><i
-                                    class="fa-solid fa-plus"></i><span class="mx-3">Añadir Producto</span></a>
+                            <a href="{{ route('usuarios.create') }}" class="btn bg-success bg-gradient mb-3 mx-3"><i
+                                    class="fa-solid fa-plus"></i><span class="mx-3">Añadir usuario</span></a>
                         @endif
                     </div>
                 </div>
@@ -26,58 +25,50 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Código de Referencia</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th>Precio</th>
-                                    <th>Formato</th>
-                                    <th>Categorías</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                @forelse($productos as $producto)
+                                @forelse($users as $user)
                                     <tr>
-                                        <td class="p-1">{{ $producto->id }}</td>
-                                        <td class="p-1">{{ $producto->codigo_referencia }}</td>
-                                        <td class="p-1 tex-center">{{ $producto->nombre }}</td>
-                                        <td class="p-1">{{ $producto->precio }}</td>
-                                        <td class="p-1">{{ $producto->formato }}</td>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->roles->first()->name
+                                        }}</td>
                                         <td class="p-1">
-                                            <select class="form-select" multiple disabled size="2">
-                                                @foreach ($producto->categorias as $categoria)
-                                                    <option>{{ $categoria->nombre }}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                        <td class="p-1">
-                                            <a href="{{ route('productos.show', $producto) }}"
+                                            <a href="{{ route('usuarios.show', $user) }}"
                                                 class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i></a>
                                             <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal"
-                                                data-bs-target="#confirmDeleteModal_{{ $producto->id }}"
-                                                data-product-id="{{ $producto->id }}">
+                                                data-bs-target="#confirmDeleteModal_{{ $user->id }}"
+                                                data-product-id="{{ $user->id }}">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
 
                                             <!-- VENTANA MODAL -->
-                                            <div class="modal fade" id="confirmDeleteModal_{{ $producto->id }}"
+                                            <div class="modal fade" id="confirmDeleteModal_{{ $user->id }}"
                                                 tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="confirmDeleteModalLabel">
-                                                                Confirmar Borrado {{ $producto->id }}</h5>
+                                                                Confirmar Borrado {{ $user->id }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Cerrar"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            ¿Estás seguro de que deseas borrar este producto?
+                                                            <p>¿Estás seguro de que deseas borrar este usuario?</p>
+                                                                <p>- Se borraran tambien los pedidos asociados</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Cancelar</button>
                                                             <form method="post"
-                                                                action="{{ route('productos.destroy', $producto) }}">
+                                                                action="{{ route('usuarios.destroy', $user) }}">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <input type="submit" class="btn btn-danger"
@@ -91,7 +82,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No hay Productos</td>
+                                        <td colspan="7" class="text-center">No hay clientes</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -106,21 +97,21 @@
     <div class="d-flex justify-content-center ">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-                @if ($productos->previousPageUrl())
+                @if ($users->previousPageUrl())
                     <li class="page-item">
-                        <a class="page-link" href="{{ $productos->previousPageUrl() }}" aria-label="Previous">
+                        <a class="page-link" href="{{ $users->previousPageUrl() }}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                 @endif
 
                 <li class="page-item disabled">
-                    <span class="page-link">Página {{ $productos->currentPage() }} de {{ $productos->lastPage() }}</span>
+                    <span class="page-link">Página {{ $users->currentPage() }} de {{ $users->lastPage() }}</span>
                 </li>
 
-                @if ($productos->nextPageUrl())
+                @if ($users->nextPageUrl())
                     <li class="page-item">
-                        <a class="page-link" href="{{ $productos->nextPageUrl() }}" aria-label="Next">
+                        <a class="page-link" href="{{ $users->nextPageUrl() }}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -129,8 +120,6 @@
         </nav>
     </div>
 
-
-    </div>
 
 
 @endsection

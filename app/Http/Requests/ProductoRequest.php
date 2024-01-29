@@ -48,6 +48,7 @@ class ProductoRequest extends FormRequest
             'precio' => 'required|numeric|min:0',
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif',
             'formato' => 'required|in:20CL,25CL,33CL,1L,Barril',
+            'codigo_referencia' => 'unique'
         ];
     }
 }
