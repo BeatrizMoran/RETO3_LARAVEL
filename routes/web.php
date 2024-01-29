@@ -25,6 +25,8 @@ Route::post('/toggle-dark-mode', [HomeController::class, "modoClaroOscuro"])->na
 Auth::routes();
 
 Route::get('/catalogo', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
+Route::get('/filtrar-productos', [ProductoController::class, 'filtrarProductos'])->name('filtrar-productos');
+
 
 Route::get('/dashboard/profile', function (){
     return view("profile");

@@ -1,8 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { initializeFiltrarProductos } from './filtrarProductos';
+
 document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
-
+    initializeFiltrarProductos();
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
