@@ -37,19 +37,25 @@ Route::middleware(['auth'])->group(function () {
     })->name('perfil');
 
 });
-Route::middleware(['role:responsable'])->group(function () {
+
+
+Route::middleware(['role:responsable|comercial'])->group(function () {
+    // Rutas accesibles por responsable y comercial
 
     Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
 
 
     Route::resource('/productos', ProductoController::class);
 
-    Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 
     //pedidos
 
     Route::resource('/pedidos', PedidoController::class);
 
+});
+
+Route::middleware(['role:responsable'])->group(function () {
+    Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
