@@ -37,15 +37,12 @@
                     </div>
                 @endif
 
-                @if (auth()->user()->hasRole('administrativo') ||
-                        auth()->user()->hasRole('responsable'))
+                @if (auth()->user()->hasRole('administrativo') || auth()->user()->hasRole('responsable'))
                     <div class="card shadow col-sm-12 col-md-5 col-lg-3 mx-3 text-center bg-info bg-gradient my-3 mx-3">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center">
                             <h5 class="card-title">Clientes</h5>
-                            <a href="#">
                                 <i class="fa-solid fa-people-group fa-3x mb-3 text-dark"></i>
-                            </a>
-                            <a href="{{ route('dashboard.productos') }}" class="btn btn-dark mb-3">ENTRAR</a>
+                            <a href="{{ route('clientes.index') }}" class="btn btn-dark mb-3">ENTRAR</a>
                         </div>
                     </div>
                     <!-- Agrega aquí los elementos específicos para el rol de Administrativo -->

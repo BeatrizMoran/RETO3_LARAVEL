@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\UserController;
+
 
 use App\Http\Controllers\HomeController;
 
@@ -55,7 +57,10 @@ Route::middleware(['role:responsable|comercial'])->group(function () {
 });
 
 Route::middleware(['role:responsable'])->group(function () {
-    Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+    Route::resource('/clientes', ClienteController::class);
+    Route::resource('/usuarios', UserController::class);
+
+
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

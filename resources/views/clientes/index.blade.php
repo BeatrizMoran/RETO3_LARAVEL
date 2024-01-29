@@ -3,42 +3,97 @@
 @section('title', 'Página Específica')
 
 @section('content')
-<div class="container">
-    <h1 class="my-4">Lista de Clientes</h1>
-    <a href="##" class="btn btn-primary mb-3">Añadir Cliente</a>
 
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Teléfono</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($clientes as $cliente)
-            <tr>
-                <td>{{ $cliente->id }}</td>
-                <td>{{ $cliente->nombre }}</td>
-                <td>{{ $cliente->direccion }}</td>
-                <td>{{ $cliente->telefono }}</td>
-                <td>
-                    <a href="##" class="btn btn-primary btn-sm">Entrar</a>
-                    <a href="#" class="btn btn-danger btn-sm">Borrar</a>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="5" class="text-center">No hay clientes</td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center my-3 ">
+            <div class="card my-4 shadow-lg w-75 ">
+                <div class="card-header p-0 position-relative mx-3 z-index-2" style="margin-top: -1.8rem;">
+                    <div
+                        class="bg-dark bg-gradient rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">
+                        <h6 class="text-white text-capitalize ps-3">Tabla clientes</h6>
+                        @if (auth()->user()->hasRole('responsable') ||
+                                auth()->user()->hasRole('administrativo'))
+                            <!-- Comercial no puede crear productos -->
+                            <a href="{{ route('clientes.create') }}" class="btn bg-success bg-gradient mb-3 mx-3"><i
+                                    class="fa-solid fa-plus"></i><span class="mx-3">Añadir cliente</span></a>
+                        @endif
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
 
-    <!-- Paginación -->
-    <div class="d-flex justify-content-center mt-4">
+                            <tbody>
+                                @forelse($clientes as $cliente)
+                                    <tr>
+                                        <td>{{ $cliente->id }}</td>
+                                        <td>{{ $cliente->nombre }}</td>
+                                        <td>{{ $cliente->direccion }}</td>
+                                        <td>{{ $cliente->telefono }}</td>
+                                        <td class="p-1">
+                                            <a href="{{ route('clientes.show', $cliente) }}"
+                                                class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i></a>
+                                            <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal"
+                                                data-bs-target="#confirmDeleteModal_{{ $cliente->id }}"
+                                                data-product-id="{{ $cliente->id }}">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+
+                                            <!-- VENTANA MODAL -->
+                                            <div class="modal fade" id="confirmDeleteModal_{{ $cliente->id }}"
+                                                tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmDeleteModalLabel">
+                                                                Confirmar Borrado {{ $cliente->id }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Cerrar"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>¿Estás seguro de que deseas borrar este cliente?</p>
+                                                                <p>- Se borraran tambien los pedidos asociados</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cancelar</button>
+                                                            <form method="post"
+                                                                action="{{ route('clientes.destroy', $cliente) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <input type="submit" class="btn btn-danger"
+                                                                    value="Eliminar">
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">No hay clientes</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center ">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 @if ($clientes->previousPageUrl())
@@ -63,7 +118,8 @@
             </ul>
         </nav>
     </div>
-</div>
+
+
 
 @endsection
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -12,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::with('roles')->paginate(10);
+        return view("users.index", compact("users"));
     }
 
     /**
@@ -20,7 +23,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = DB::table('roles')->get();
+        return view("users.create", compact("roles"));
     }
 
     /**
@@ -58,10 +62,21 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+
+public function destroy($id)
+{
+    //comprobar que no sea el usuario con el que esta logueado
+    $user = User::find($id);
+
+    if ($user) {
+        $user->delete();
+        session()->flash('success', 'usuario borrado correctamente');
+    } else {
+        session()->flash('error', 'usuario no encontrado');
     }
+
+    return redirect()->back();
+}
 
 
 }

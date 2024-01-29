@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li class="nav-item my-3">
-                            <a href="#" class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
+                            <a href="{{ route('usuarios.index') }}" class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
                                 <i class="fa-solid fa-user  me-3 fs-5"></i>
                                 <span class="d-none d-md-inline">Usuarios</span>
                             </a>
