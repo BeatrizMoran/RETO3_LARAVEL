@@ -13,7 +13,7 @@
                         class="bg-dark bg-gradient rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">
                         <h6 class="text-white text-capitalize ps-3">Tabla pedidos</h6>
                         @if (auth()->user()->hasRole('responsable') ||
-                                auth()->user()->hasRole('administrativo'))
+                                auth()->user()->hasRole('comercial'))
                             <!-- Comercial no puede crear productos -->
                             <a href="{{ route('pedidos.create') }}" class="btn bg-success bg-gradient mb-3 mx-3"><i
                                     class="fa-solid fa-plus"></i><span class="mx-3">Añadir Pedido</span></a>
