@@ -26,7 +26,7 @@
                         <a href="#">
                             <i class="fa-solid fa-clipboard fa-3x mb-3 text-dark"></i>
                         </a>
-                        <a href="{{ route('pedidos.create') }}" class="btn btn-dark mb-3">ENTRAR</a>
+                        <a href="{{ route('pedidos.index') }}" class="btn btn-dark mb-3">ENTRAR</a>
                     </div>
                 </div>
 

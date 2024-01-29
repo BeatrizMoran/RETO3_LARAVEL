@@ -34,7 +34,8 @@
                 <input type="number" class="form-control" name="cantidad[]" placeholder="Cantidad" required>
             </div>
             <div class="col-md-2">
-                <button type="button" class="btn btn-outline-primary mb-2" onclick="agregarProducto({{ json_encode($productos) }})">Añadir Producto</button>
+                <button type="button" class="btn btn-outline-primary mb-2" id="btnAgregarProducto"
+                data-productos="{{ json_encode($productos) }}">Añadir Producto</button>
             </div>
         </div>
     </div>
@@ -42,37 +43,7 @@
 
 </form>
 
-<script>
-    function agregarProducto(productos) {
-        const productosContainer = document.getElementById('productosContainer');
 
-        // Nuevo conjunto de productos y cantidades
-        const newRow = document.createElement('div');
-        newRow.className = 'row mb-2 producto-row';
-
-        newRow.innerHTML = `
-            <div class="col-md-6">
-                <select class="form-select" name="producto[]" required>
-                    <!-- Genera opciones dinámicamente desde la lista de productos -->
-                    ${productos.map(producto => `<option value="${producto.id}">${producto.nombre}</option>`).join('')}
-                </select>
-            </div>
-            <div class="col-md-4">
-                <input type="number" class="form-control" name="cantidad[]" placeholder="Cantidad" required>
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-outline-primary mb-2" onclick="eliminarProducto(this)">Eliminar</button>
-            </div>
-        `;
-
-        productosContainer.appendChild(newRow);
-    }
-
-    function eliminarProducto(btn) {
-        const row = btn.closest('.producto-row');
-        row.remove();
-    }
-</script>
 @endsection
 
 @section('footer', '©️ Cervezas Killer')

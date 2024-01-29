@@ -36,7 +36,7 @@
                             </a>
                         </li>
                         <li class="nav-item my-3">
-                            <a href="{{route('pedidos.create')}}" class="nav-link{{ request()->is('dashboard/pedidos') ? ' active' : '' }}">
+                            <a href="{{route('pedidos.index')}}" class="nav-link{{ request()->is('dashboard/pedidos') ? ' active' : '' }}">
                                 <i class="fa-solid fa-clipboard me-3 fs-5"></i>
                                 <span class="d-none d-md-inline">Pedidos</span>
                             </a>

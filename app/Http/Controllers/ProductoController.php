@@ -99,7 +99,7 @@ class ProductoController extends Controller
             }
 
             return $codigoReferencia;
-        
+
 
     }
     /**
@@ -166,7 +166,6 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
 {
-    $currentPage = Producto::with('categorias')->paginate(10)->currentPage();
 
     $producto->delete();
 
