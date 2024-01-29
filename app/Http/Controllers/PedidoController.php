@@ -73,6 +73,9 @@ class PedidoController extends Controller
         $pedidos = Pedido::with(['cliente', 'productos', "users"])->paginate(10);
 
 
+        session()->flash('success', 'Pedido creado correctamente');
+
+
         // Puedes retornar una respuesta de éxito si lo deseas
         return redirect()->route('pedidos.index', compact("pedidos"));
     }

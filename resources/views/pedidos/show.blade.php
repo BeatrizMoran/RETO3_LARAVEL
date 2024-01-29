@@ -26,7 +26,7 @@
         <!-- Nombre del Cliente -->
         <div class="mb-3">
             <label for="nombreCliente" class="form-label">Nombre del Cliente</label>
-            <select name="cliente" @if (!$edit) readonly @endif>
+            <select name="cliente" {{ $edit ? 'required' : 'disabled' }}>
                 @foreach ($clientes as $cliente)
                     <option value="{{ $cliente->id }}" {{ $cliente->id == $pedido->cliente->id ? 'selected' : '' }}>
                         {{ $cliente->nombre }}
@@ -41,13 +41,13 @@
                     @foreach ($pedido->productos as $producto)
                         <div class="row mb-2 producto-row">
                             <div class="col-5">
-                                <select class="form-select" name="producto[]" @if (!$edit) readonly @endif>
+                                <select class="form-select" name="producto[]" {{ $edit ? 'required' : 'disabled' }}>
                                     <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
                                 </select>
                             </div>
                             <div class="col-5">
                                 <input type="number" class="form-control" name="cantidad[]"
-                                    value="{{ $producto->pivot->cantidad }}" placeholder="Cantidad" @if (!$edit) readonly @endif>
+                                    value="{{ $producto->pivot->cantidad }}" placeholder="Cantidad" {{ $edit ? 'required' : 'disabled' }}>
                             </div>
                             <div class="col-2">
                                 <input type="{{ $edit ? 'button' : 'hidden' }}" class="btn btn-outline-primary mb-2" id="btnEliminarProducto" value="Eliminar">
@@ -64,7 +64,7 @@
 
         <div class="row">
             <div class="col">
-                <select name="estado" id="estado" @if (!$edit) readonly @endif>
+                <select name="estado" id="estado" {{ $edit ? 'required' : 'disabled' }}>
                     <option value="solicitado" {{ $pedido->estado === 'solicitado' ? 'selected' : '' }}>Solicitado</option>
                     <option value="en preparacion" {{ $pedido->estado === 'en preparacion' ? 'selected' : '' }}>En preparacion</option>
                     <option value="en entrega" {{ $pedido->estado === 'en entrega' ? 'selected' : '' }}>En entrega</option>

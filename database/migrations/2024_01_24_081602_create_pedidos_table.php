@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('estado', ['solicitado', 'en preparacion', 'en entrega', "entregado"]);
             $table->unsignedBigInteger('cliente_id')->nullable();
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamps();
         });
     }
