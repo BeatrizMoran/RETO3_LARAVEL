@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::post('/toggle-dark-mode', [HomeController::class, "modoClaroOscuro"])->name('toggle-dark-mode');
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/catalogo', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
 Route::get('/filtrar-productos', [ProductoController::class, 'filtrarProductos'])->name('filtrar-productos');
@@ -33,7 +33,7 @@ Route::get('/dashboard/profile', function (){
 })->name("profile");
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/perfil', function () {
@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::middleware(['role:responsable|comercial'])->group(function () {
+Route::middleware(['role:responsable|comercial','verified'])->group(function () {
     // Rutas accesibles por responsable y comercial
 
     Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
@@ -58,7 +58,7 @@ Route::middleware(['role:responsable|comercial'])->group(function () {
 
 });
 
-Route::middleware(['role:responsable'])->group(function () {
+Route::middleware(['role:responsable','verified'])->group(function () {
     Route::resource('/clientes', ClienteController::class);
     Route::resource('/usuarios', UserController::class);
 
