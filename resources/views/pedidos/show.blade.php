@@ -76,6 +76,9 @@
         <input type="{{ $edit ? 'submit' : 'hidden' }}" class="btn btn-primary" value="Actualizar pedido">
     </form>
 
+    @vite(['resources/js/pedido.js'])
+
+
 @endsection
 
 @section('footer', '©️ Cervezas Killer')
