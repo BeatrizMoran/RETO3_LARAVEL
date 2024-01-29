@@ -46,7 +46,7 @@ class ProductoRequest extends FormRequest
         return [
             'nombre' => 'required',
             'precio' => 'required|numeric|min:0',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'imagen' => 'image|mimes:jpeg,png,jpg,gif',
             'formato' => 'required|in:20CL,25CL,33CL,1L,Barril',
             'codigo_referencia' => 'unique'
         ];

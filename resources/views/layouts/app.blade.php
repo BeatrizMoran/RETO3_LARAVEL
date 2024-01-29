@@ -14,7 +14,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('welcome') }}">
-                    <img src="{{ asset('storage/images/Killerlogo.png') }}"alt="LogoKiller" width="50"
+                    <img src="{{ asset('storage/images/Killerlogo.png') }}" alt="LogoKiller" width="50"
                         height="50">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

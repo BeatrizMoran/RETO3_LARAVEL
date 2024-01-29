@@ -15,26 +15,26 @@ class ProductoController extends Controller
      * Display a listing of the resource.
      */
 
-     public function catalogo(Request $request)
-     {
-         $categorias = Categoria::all();
-         $productos = Producto::with('categorias');
-     
-         $categoriasSeleccionadas = []; // Definir la variable aquí
-     
-         if ($request->has('categorias')) {
-             $categoriasSeleccionadas = $request->input('categorias');
-             $productos->whereHas('categorias', function ($query) use ($categoriasSeleccionadas) {
-                 $query->whereIn('categorias.id', $categoriasSeleccionadas);
-             });
-         }
-     
-         $productos = $productos->paginate(9);
-     
-         return view("productos.catalogo", compact("categorias", "productos", "categoriasSeleccionadas"));
-     }
-     
-     
+    public function catalogo(Request $request)
+    {
+        $categorias = Categoria::all();
+        $productos = Producto::with('categorias');
+
+        $categoriasSeleccionadas = []; // Definir la variable aquí
+
+        if ($request->has('categorias')) {
+            $categoriasSeleccionadas = $request->input('categorias');
+            $productos->whereHas('categorias', function ($query) use ($categoriasSeleccionadas) {
+                $query->whereIn('categorias.id', $categoriasSeleccionadas);
+            });
+        }
+
+        $productos = $productos->paginate(9);
+
+        return view("productos.catalogo", compact("categorias", "productos", "categoriasSeleccionadas"));
+    }
+
+
 
     /*  public function index()
     {
@@ -159,10 +159,19 @@ class ProductoController extends Controller
             return redirect()->back()->withErrors(['categorias' => 'Debes seleccionar al menos una categoría.'])->withInput();
         }
 
-        // Excluir el campo categorias de la request
-        $datosProducto = $request->except('categorias');
+        // Excluir el campo categorias e imagen de la request
+        $datosProducto = $request->except(['categorias', 'imagen']);
 
+        // Actualizar los datos del producto excepto la imagen
         $producto->update($datosProducto);
+
+        // Si se proporciona una nueva imagen, almacenarla y actualizar la propiedad 'imagen'
+        if ($request->hasFile('imagen')) {
+            $imageName = time() . '.' . $request->imagen->extension();
+            $request->imagen->storeAs('images', $imageName, 'public');
+            $producto->imagen = $imageName;
+            $producto->save();
+        }
 
         // Sincronizar las categorías del producto
         $producto->categorias()->sync($categoriasSeleccionadas);
@@ -171,6 +180,7 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.show', $producto);
     }
+
 
 
 

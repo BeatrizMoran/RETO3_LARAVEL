@@ -14,14 +14,14 @@
 
 </head>
 
-<body >
+<body>
 
     <div class="container-fluid ">
         <div class="row flex-nowrap min-vh-100">
-            <div class="bg-light bg-gradient col-auto  d-flex justify-content-center align-items-center min-vh-100" >
+            <div class="bg-light bg-gradient col-auto  d-flex justify-content-center align-items-center min-vh-100">
                 <div class="bg-dark bg-gradient rounded-4 p-4 min-vh-100 w-100">
                     <a class="d-flex text-decoration-none mt-1 align-items-center text-white">
-                        <img src="{{ url('Killerlogo.png') }}" width="30" height="30"
+                        <img src="{{ asset('storage/images/Killerlogo.png') }}" width="50" height="50"
                             class="d-inline-block align-top me-3" alt="">
                         <span class="fs-2 d-none d-md-inline ">Cervezas killer</span>
                     </a>
@@ -36,13 +36,15 @@
                             </a>
                         </li>
                         <li class="nav-item my-3">
-                            <a href="{{route('pedidos.index')}}" class="nav-link{{ request()->is('dashboard/pedidos') ? ' active' : '' }}">
+                            <a href="{{ route('pedidos.index') }}"
+                                class="nav-link{{ request()->is('dashboard/pedidos') ? ' active' : '' }}">
                                 <i class="fa-solid fa-clipboard me-3 fs-5"></i>
                                 <span class="d-none d-md-inline">Pedidos</span>
                             </a>
                         </li>
                         <li class="nav-item my-3">
-                            <a href="{{ route('usuarios.index') }}" class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
+                            <a href="{{ route('usuarios.index') }}"
+                                class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
                                 <i class="fa-solid fa-user  me-3 fs-5"></i>
                                 <span class="d-none d-md-inline">Usuarios</span>
                             </a>

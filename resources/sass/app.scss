@@ -43,3 +43,10 @@ body {
     color: green;
     font-weight: bold;
 }
+
+.categoria-label:hover {
+    /* Estilos para cuando se pasa el mouse sobre la etiqueta */
+    font-weight: bold; /* Cambia el color de fondo al pasar el mouse */
+    color: #333; /* Cambia el color del texto al pasar el mouse */
+    cursor: pointer; /* Cambia el cursor al puntero al pasar el mouse */
+}
