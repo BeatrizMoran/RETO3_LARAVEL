@@ -11,6 +11,11 @@ use App\Http\Requests\ProductoRequest;
 
 class ProductoController extends Controller
 {
+
+/*     function __construct()
+    {
+        $this->middleware('role:administrativo|responsable');
+    } */
     /**
      * Display a listing of the resource.
      */
