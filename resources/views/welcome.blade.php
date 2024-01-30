@@ -65,6 +65,35 @@
             <!-- Más contenido aquí -->
         </div>
     </div>
+
+    <!-- Modal de Consentimiento de Cookies -->
+    <div id="cookieConsentModal" class="modal" tabindex="-1" role="dialog" style="display:none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Consentimiento de Cookies</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Este sitio web utiliza cookies para asegurar que obtengas la mejor experiencia en nuestro sitio web.
+                    </p>
+                    <p>Las cookies son pequeños archivos de texto que los sitios web pueden usar para hacer que la
+                        experiencia del usuario sea más eficiente. La ley establece que podemos almacenar cookies en tu
+                        dispositivo si son estrictamente necesarias para el funcionamiento de este sitio. Para todos los
+                        demás tipos de cookies necesitamos tu permiso.</p>
+                    <p>Al aceptar, estás consintiendo el uso de cookies. Si eliges rechazar, no almacenaremos cookies que no
+                        sean esenciales para el funcionamiento del sitio.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="acceptCookie">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" id="declineCookie">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @vite(['resources/js/cookies.js'])
 @section('footer', '©️ Cervezas killer')
