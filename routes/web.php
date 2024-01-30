@@ -33,30 +33,35 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('perfil');
 });
 
+Route::middleware(['role:responsable|comercial|administrativo'])->group(function () {
+
+    Route::get('/productos/show/{producto}', [ProductoController::class, 'show'])->name('productos.show');
+    Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
+    Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
+    Route::get('/pedidos/show/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
+});
 
 Route::middleware(['role:responsable|comercial'])->group(function () {
-
-    Route::get('/productos/edit/{producto}', [ProductoController::class, 'edit'])->name('productos.edit');
-    Route::put('/productos/update/{producto}', [ProductoController::class, 'update'])->name('productos.update');
 
     Route::get('/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
     Route::post('/pedidos/store', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::delete('/pedidos/destroy/{id}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
-    Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
-    Route::get('/pedidos/show/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
     Route::get('/pedidos/edit/{pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
     Route::put('/pedidos/update/{pedido}', [PedidoController::class, 'update'])->name('pedidos.update');
 });
 
 
 Route::middleware(['role:responsable|administrativo'])->group(function () {
+
+    Route::get('/productos/edit/{producto}', [ProductoController::class, 'edit'])->name('productos.edit');
+    Route::put('/productos/update/{producto}', [ProductoController::class, 'update'])->name('productos.update');
+
     Route::get('/productos/create', [ProductoController::class, 'create'])->name('productos.create');
     Route::post('/productos/store', [ProductoController::class, 'store'])->name('productos.store');
     Route::delete('/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+
     Route::resource('/clientes', ClienteController::class);
-    Route::get('/productos/dashboardProductos', [ProductoController::class, 'dashboardProductos'])->name('productos.dashboardProductos');
-    Route::get('/productos/show/{producto}', [ProductoController::class, 'show'])->name('productos.show');
-    Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
+
 });
 
 
