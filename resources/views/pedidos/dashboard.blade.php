@@ -29,7 +29,6 @@
                                     <th>Cliente</th>
                                     <th>Usuario</th>
                                     <th>Fecha</th>
-                                    <th>Productos - Cantidad</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -46,11 +45,7 @@
                                             @endforeach
                                         </td>
                                         <td class="p-1">{{ $pedido->created_at }}</td>
-                                        <td>
-                                            @foreach ($pedido->productos as $producto)
-                                                {{ $producto->nombre }} - {{ $producto->pivot->cantidad }}<br>
-                                            @endforeach
-                                        </td>
+                                       
                                         <td class="p-1">{{ $pedido->estado }}</td>
 
                                         <td class="p-1">
@@ -94,7 +89,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No hay Productos</td>
+                                        <td colspan="7" class="text-center">No hay pedidos</td>
                                     </tr>
                                 @endforelse
                             </tbody>

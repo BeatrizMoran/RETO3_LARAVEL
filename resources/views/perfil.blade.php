@@ -16,8 +16,10 @@
                 <div class="card-header dark:bg-dark">
                     Informacion Perfil
                 </div>
-                <img src="{{ url('Killerlogo.png') }}" alt="foto-perfil" class="rounded-circle m-2" width="100"
-                    height="100">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="{{ asset('storage/images/default.jpg') }}" alt="foto-perfil" class="rounded-circle m-2"
+                        width="100" height="100">
+                </div>
                 <div class="card-body">
                     <form action="##" method="POST">
                         @csrf
@@ -36,17 +38,10 @@
                                 value="{{ auth()->user()->email }}" disabled>
                         </div>
 
-                        <!-- Contraseña -->
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                value="{{ auth()->user()->password }}" disabled>
-                        </div>
-
                         <!-- Imagen -->
                         <div class="mb-3">
-                            <label for="imagen" class="form-label">Imagen (URL)</label>
-                            <input type="text" class="form-control" id="imagen" name="imagen"
+                            <label for="imagen" class="form-label">Imagen</label>
+                            <input type="file" class="form-control" id="imagen" name="imagen"
                                 value="{{ auth()->user()->imagen ?? './avatar.png' }}" disabled>
                         </div>
 
