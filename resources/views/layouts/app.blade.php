@@ -4,17 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" sizes="192x192" href="{{ asset('storage/images/Killerlogo.png') }}">
+
     <title>@yield('title')</title>
     @vite(['resources/sass/app.scss'])
 </head>
 
-<body class="bg-light d-flex flex-column" style="min-height: 100vh;"> 
+<body class="bg-light d-flex flex-column" style="min-height: 100vh;">
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('welcome') }}">
-                    <img src="{{ url('Killerlogo.png') }}" alt="" width="50" height="50">
+                    <img src="{{ asset('storage/images/Killerlogo.png') }}" alt="LogoKiller" width="50"
+                        height="50">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -44,17 +47,17 @@
                     </ul>
                 </div>
                 <div class="d-flex">
-                    <a class="btn btn-success" href="login" >Iniciar sesion</a>
+                    <a class="btn btn-success" href="login">Iniciar sesion</a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main class="container my-4 flex-grow-1"> 
+    <main>
         @yield('content')
     </main>
 
-    <footer class="bg-white text-center text-dark py-4 mt-auto"> 
+    <footer class="bg-white text-center text-dark py-4 mt-auto">
         <div class="container">
             @yield('footer')
         </div>

@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
@@ -19,52 +20,32 @@ Route::get('/', function () {
 Route::post('/toggle-dark-mode', [HomeController::class, "modoClaroOscuro"])->name('toggle-dark-mode');
 
 
-Auth::routes();
-
+Auth::routes(['verify' => true]);
 
 Route::get('/catalogo', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/perfil', function () {
         return view('perfil');
     })->name('perfil');
-
-
-    Route::get('/productos/dashboardProductos', [ProductoController::class, 'dashboardProductos'])->name('productos.dashboardProductos');
-    Route::get('/productos/show/{producto}', [ProductoController::class, 'show'])->name('productos.show');
-    Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
-
-
-
-
-
-    Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
-    Route::get('/pedidos/show/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
-    Route::get('/pedidos/edit/{pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
-    Route::put('/pedidos/update/{pedido}', [PedidoController::class, 'update'])->name('pedidos.update');
-
-
-
-
 });
 
 
 Route::middleware(['role:responsable|comercial'])->group(function () {
 
-
     Route::get('/productos/edit/{producto}', [ProductoController::class, 'edit'])->name('productos.edit');
     Route::put('/productos/update/{producto}', [ProductoController::class, 'update'])->name('productos.update');
-
-
-
-
 
     Route::get('/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
     Route::post('/pedidos/store', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::delete('/pedidos/destroy/{id}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
+    Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
+    Route::get('/pedidos/show/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
+    Route::get('/pedidos/edit/{pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
+    Route::put('/pedidos/update/{pedido}', [PedidoController::class, 'update'])->name('pedidos.update');
 });
 
 
@@ -73,6 +54,9 @@ Route::middleware(['role:responsable|administrativo'])->group(function () {
     Route::post('/productos/store', [ProductoController::class, 'store'])->name('productos.store');
     Route::delete('/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
     Route::resource('/clientes', ClienteController::class);
+    Route::get('/productos/dashboardProductos', [ProductoController::class, 'dashboardProductos'])->name('productos.dashboardProductos');
+    Route::get('/productos/show/{producto}', [ProductoController::class, 'show'])->name('productos.show');
+    Route::get('/dashboard/productos', [ProductoController::class, 'dashboardProductos'])->name('dashboard.productos');
 });
 
 
@@ -82,6 +66,3 @@ Route::middleware(['role:responsable'])->group(function () {
 
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-
-

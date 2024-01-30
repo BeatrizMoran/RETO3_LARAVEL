@@ -14,11 +14,27 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function catalogo()
+
+    public function catalogo(Request $request)
     {
-        $productos = Producto::with('categorias')->get();
-        return view("productos.catalogo", compact("productos"));
+        $categorias = Categoria::all();
+        $productos = Producto::with('categorias');
+
+        $categoriasSeleccionadas = []; // Definir la variable aquí
+
+        if ($request->has('categorias')) {
+            $categoriasSeleccionadas = $request->input('categorias');
+            $productos->whereHas('categorias', function ($query) use ($categoriasSeleccionadas) {
+                $query->whereIn('categorias.id', $categoriasSeleccionadas);
+            });
+        }
+
+        $productos = $productos->paginate(9);
+
+        return view("productos.catalogo", compact("categorias", "productos", "categoriasSeleccionadas"));
     }
+
+
 
     /*  public function index()
     {
@@ -62,14 +78,14 @@ class ProductoController extends Controller
     {
 
         //excluir el campo categorias de la request
-        $datosProducto = $request->except('categorias');
+        //$datosProducto = $request->except('categorias');
         $codigo_referencia = $this->generateUniqueCodigoReferencia();
-
-
+        $imageName = time() . '.' . $request->imagen->extension();
+        $request->imagen->storeAs('images', $imageName, 'public');
         $producto = new Producto([
             'nombre' => $request->input('nombre'),
             'precio' => $request->input('precio'),
-            'imagen' => $request->input('imagen'),
+            'imagen' => $imageName,
             'formato' => $request->input('formato'),
             'codigo_referencia' => $codigo_referencia,
         ]);
@@ -91,16 +107,14 @@ class ProductoController extends Controller
 
     private function generateUniqueCodigoReferencia(): string
     {
+        $codigoReferencia = 'PROD-' . uniqid();
+
+        // Validar si el código de referencia ya existe
+        while (Producto::where('codigo_referencia', $codigoReferencia)->exists()) {
             $codigoReferencia = 'PROD-' . uniqid();
+        }
 
-            // Validar si el código de referencia ya existe
-            while (Producto::where('codigo_referencia', $codigoReferencia)->exists()) {
-                $codigoReferencia = 'PROD-' . uniqid();
-            }
-
-            return $codigoReferencia;
-
-
+        return $codigoReferencia;
     }
     /**
      * Display the specified resource.
@@ -145,11 +159,19 @@ class ProductoController extends Controller
             return redirect()->back()->withErrors(['categorias' => 'Debes seleccionar al menos una categoría.'])->withInput();
         }
 
-        // Excluir el campo categorias de la request
-        $datosProducto = $request->except('categorias');
+        // Excluir el campo categorias e imagen de la request
+        $datosProducto = $request->except(['categorias', 'imagen']);
 
-        // Actualizar los atributos del producto
+        // Actualizar los datos del producto excepto la imagen
         $producto->update($datosProducto);
+
+        // Si se proporciona una nueva imagen, almacenarla y actualizar la propiedad 'imagen'
+        if ($request->hasFile('imagen')) {
+            $imageName = time() . '.' . $request->imagen->extension();
+            $request->imagen->storeAs('images', $imageName, 'public');
+            $producto->imagen = $imageName;
+            $producto->save();
+        }
 
         // Sincronizar las categorías del producto
         $producto->categorias()->sync($categoriasSeleccionadas);
@@ -161,16 +183,17 @@ class ProductoController extends Controller
 
 
 
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Producto $producto)
-{
+    {
 
-    $producto->delete();
+        $producto->delete();
 
-    session()->flash('danger', 'Producto borrado correctamente');
+        session()->flash('danger', 'Producto borrado correctamente');
 
-    return redirect()->back();
-}
+        return redirect()->back();
+    }
 }

@@ -106,24 +106,38 @@
     </div>
 
 
-    <div class="d-flex justify-content-center ">
+    <div class="d-flex justify-content-center">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 @if ($productos->previousPageUrl())
                     <li class="page-item">
-                        <a class="page-link" href="{{ $productos->previousPageUrl() }}" aria-label="Previous">
+                        <a class="page-link" href="{{ $productos->appends(request()->except('page'))->previousPageUrl() }}"
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                 @endif
 
-                <li class="page-item disabled">
-                    <span class="page-link">Página {{ $productos->currentPage() }} de {{ $productos->lastPage() }}</span>
-                </li>
+                @if ($productos->currentPage() > 3)
+                    <li class="page-item"><span class="page-link">1</span></li>
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                @endif
+
+                @for ($i = max(1, $productos->currentPage() - 2); $i <= min($productos->lastPage(), $productos->currentPage() + 2); $i++)
+                    <li class="page-item @if ($i == $productos->currentPage()) active @endif">
+                        <a class="page-link"
+                            href="{{ $productos->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
+                    </li>
+                @endfor
+
+                @if ($productos->currentPage() < $productos->lastPage() - 2)
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <li class="page-item"><span class="page-link">{{ $productos->lastPage() }}</span></li>
+                @endif
 
                 @if ($productos->nextPageUrl())
                     <li class="page-item">
-                        <a class="page-link" href="{{ $productos->nextPageUrl() }}" aria-label="Next">
+                        <a class="page-link" href="{{ $productos->appends(request()->except('page'))->nextPageUrl() }}"
+                            aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

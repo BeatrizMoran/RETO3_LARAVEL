@@ -1,11 +1,11 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Página Específica')
+@section('title', 'Detalles')
 
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-8">
+            <div class="col-7">
                 @if ($errors->has('categorias'))
                     <div class="alert alert-danger">
                         <strong>{{ $errors->first('categorias') }}</strong>
@@ -42,7 +42,7 @@
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*"
-                            {{ $edit ? 'required' : 'disabled' }}>
+                            {{ $edit ? 'enabled' : 'disabled' }}>
                     </div>
 
                     <!-- Formato -->
@@ -84,6 +84,9 @@
                     <!-- Botón de Envío -->
                     <input type="{{ $edit ? 'submit' : 'hidden' }}" class="btn btn-primary" value="Actualizar producto">
                 </form>
+            </div>
+            <div class="col-3">
+                <img class="img-thumbnail" src="{{ asset('storage/images/' . $producto->imagen) }}" />
             </div>
         </div>
 
