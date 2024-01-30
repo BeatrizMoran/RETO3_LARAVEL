@@ -36,6 +36,27 @@ class PedidoController extends Controller
         return view("pedidos.create", compact("clientes", "productos"));
     }
 
+
+    public function calcularTotalPedido($pedidoId)
+    {
+        // Obtén el pedido deseado
+        $pedido = Pedido::findOrFail($pedidoId);
+
+        // Inicializa una variable para el total
+        $total = 0;
+
+        // Recorre los productos del pedido y suma sus precios multiplicados por la cantidad
+        foreach ($pedido->productos as $producto) {
+            $total += $producto->precio * $producto->pivot->cantidad;
+        }
+
+        // Actualiza el campo 'total' del pedido con el valor calculado
+        $pedido->total = $total;
+        $pedido->save();
+
+        // Redirige de regreso a la vista del pedido o a donde desees
+        return redirect()->route('pedidos.show', $pedido);
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -47,6 +68,7 @@ class PedidoController extends Controller
         // Crear un nuevo pedido
         $pedido = new Pedido([
             'cliente_id' => $validatedData['cliente'],
+            'total' => 0,
             'estado' => 'en preparacion'
             // Otros campos del pedido
         ]);
@@ -63,6 +85,7 @@ class PedidoController extends Controller
 
             // Puedes hacer lo mismo para cualquier otra relación de muchos a muchos que necesites
         }
+        $this->calcularTotalPedido($pedido->id);
 
         // Obtener el usuario actual autenticado
         $usuarioActual = Auth::user();
@@ -83,9 +106,9 @@ class PedidoController extends Controller
      * Display the specified resource.
      */
     public function show(Pedido $pedido)
-{
-    // Cargar relaciones necesarias para evitar consultas adicionales
-    $pedido->load('cliente', 'users', 'productos');
+    {
+        // Cargar relaciones necesarias para evitar consultas adicionales
+        $pedido->load('cliente', 'users', 'productos');
 
         $clientes = Cliente::all();
         $productos = Producto::all();
@@ -96,7 +119,7 @@ class PedidoController extends Controller
             "pedido" => $pedido,
             "edit" => false
         ]);
-}
+    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -146,6 +169,7 @@ class PedidoController extends Controller
         }
 
         $pedido->productos()->sync($productosConCantidad);
+        $this->calcularTotalPedido($pedido->id);
 
         // Actualizar la relación con el usuario actual (asumo que estás utilizando el modelo User para la autenticación)
         $usuarioActual = Auth::user();
@@ -166,6 +190,4 @@ class PedidoController extends Controller
 
         return redirect()->back();
     }
-
-
 }
