@@ -40,6 +40,7 @@
         </div>
     </div>
     <input type="submit" value="Crear Pedido">
+    <a href="{{ route('pedidos.index') }}" class="btn btn-secondary">Cancelar</a>
 
 </form>
 

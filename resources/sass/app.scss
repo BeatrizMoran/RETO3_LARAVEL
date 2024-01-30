@@ -18,7 +18,10 @@ body {
         color: $dark-mode-text;
     }
 }
-
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: rgb(25, 135, 84) !important;
+}
 .carousel-item {
     height: 50vh; // Esto hará que el carrusel tenga una altura del 50% de la ventana del navegador
     overflow: hidden;

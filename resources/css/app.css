@@ -7,10 +7,10 @@ i, span{
     color:white;
 }
 
-.nav-pills li a.active,
+
 .nav-pills li a:hover {
-    background-color: blue;
-    color: white;
+    background-color: rgb(43, 43, 44);
+    color: rgb(255, 255, 255);
 
 }
 
@@ -22,7 +22,7 @@ i, span{
 
 
 .page-link{
-    background: darkgray;
+    background: rgb(163, 163, 163);
 }
 
 

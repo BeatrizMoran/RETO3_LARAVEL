@@ -26,46 +26,46 @@
                 @auth
                     <ul class="nav nav-pills flex-column flex-grow-1">
                         @role('responsable|administrativo|comercial')
-                            <li class="nav-item my-3">
+                            <li class="nav-item m-2 p-2">
                                 <a href="{{ route('dashboard.productos') }}"
                                     class="nav-link{{ request()->is('dashboard/productos') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-list-check  me-3 fs-5"></i>
-                                    <span class="d-none d-md-inline">Productos</span>
+                                    <i class="fa-solid fa-list-check  me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline p-1 ">Productos</span>
                                 </a>
                             </li>
                         @endrole
                         @role('responsable|administrativo|comercial')
-                            <li class="nav-item my-3">
+                            <li class="nav-item m-2 p-2">
                                 <a href="{{ route('pedidos.index') }}"
                                     class="nav-link{{ request()->is('pedidos') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-clipboard me-3 fs-5"></i>
-                                    <span class="d-none d-md-inline">Pedidos</span>
+                                    <i class="fa-solid fa-clipboard me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline  p-2">Pedidos</span>
                                 </a>
                             </li>
                         @endrole
 
                         @role('responsable|administrativo')
-                            <li class="nav-item my-3">
+                            <li class="nav-item m-2 p-2">
                                 <a href="{{ route('clientes.index') }}"
                                     class="nav-link{{ request()->is('clientes') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-people-group  me-3 fs-5"></i>
+                                    <i class="fa-solid fa-people-group  me-3 fs-5 p-1"></i>
                                     <span class="d-none d-md-inline">Clientes</span>
                                 </a>
                             </li>
                         @endrole
                         @role('responsable')
-                            <li class="nav-item my-3">
+                            <li class="nav-item m-2 p-2">
                                 <a href="{{ route('usuarios.index') }}"
                                     class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-users  me-3 fs-5"></i>
-                                    <span class="d-none d-md-inline">Usuarios</span>
+                                    <i class="fa-solid fa-users  me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline ">Usuarios</span>
                                 </a>
                             </li>
-                            <li class="nav-item my-3">
+                            <li class="nav-item m-2 p-2">
                                 <a href="{{ route('roles.index') }}"
                                     class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-list  me-3 fs-5"></i>
-                                    <span class="d-none d-md-inline">Roles</span>
+                                    <i class="fa-solid fa-list  me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline  p-1">Roles</span>
                                 </a>
                             </li>
                         @endrole

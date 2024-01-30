@@ -1,30 +1,30 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Página Específica')
+@section('title', 'Panel cliente')
 
 @section('content')
 
     <div class="row">
-        <div class="col-12 d-flex justify-content-center align-items-center my-3 ">
-            <div class="card my-4 shadow-lg w-75 ">
-                <div class="card-header p-0 position-relative mx-3 z-index-2" style="margin-top: -1.8rem;">
+        <div class="col-12 d-flex justify-content-center align-items-center my-3">
+            <div class="card my-4 shadow-lg w-90 px-5">
+                <div class="card-header p-0 position-relative mx-3 z-index-2" style="margin-top: -1.5rem;">
                     <div
-                        class="bg-dark bg-gradient rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">
+                        class="bg-gradient-primary bg-dark rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">
                         <h6 class="text-white text-capitalize ps-3">Tabla clientes</h6>
-                        @if (auth()->user()->hasRole('responsable') ||
-                                auth()->user()->hasRole('administrativo'))
-                            <!-- Comercial no puede crear productos -->
-                            <a href="{{ route('clientes.create') }}" class="btn bg-success bg-gradient mb-3 mx-3"><i
-                                    class="fa-solid fa-plus"></i><span class="mx-3">Añadir cliente</span></a>
-                        @endif
+                        @role('responsable|administrativo')
+                            <a href="{{ route('clientes.create') }}" class="btn btn-success btn-md bg-gradient mb-3 mx-3">
+                                <i class="fa-solid fa-plus"></i><span class="mx-3">Añadir cliente</span>
+                            </a>
+                        @endrole
+
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
-                    <div class="p-0">
-                        <table class="table align-items-center mb-0">
+                    <div class="table-responsive p-0">
+                        <table class="table table-striped table-hover align-items-center mb-0 p-4 text-center">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Codigo cliente</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th>
@@ -35,7 +35,7 @@
                             <tbody>
                                 @forelse($clientes as $cliente)
                                     <tr>
-                                        <td>{{ $cliente->id }}</td>
+                                        <td>{{ $cliente->codigo_cliente }}</td>
                                         <td>{{ $cliente->nombre }}</td>
                                         <td>{{ $cliente->direccion }}</td>
                                         <td>{{ $cliente->telefono }}</td>
@@ -61,7 +61,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <p>¿Estás seguro de que deseas borrar este cliente?</p>
-                                                                <p>- Se borraran tambien los pedidos asociados</p>
+                                                            <p>- Se borraran tambien los pedidos asociados</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -91,27 +91,39 @@
             </div>
         </div>
     </div>
-
-
-    <div class="d-flex justify-content-center ">
+    <div class="d-flex justify-content-center">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 @if ($clientes->previousPageUrl())
                     <li class="page-item">
-                        <a class="page-link" href="{{ $clientes->previousPageUrl() }}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
+                        <a class="page-link" href="{{ $clientes->appends(request()->except('page'))->previousPageUrl() }}"
+                            <span aria-hidden="true" class="text-dark">&laquo;</span>
                         </a>
                     </li>
                 @endif
 
-                <li class="page-item disabled">
-                    <span class="page-link">Página {{ $clientes->currentPage() }} de {{ $clientes->lastPage() }}</span>
-                </li>
+                @if ($clientes->currentPage() > 3)
+                    <li class="page-item"><span class="page-link">1</span></li>
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                @endif
+
+                @for ($i = max(1, $clientes->currentPage() - 2); $i <= min($clientes->lastPage(), $clientes->currentPage() + 2); $i++)
+                    <li class="page-item @if ($i == $clientes->currentPage()) active @endif">
+                        <a class="page-link"
+                            href="{{ $clientes->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
+                    </li>
+                @endfor
+
+                @if ($clientes->currentPage() < $clientes->lastPage() - 2)
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <li class="page-item"><span class="page-link">{{ $clientes->lastPage() }}</span></li>
+                @endif
 
                 @if ($clientes->nextPageUrl())
                     <li class="page-item">
-                        <a class="page-link" href="{{ $clientes->nextPageUrl() }}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
+                        <a class="page-link" href="{{ $clientes->appends(request()->except('page'))->nextPageUrl() }}"
+                            aria-label="Next">
+                            <span aria-hidden="true" class="text-dark">&raquo;</span>
                         </a>
                     </li>
                 @endif

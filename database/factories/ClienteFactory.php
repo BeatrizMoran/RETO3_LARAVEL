@@ -17,7 +17,7 @@ class ClienteFactory extends Factory
     public function definition()
     {
         return [
-            'codigo_cliente' => $this->faker->unique()->numberBetween(1000, 9999),
+            'codigo_cliente' => 'KILLER-' . $this->faker->unique()->numberBetween(100000, 999999),
             'nombre' => $this->faker->name,
             'direccion' => $this->faker->address,
             'telefono' => $this->faker->phoneNumber,

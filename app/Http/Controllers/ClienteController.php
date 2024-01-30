@@ -22,7 +22,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**
@@ -30,15 +30,27 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'codigo_cliente' => 'required|unique:clientes,codigo_cliente|max:255', // Asegurarse de que el código del cliente sea único en la tabla de clientes
+            'nombre' => 'required|max:255',
+            'direccion' => 'required|max:255',
+            'telefono' => 'required|max:255' // Puedes agregar validaciones adicionales para el teléfono si es necesario
+        ]);
+
+        $cliente = Cliente::create($validatedData);
+
+        session()->flash('success', 'Cliente creado correctamente');
+
+        return redirect()->route('clientes.index');
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(Cliente $cliente)
     {
-        //
+        return view('clientes.show', compact('cliente'));
     }
 
     /**
@@ -46,7 +58,7 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('clientes.edit', compact('cliente'));
     }
 
     /**
@@ -54,8 +66,19 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        $validatedData = $request->validate([
+            'codigo_cliente' => 'required|max:255|unique:clientes,codigo_cliente,' . $cliente->id, // Ignora el código del cliente actual
+            'nombre' => 'required|max:255',
+            'direccion' => 'required|max:255',
+            'telefono' => 'required|max:255' // Puedes agregar validaciones adicionales para el teléfono si es necesario
+        ]);
+
+        $cliente->update($validatedData);
+
+        session()->flash('success', 'Cliente actualizado correctamente');
+        return redirect()->route('clientes.show', $cliente)->with('success', 'Cliente actualizado exitosamente');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -68,6 +91,4 @@ class ClienteController extends Controller
 
         return redirect()->back();
     }
-
-
 }

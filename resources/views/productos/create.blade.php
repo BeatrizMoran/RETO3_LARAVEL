@@ -61,6 +61,7 @@
 
             <!-- Botón de Envío -->
             <button type="submit" class="btn btn-primary">Crear Producto</button>
+            <a href="{{ route('dashboard.productos') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 @endsection
