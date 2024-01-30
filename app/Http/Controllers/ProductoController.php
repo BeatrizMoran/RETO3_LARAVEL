@@ -99,9 +99,24 @@ class ProductoController extends Controller
             }
 
             return $codigoReferencia;
-        
+
 
     }
+
+
+
+    public function buscarProductos(Request $request)
+    {
+        // Obtén el parámetro 'nombre' del request
+        $nombre = $request->input('nombre');
+
+        // Busca productos cuyo nombre coincida con el parámetro 'q'
+        $productos = Producto::where('nombre', 'LIKE', "%$nombre%")->get();
+
+        return response()->json($productos);
+    }
+
+
     /**
      * Display the specified resource.
      */
