@@ -51,14 +51,6 @@
 
                 </div>
             </div>
-            <label class="switch" for="dark-mode-toggle">
-                <input type="checkbox" id="dark-mode-toggle">
-                <span class="slider">
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun"></i>
-                </span>
-            </label>
-
 
         </div>
 

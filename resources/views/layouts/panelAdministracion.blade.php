@@ -13,7 +13,7 @@
 
     <div class="container-fluid ">
         <div class="row flex-nowrap min-vh-100">
-            <div class="col-auto d-flex flex-column bg-dark bg-gradient min-vh-100">
+            <div class="col-auto d-flex flex-column bg-gradient min-vh-100 light-bg ">
                 <div class="p-4 text-center">
                     <a href="#" class="d-block mb-3 text-decoration-none">
                         <img src="{{ asset('storage/images/Killerlogo.png') }}" width="50" height="50"
@@ -39,7 +39,7 @@
                                 <a href="{{ route('pedidos.index') }}"
                                     class="nav-link{{ request()->is('pedidos') ? ' active' : '' }}">
                                     <i class="fa-solid fa-clipboard me-3 fs-5 p-1"></i>
-                                    <span class="d-none d-md-inline  p-2">Pedidos</span>
+                                    <span class="d-none d-md-inline p-2">Pedidos</span>
                                 </a>
                             </li>
                         @endrole
@@ -72,30 +72,43 @@
                         <!-- Repite la estructura para otros roles y enlaces -->
                     </ul>
                     <div class="mt-auto p-4">
-                        <div class="dropdown">
-                            <a href="#"
-                                class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
-                                id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('storage/images/Killerlogo.png') }}" alt="" width="32"
-                                    height="32" class="rounded-circle me-2">
-                                <strong>{{ auth()->user()->name }}</strong>
-                            </a>
-                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-                                <li><a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger w-80 m-2">
-                                            <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
+                        <div class="d-flex align-items-center">
+                            <div class="dropdown">
+                                <a href="#"
+                                    class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
+                                    id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{ asset('storage/images/Killerlogo.png') }}" alt="" width="32"
+                                        height="32" class="rounded-circle me-2">
+                                    <strong>{{ auth()->user()->name }}</strong>
+                                </a>
+                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+                                    <li><a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger w-80 m-2">
+                                                <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Toggle aquí -->
+                            <label class="switch ms-3" for="dark-mode-toggle">
+                                <input type="checkbox" id="dark-mode-toggle">
+                                <span class="slider">
+                                    <i class="fas fa-moon"></i>
+                                    <i class="fas fa-sun"></i>
+                                </span>
+                            </label>
+                            <!-- Fin del toggle -->
                         </div>
                     </div>
+
+
                 @endauth
             </div>
 
