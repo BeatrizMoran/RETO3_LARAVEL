@@ -31,9 +31,35 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
+{
+    // Validación de la solicitud
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:8',
+        'roles' => 'required|array', // roles es un array de nombres de roles
+    ]);
+
+    // Crear el usuario
+    $user = User::create([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'password' => bcrypt($request->input('password')),
+    ]);
+
+    // Asignar roles al usuario usando attach
+    $roles = $request->input('roles');
+    foreach ($roles as $rol) {
+        $roleModel = \Spatie\Permission\Models\Role::where('name', $rol)->first();
+        if ($roleModel) {
+            $user->roles()->attach($roleModel->id);
+        }
     }
+
+    // Puedes retornar una respuesta de éxito si lo deseas
+    return redirect()->route('usuarios.index')->with('success', 'Usuario creado con éxito');
+}
+
 
     /**
      * Display the specified resource.

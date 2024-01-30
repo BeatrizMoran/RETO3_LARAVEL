@@ -12,8 +12,7 @@
                     <div
                         class="bg-dark bg-gradient rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">
                         <h6 class="text-white text-capitalize ps-3">Tabla productos</h6>
-                        @if (auth()->user()->hasRole('responsable') ||
-                                auth()->user()->hasRole('administrativo'))
+                        @if (auth()->user()->hasRole('responsable') || auth()->user()->hasRole('administrativo'))
                             <!-- Comercial no puede crear productos -->
                             <a href="{{ route('productos.create') }}" class="btn bg-success bg-gradient mb-3 mx-3"><i
                                     class="fa-solid fa-plus"></i><span class="mx-3">Añadir Producto</span></a>
@@ -53,6 +52,8 @@
                                         <td class="p-1">
                                             <a href="{{ route('productos.show', $producto) }}"
                                                 class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i></a>
+                                         @if (auth()->user()->hasRole('responsable') || auth()->user()->hasRole('administrativo'))
+
                                             <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal"
                                                 data-bs-target="#confirmDeleteModal_{{ $producto->id }}"
                                                 data-product-id="{{ $producto->id }}">
@@ -87,6 +88,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
+
                                         </td>
                                     </tr>
                                 @empty

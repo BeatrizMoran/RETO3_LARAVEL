@@ -13,11 +13,9 @@
     </div>
 @endif
     <h1>Detalles pedido</h1>
-    @if (auth()->user()->hasRole('responsable') ||
-            auth()->user()->hasRole('administrativo'))
+  
         <!-- Comercial no puede crear productos -->
         <a href="{{ route('pedidos.edit', $pedido) }}" class="btn btn-primary mb-3">Editar</a>
-    @endif
     <a href="{{ route('pedidos.index') }}" class="btn btn-secondary mb-3">Volver</a>
 
     <form action="{{ route('pedidos.update', $pedido) }}" method="POST">
@@ -75,6 +73,9 @@
 
         <input type="{{ $edit ? 'submit' : 'hidden' }}" class="btn btn-primary" value="Actualizar pedido">
     </form>
+
+    @vite(['resources/js/pedido.js'])
+
 
 @endsection
 

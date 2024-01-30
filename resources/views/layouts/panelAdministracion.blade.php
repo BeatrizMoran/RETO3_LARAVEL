@@ -27,6 +27,7 @@
                     </a>
                     <hr class="border-bottom border-gray-500 border-opacity-50 w-95 my-4">
 
+                @auth
                     <ul class="nav nav-pills flex-column mt-4 min-vh-100">
                         <li class="nav-item my-3">
                             <a href="{{ route('dashboard.productos') }}"
@@ -42,13 +43,8 @@
                                 <span class="d-none d-md-inline">Pedidos</span>
                             </a>
                         </li>
-                        <li class="nav-item my-3">
-                            <a href="{{ route('usuarios.index') }}"
-                                class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
-                                <i class="fa-solid fa-user  me-3 fs-5"></i>
-                                <span class="d-none d-md-inline">Usuarios</span>
-                            </a>
-                        </li>
+                @role('responsable|administrativo')
+
                         <li class="nav-item my-3">
                             <a href="{{ route('clientes.index') }}"
                                 class="nav-link{{ request()->is('clientes') ? ' active' : '' }}">
@@ -56,6 +52,17 @@
                                 <span class="d-none d-md-inline">Clientes</span>
                             </a>
                         </li>
+                @endrole
+                @role('responsable')
+
+                        
+                        <li class="nav-item my-3">
+                            <a href="{{ route('usuarios.index') }}" class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
+                                <i class="fa-solid fa-user  me-3 fs-5"></i>
+                                <span class="d-none d-md-inline">Usuarios</span>
+                            </a>
+                        </li>
+                @endrole
                         <li class="nav-item my-3">
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -84,6 +91,7 @@
                             </ul>
                         </div>
                     </ul>
+                @endauth
                 </div>
             </div>
             <main class="col-sm-auto col-md-9 col-lg-10 px-md-4 min-vh-100">

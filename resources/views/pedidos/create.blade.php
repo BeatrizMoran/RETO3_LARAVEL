@@ -43,6 +43,7 @@
 
 </form>
 
+@vite(['resources/js/pedido.js'])
 
 @endsection
 
