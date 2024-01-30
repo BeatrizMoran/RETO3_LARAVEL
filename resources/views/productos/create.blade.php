@@ -33,11 +33,9 @@
             <div class="mb-3">
                 <label for="formato" class="form-label">Formato</label>
                 <select class="form-select" id="formato" name="formato" required>
-                    <option value="20CL">20CL</option>
-                    <option value="25CL">25CL</option>
-                    <option value="33CL">33CL</option>
-                    <option value="1L">1L</option>
-                    <option value="Barril">Barril</option>
+                    @foreach (\App\Enums\FormatoEnum::cases() as $formato)
+                        <option value="{{ $formato->value }}">{{ $formato->value }}</option>
+                    @endforeach
                 </select>
             </div>
 
@@ -47,7 +45,7 @@
 
                 <div class="row">
                     @foreach ($categorias as $categoria)
-                        <div class="col-6 col-md-4"> 
+                        <div class="col-6 col-md-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="categorias[]"
                                     value="{{ $categoria->id }}" id="{{ $categoria->nombre }}">

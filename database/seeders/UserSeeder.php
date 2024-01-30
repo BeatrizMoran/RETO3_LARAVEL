@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'name' => 'bea',
             'email' => 'bea@email.com',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
         ]);
 
         $adminRole = Role::where('name', 'responsable')->first();
@@ -27,16 +28,18 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'name' => 'javier',
             'email' => 'javier@email.com',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
         ]);
-        
+
         $adminRole = Role::where('name', 'administrativo')->first();
         $admin->assignRole($adminRole);
 
         $admin = User::create([
             'name' => 'ander',
             'email' => 'ander@email.com',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
         ]);
 
         $adminRole = Role::where('name', 'comercial')->first();

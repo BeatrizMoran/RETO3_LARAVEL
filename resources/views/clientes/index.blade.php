@@ -35,7 +35,7 @@
                             <tbody>
                                 @forelse($clientes as $cliente)
                                     <tr>
-                                        <td>{{ $cliente->codigo_cliente }}</td>
+                                        <td>{{ Crypt::decrypt($cliente->codigo_cliente) }}</td>
                                         <td>{{ $cliente->nombre }}</td>
                                         <td>{{ $cliente->direccion }}</td>
                                         <td>{{ $cliente->telefono }}</td>

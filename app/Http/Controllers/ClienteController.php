@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
@@ -36,7 +38,7 @@ class ClienteController extends Controller
             'direccion' => 'required|max:255',
             'telefono' => 'required|max:255' // Puedes agregar validaciones adicionales para el teléfono si es necesario
         ]);
-
+        $validatedData['codigo_cliente'] = Crypt::encrypt($validatedData['codigo_cliente']);
         $cliente = Cliente::create($validatedData);
 
         session()->flash('success', 'Cliente creado correctamente');
