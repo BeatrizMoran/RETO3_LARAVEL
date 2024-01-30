@@ -46,7 +46,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="d-flex">
+                <div class="d-flex mx-4">
                     <a class="btn btn-success" href="login">Iniciar sesion</a>
                 </div>
             </div>
