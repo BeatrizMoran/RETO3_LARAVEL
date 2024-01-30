@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon"  href="{{ asset('storage/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('storage/images/favicon.ico') }}">
 
     <title>@yield('title')</title>
     @vite(['resources/sass/app.scss'])
@@ -62,6 +62,13 @@
             @yield('footer')
         </div>
     </footer>
+    <!-- Mensaje de Consentimiento de Cookies -->
+    <div id="cookieConsentContainer" class="fixed-bottom bg-light p-3 text-center" style="display: none;">
+        <p>Este sitio utiliza cookies para mejorar la experiencia del usuario. <a href="#">Más información</a>.</p>
+        <button id="acceptCookie" class="btn btn-primary">Aceptar</button>
+        <button id="declineCookie" class="btn btn-secondary">Rechazar</button>
+    </div>
+    
 
     @vite(['resources/js/app.js'])
 </body>

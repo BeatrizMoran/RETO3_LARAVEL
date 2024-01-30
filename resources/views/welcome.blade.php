@@ -66,5 +66,5 @@
         </div>
     </div>
 @endsection
-
+@vite(['resources/js/cookies.js'])
 @section('footer', '©️ Cervezas killer')

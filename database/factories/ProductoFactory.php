@@ -28,7 +28,7 @@ class ProductoFactory extends Factory
             'codigo_referencia' => 'PROD-' . $this->faker->unique()->regexify('[A-Za-z0-9]{5}'),
             'nombre' => $this->faker->sentence,
             'precio' => $this->faker->randomFloat(2, 1, 100),
-            'imagen' => $this->faker->imageUrl(),
+            'imagen' => "default.jpg",
             'formato' => $this->faker->randomElement(['20CL', '25CL', '33CL', '1L', 'Barril']),
             'created_at' => now(),
             'updated_at' => now(),
