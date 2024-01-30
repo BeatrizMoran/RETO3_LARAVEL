@@ -38,9 +38,13 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->roles->first()->name
-                                        }}</td>
-                                        <td class="p-1">
+                                        <td>
+                                            @forelse($user->roles as $rol)
+                                                {{ $rol->name }}<br>
+                                            @empty
+                                                No tiene roles asignados
+                                            @endforelse
+                                        </td>                                        <td class="p-1">
                                             <a href="{{ route('usuarios.show', $user) }}"
                                                 class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i></a>
                                             <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal"
