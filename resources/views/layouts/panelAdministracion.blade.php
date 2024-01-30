@@ -71,6 +71,13 @@
                                         <span class="d-none d-md-inline">Usuarios</span>
                                     </a>
                                 </li>
+                                <li class="nav-item my-3">
+                                    <a href="{{ route('roles.index') }}"
+                                        class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
+                                        <i class="fa-solid fa-user  me-3 fs-5"></i>
+                                        <span class="d-none d-md-inline">Roles</span>
+                                    </a>
+                                </li>
                             @endrole
                             <li class="nav-item my-3">
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
