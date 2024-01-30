@@ -17,7 +17,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-Route::post('/toggle-dark-mode', [HomeController::class, "modoClaroOscuro"])->name('toggle-dark-mode');
+
 
 
 
@@ -62,11 +62,11 @@ Route::middleware(['role:responsable|administrativo'])->group(function () {
     Route::delete('/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
     Route::resource('/clientes', ClienteController::class);
-
 });
 
 
 Route::middleware(['role:responsable'])->group(function () {
+    Route::get('/pedidos/grafica', [PedidoController::class, 'graficaPedidos'])->name('pedidos.grafica');
     Route::resource('/usuarios', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);

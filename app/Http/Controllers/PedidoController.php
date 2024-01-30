@@ -9,8 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PedidoRequest;
-
-
+use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+use ConsoleTVs\Charts\Commands\ChartsCommand;
 
 class PedidoController extends Controller
 {
@@ -190,4 +190,17 @@ class PedidoController extends Controller
 
         return redirect()->back();
     }
+
+    public function graficaPedidos()
+    {
+        $pedidos = Pedido::selectRaw('sum(total) as total, date(created_at) as date')
+            ->groupBy('date')
+            ->get();
+    
+        $dates = $pedidos->pluck('date');
+        $totals = $pedidos->pluck('total');
+    
+        return view('pedidos.grafica', compact('dates', 'totals'));
+    }
+    
 }

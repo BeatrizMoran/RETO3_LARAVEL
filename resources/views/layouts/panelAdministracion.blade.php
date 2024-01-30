@@ -25,6 +25,15 @@
 
                 @auth
                     <ul class="nav nav-pills flex-column flex-grow-1">
+                        @auth
+                            <li class="nav-item m-2 p-2">
+                                <a href="{{ route('dashboard') }}"
+                                    class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
+                                    <i class="fa-solid fa-list-check  me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline p-1 ">Panel</span>
+                                </a>
+                            </li>
+                        @endauth
                         @role('responsable|administrativo|comercial')
                             <li class="nav-item m-2 p-2">
                                 <a href="{{ route('dashboard.productos') }}"

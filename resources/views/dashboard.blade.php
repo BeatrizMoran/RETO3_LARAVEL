@@ -45,6 +45,19 @@
                         </div>
                     </div>
                 @endrole
+                @role('responsable')
+                <div class="col-sm-12 col-md-5 col-lg-3 mx-3 my-3">
+                    <div class="card shadow h-100 text-center bg-primary bg-gradient">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <h5 class="card-title text-white">Estadisticas</h5>
+                            <a href="#" class="text-white">
+                                <i class="fa-solid fa-list-check fa-3x mb-3"></i>
+                            </a>
+                            <a href="{{ route('pedidos.grafica') }}" class="btn btn-light">ENTRAR</a>
+                        </div>
+                    </div>
+                </div>
+            @endrole
                 @role('responsable|administrativo')
                     <div class="col-sm-12 col-md-5 col-lg-3 mx-3 my-3">
                         <div class="card shadow h-100 text-center bg-danger bg-gradient">
