@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{{ asset('storage/images/favicon.ico') }}">
+
     <title>@yield('title')</title>
     @vite(['resources/sass/app.scss'])
     @vite(['resources/css/app.css'])

@@ -10,7 +10,7 @@
     @vite(['resources/sass/app.scss'])
 </head>
 
-<body class="bg-light d-flex flex-column" style="min-height: 100vh;">
+<body class="d-flex flex-column" style="min-height: 100vh;">
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -53,11 +53,11 @@
         </nav>
     </header>
 
-    <main>
+    <main class="mainClass ">
         @yield('content')
     </main>
 
-    <footer class="bg-white text-center text-dark py-4 mt-auto">
+    <footer class="bg-dark text-center text-white py-4 mt-auto">
         <div class="container">
             @yield('footer')
         </div>
@@ -68,7 +68,7 @@
         <button id="acceptCookie" class="btn btn-primary">Aceptar</button>
         <button id="declineCookie" class="btn btn-secondary">Rechazar</button>
     </div>
-    
+
 
     @vite(['resources/js/app.js'])
 </body>
