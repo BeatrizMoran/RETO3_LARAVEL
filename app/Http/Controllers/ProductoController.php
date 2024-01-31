@@ -7,7 +7,7 @@ use App\Models\Pedido;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductoRequest;
-
+use App\Http\Resources\ProductoResource;
 
 class ProductoController extends Controller
 {
@@ -49,8 +49,8 @@ class ProductoController extends Controller
 
     public function productosAPI()
     {
-        $productos = Producto::all();
-        return response()->json($productos);
+       // $productos = Producto::with('categorias')->get();
+        return ProductoResource::collection(Producto::all());
     }
 
     public function dashboard()
@@ -206,12 +206,7 @@ class ProductoController extends Controller
 
     public function buscarProductos(Request $request)
     {
-        // Obtén el parámetro 'nombre' del request
-        $nombre = $request->input('nombre');
+        return ProductoResource::collection(Producto::all());
 
-        // Busca productos cuyo nombre coincida con el parámetro 'q'
-        $productos = Producto::where('nombre', 'LIKE', "%$nombre%")->get();
-
-        return response()->json($productos);
     }
 }

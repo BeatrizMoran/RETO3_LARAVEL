@@ -95,20 +95,28 @@ class ClienteController extends Controller
     }
 
     //api
-
     public function comprobarCliente(Request $request)
-    {
-        $request->validate([
-            'codigo_cliente' => 'required',
-        ]);
+{
+    $request->validate([
+        'codigo_cliente' => 'required',
+    ]);
 
-        $codigo_cliente = $request->input('codigo_cliente');
-        $cliente = Cliente::where('codigo_cliente', $codigo_cliente)->get();
+    $codigo_cliente_no_cifrado = $request->input('codigo_cliente');
+    $clientes = Cliente::all();
 
-        if (!$cliente) {
-            return response()->json(['error' => 'Cliente no encontrado para el código especificado'], 404);
+    // Buscar entre todos los clientes
+    foreach ($clientes as $cliente) {
+        // Desencriptar el código almacenado y verificar si coincide
+        $codigo_cliente_cifrado = $cliente->codigo_cliente;
+        $codigo_cliente_desencriptado = Crypt::decrypt($codigo_cliente_cifrado);
+
+        if ($codigo_cliente_no_cifrado === $codigo_cliente_desencriptado) {
+            return response()->json($cliente);
         }
-
-        return response()->json($cliente);
     }
+
+    // Si no se encuentra ningún cliente con el código proporcionado
+    return response()->json(['error' => 'Cliente no encontrado para el código especificado'], 404);
 }
+}
+
