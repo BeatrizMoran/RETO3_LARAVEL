@@ -196,11 +196,23 @@ class PedidoController extends Controller
         $pedidos = Pedido::selectRaw('sum(total) as total, date(created_at) as date')
             ->groupBy('date')
             ->get();
-    
+
         $dates = $pedidos->pluck('date');
         $totals = $pedidos->pluck('total');
-    
+
         return view('pedidos.grafica', compact('dates', 'totals'));
     }
-    
+
+
+    public function pedidosCliente(Request $request)
+    {
+        // Obtén el parámetro 'nombre' del request
+        $cliente_id = $request->input('cliente_id');
+    dd($cliente_id);
+
+        // Busca productos cuyo nombre coincida con el parámetro 'q'
+        $pedidos = Pedido::where('cliente_id', $cliente_id)->get();
+
+        return response()->json($pedidos);
+    }
 }
