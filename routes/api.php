@@ -22,6 +22,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//imagenes pedidos
+Route::get('/images/{filename}', function ($filename) {
+    $path = storage_path('app/public/images/' . $filename);
+
+    if (!Storage::exists('public/images/' . $filename)) {
+        abort(404);
+    }
+
+    $file = Storage::get('public/images/' . $filename);
+    $type = Storage::mimeType('public/images/' . $filename);
+
+    $response = response($file, 200)->header("Content-Type", $type);
+
+    return $response;
+})->name('image.show');
 
 Route::get('/productos', [ProductoController::class, 'buscarProductos']);
 

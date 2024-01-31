@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PedidoRequest;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 use ConsoleTVs\Charts\Commands\ChartsCommand;
+use App\Http\Resources\PedidoResource;
 
 class PedidoController extends Controller
 {
@@ -213,12 +214,12 @@ class PedidoController extends Controller
     ]);
 
     $cliente_id = $request->input('cliente_id');
-    $pedidos = Pedido::where('cliente_id', $cliente_id)->get(); // 10 pedidos por página
+    $pedidos = Pedido::with('productos')->where('cliente_id', $cliente_id)->get();
 
     if ($pedidos->isEmpty()) {
         return response()->json(['message' => 'No se encontraron pedidos para el cliente especificado'], 404);
     }
 
-    return response()->json($pedidos);
+    return PedidoResource::collection($pedidos);
 }
 }
