@@ -12,7 +12,7 @@ use App\Http\Resources\ProductoResource;
 class ProductoController extends Controller
 {
 
-/*     function __construct()
+    /*     function __construct()
     {
         $this->middleware('role:administrativo|responsable');
     } */
@@ -49,7 +49,7 @@ class ProductoController extends Controller
 
     public function productosAPI()
     {
-       // $productos = Producto::with('categorias')->get();
+        // $productos = Producto::with('categorias')->get();
         return ProductoResource::collection(Producto::all());
     }
 
@@ -206,12 +206,13 @@ class ProductoController extends Controller
 
     public function buscarProductos(Request $request)
     {
-        // Obtén el parámetro 'nombre' del request
-        $nombre = $request->input('nombre');
+        $search = $request->input('nombre');
 
-        // Busca productos cuyo nombre coincida con el parámetro 'q'
-        $productos = Producto::where('nombre', 'LIKE', "%$nombre%")->get();
+        // Realiza la lógica de búsqueda aquí, por ejemplo:
+        $productos = Producto::with('categorias')
+            ->where('nombre', 'like', '%' . $search . '%')
+            ->get();
 
-        return ProductoResource::collection($productos);
+        return response()->json(['productos' => $productos]);
     }
 }

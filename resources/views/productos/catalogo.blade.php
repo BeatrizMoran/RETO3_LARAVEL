@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="row mt-4">
-            <aside class="col-lg-3">
+            <aside class="col-md-4 col-lg-3 d-none d-md-block">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Filtrar por categoría</h5>
@@ -22,17 +22,20 @@
                                     </label>
                                 </div>
                             @endforeach
-
                             <button type="submit" class="btn btn-primary mt-3">Filtrar</button>
                         </form>
+                        <div class="input-group mt-3">
+                            <input type="text" class="form-control" placeholder="Buscar por nombre" name="nombre"
+                                id="searchInput">
+                        </div>
                     </div>
                 </div>
             </aside>
 
-            <div class="col-lg-9">
-                <div class="row">
-                    @forelse ($productos as $producto)
-                        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-md-8 col-lg-9 col-sm-12">
+                <div class="row" id="resultados">
+                    @foreach ($productos as $producto)
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 producto">
                             @component('_components.productoCard')
                                 @slot('imagen', $producto->imagen)
                                 @slot('nombre', $producto->nombre)
@@ -41,12 +44,11 @@
                                 @slot('categorias', $producto->categorias)
                             @endcomponent
                         </div>
-                        @empty
-                            <div class="col-12">
-                                <h1>No hay productos</h1>
-                            </div>
-                        @endforelse
-                    </div>
+                    @endforeach
+                </div>
+                <div class="row">
+
+
                     @if (count($productos) !== 0)
                         <div class="d-flex justify-content-center">
                             <nav aria-label="Page navigation example">
@@ -54,7 +56,7 @@
                                     @if ($productos->previousPageUrl())
                                         <li class="page-item">
                                             <a class="page-link"
-                                                href="{{ $productos->appends(request()->except('page'))->previousPageUrl() }}"
+                                                href="{{ $productos->appends(request()->except('page'))->previousPageUrl() }}">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>
@@ -74,7 +76,8 @@
 
                                     @if ($productos->currentPage() < $productos->lastPage() - 2)
                                         <li class="page-item disabled"><span class="page-link">...</span></li>
-                                        <li class="page-item"><span class="page-link">{{ $productos->lastPage() }}</span></li>
+                                        <li class="page-item"><span class="page-link">{{ $productos->lastPage() }}</span>
+                                        </li>
                                     @endif
 
                                     @if ($productos->nextPageUrl())
@@ -90,10 +93,12 @@
                             </nav>
                         </div>
                     @endif
-
                 </div>
             </div>
         </div>
-    @endsection
 
-    @section('footer', '©️ Cervezas Killer')
+    </div>
+
+@endsection
+
+@section('footer', '©️ Cervezas Killer')

@@ -1,15 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.panelAdministracion')
+
 @section('title', 'Crear cliente')
+
 @section('content')
-    <div class="container">
-        <h1>Crear Cliente</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Crear Cliente</h1>
         <form action="{{ route('clientes.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="codigo_cliente" class="form-label">Código Cliente</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="codigo_cliente" name="codigo_cliente" readonly required>
-                    <button type="button" class="btn btn-outline-secondary" id="generarCodigo">Generar Código</button>
+                    <button type="button" class="btn btn-secondary" id="generarCodigo">Generar Código</button>
                     @if ($errors->has('codigo_cliente'))
                         <div class="invalid-feedback">
                             {{ $errors->first('codigo_cliente') }}
@@ -26,8 +28,6 @@
                     </div>
                 @endif
             </div>
-
-
             <div class="mb-3">
                 <label for="direccion" class="form-label">Dirección</label>
                 <input type="text" class="form-control" id="direccion" name="direccion" required>
@@ -46,8 +46,10 @@
                     </div>
                 @endif
             </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <a href="{{ route('clientes.index') }}" class="btn btn-secondary">Cancelar</a>
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="{{ route('clientes.index') }}" class="btn btn-secondary">Cancelar</a>
+            </div>
         </form>
     </div>
 

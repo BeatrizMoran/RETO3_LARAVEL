@@ -1,15 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.panelAdministracion')
 
 @section('content')
-    <div class="container">
-        <h1>Editar Cliente</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Editar Cliente</h1>
         <form action="{{ route('clientes.update', $cliente) }}" method="POST" class="needs-validation" novalidate>
             @csrf
             @method('PUT')
             <div class="mb-3">
                 <label for="codigo_cliente" class="form-label">Código del Cliente</label>
                 <input type="text" class="form-control" id="codigo_cliente" name="codigo_cliente"
-                    value="{{ $cliente->codigo_cliente }}" readonly required>
+                    value="{{ Crypt::decrypt($cliente->codigo_cliente) }}" readonly required>
                 <div class="invalid-feedback">
                     Por favor ingresa un código de cliente válido.
                 </div>
@@ -38,7 +38,10 @@
                     Por favor ingresa un número de teléfono válido.
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <div class="gap-2">
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+                <a href="{{ route('clientes.show', $cliente) }}" class="btn btn-secondary">Volver</a>
+            </div>
         </form>
     </div>
 @endsection

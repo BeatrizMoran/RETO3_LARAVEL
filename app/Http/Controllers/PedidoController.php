@@ -193,32 +193,40 @@ class PedidoController extends Controller
 
     public function graficaPedidos()
     {
-        $pedidos = Pedido::selectRaw('sum(total) as total, date(created_at) as date')
+        $pedidosPorFecha = Pedido::selectRaw('sum(total) as total, date(created_at) as date')
             ->groupBy('date')
             ->get();
 
-        $dates = $pedidos->pluck('date');
-        $totals = $pedidos->pluck('total');
+        $dates = $pedidosPorFecha->pluck('date');
+        $totals = $pedidosPorFecha->pluck('total');
 
-        return view('pedidos.grafica', compact('dates', 'totals'));
+        $pedidosPorMes = Pedido::selectRaw('sum(total) as total, DATE_FORMAT(created_at, "%Y-%m") as month')
+            ->groupBy('month')
+            ->get();
+
+        $mesesPedidos = $pedidosPorMes->pluck('month');
+        $totalPedidosPorMes = $pedidosPorMes->pluck('total');
+
+        return view('pedidos.grafica', compact('dates', 'totals', 'mesesPedidos', 'totalPedidosPorMes'));
     }
+
 
 
     //api
 
     public function pedidosCliente(Request $request)
-{
-    $request->validate([
-        'cliente_id' => 'required|numeric',
-    ]);
+    {
+        $request->validate([
+            'cliente_id' => 'required|numeric',
+        ]);
 
-    $cliente_id = $request->input('cliente_id');
-    $pedidos = Pedido::where('cliente_id', $cliente_id)->get(); // 10 pedidos por página
+        $cliente_id = $request->input('cliente_id');
+        $pedidos = Pedido::where('cliente_id', $cliente_id)->get(); // 10 pedidos por página
 
-    if ($pedidos->isEmpty()) {
-        return response()->json(['message' => 'No se encontraron pedidos para el cliente especificado'], 404);
+        if ($pedidos->isEmpty()) {
+            return response()->json(['message' => 'No se encontraron pedidos para el cliente especificado'], 404);
+        }
+
+        return response()->json($pedidos);
     }
-
-    return response()->json($pedidos);
-}
 }

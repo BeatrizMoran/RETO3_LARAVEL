@@ -24,6 +24,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/catalogo', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
+Route::get('/buscar-productos', [ProductoController::class, 'buscarProductos'])->name('buscar.productos');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

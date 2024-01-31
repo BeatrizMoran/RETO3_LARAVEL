@@ -4,7 +4,7 @@
 @vite(['resources/sass/welcome.scss'])
 
 @section('content')
-    <div class="container my-5">
+    <div class="container mt-5">
         <div id="carruselWelcome" class="carousel slide " data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carruselWelcome" data-bs-slide-to="0" class="active" aria-current="true"
@@ -23,7 +23,7 @@
                             perfeccionado con años de experiencia.</p>
                     </div>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item ">
                     <img src="{{ asset('storage/images/carrusel 2.png') }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Sabor artesano</h5>
@@ -56,7 +56,7 @@
     </div>
 
     <!-- Sección Sobre Nosotros -->
-    <div class="container my-5">
+    <div class="container mt-5">
         <div class="row bg-white opacity-75 p-4">
             <div class="col-md-7">
                 <h2>Sobre Nosotros</h2>
@@ -69,8 +69,8 @@
                 <small>Si quieres saber mas sobre nuestra historia <a href="#"
                         class="text-decoration-none">conocenos!</a> </small>
             </div>
-            <div class="col-md-4">
-                <img src="{{ asset('storage/images/logo 2.png') }}" class="rounded float-end" height="300px"
+            <div class="col-md-5 my-2">
+                <img src="{{ asset('storage/images/logo 2.png') }}" class="rounded float-end img-fluid"
                     alt="Sobre Nosotros">
             </div>
         </div>
@@ -78,11 +78,11 @@
 
 
 
-    <div class="container my-5">
+    <div class="container mt-5">
         <h2>Nuestros Productos Estrella</h2>
         <div class="row">
             <div class="col-md-4">
-                <div class="card bg-white opacity-75 p-2">
+                <div class="card bg-white opacity-90 p-2 m-1">
                     <img src="{{ asset('storage/images/Ambar.png') }}" class="card-img-top" height="350px" alt="Producto 1">
                     <div class="card-body">
                         <h5 class="card-title">Cerveza Ámbar</h5>
@@ -92,7 +92,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card bg-white opacity-75 p-2">
+                <div class="card bg-white opacity-90 p-2 m-1">
                     <img src="{{ asset('storage/images/Rubia.png') }}" class="card-img-top" height="350px" alt="Producto 2">
                     <div class="card-body">
                         <h5 class="card-title">Cerveza Rubia</h5>
@@ -102,7 +102,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card bg-white opacity-75 p-2">
+                <div class="card bg-white opacity-90 p-2 m-1">
                     <img src="{{ asset('storage/images/Negra.png') }}" class="card-img-top" height="350px" alt="Producto 3">
                     <div class="card-body">
                         <h5 class="card-title">Cerveza Negra</h5>

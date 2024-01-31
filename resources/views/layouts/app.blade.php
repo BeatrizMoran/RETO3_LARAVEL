@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="{{ asset('storage/images/favicon.ico') }}">
 
     <title>@yield('title')</title>
@@ -16,8 +16,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('welcome') }}">
-                    <img src="{{ asset('storage/images/Killerlogo.png') }}" alt="LogoKiller" width="50"
-                        height="50">
+                    <img src="{{ asset('storage/images/Killerlogo.png') }}" class="img-fluid" alt="LogoKiller"
+                        width="50" height="50">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -25,7 +25,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 " style="--bs-scroll-height: 100px;"">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('welcome') }}">Inicio</a>
                         </li>
@@ -45,10 +45,11 @@
                             </ul>
                         </li>
                     </ul>
+                    <div class="d-flex ">
+                        <a class="btn btn-success" href="login">Iniciar sesion</a>
+                    </div>
                 </div>
-                <div class="d-flex mx-4">
-                    <a class="btn btn-success" href="login">Iniciar sesion</a>
-                </div>
+
             </div>
         </nav>
     </header>
@@ -64,7 +65,8 @@
     </footer>
     <!-- Mensaje de Consentimiento de Cookies -->
     <div id="cookieConsentContainer" class="fixed-bottom bg-light p-3 text-center" style="display: none;">
-        <p>Este sitio utiliza cookies para mejorar la experiencia del usuario. <a href="#">Más información</a>.</p>
+        <p>Este sitio utiliza cookies para mejorar la experiencia del usuario. <a href="#">Más información</a>.
+        </p>
         <button id="acceptCookie" class="btn btn-primary">Aceptar</button>
         <button id="declineCookie" class="btn btn-secondary">Rechazar</button>
     </div>
