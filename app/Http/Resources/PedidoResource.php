@@ -18,6 +18,7 @@ class PedidoResource extends JsonResource
             "total" => $this->total,
             "fecha_pedido" => $this->created_at->format('d/m/Y'),
             "estado" => $this->estado,
+            "numero_pedido" => $this->numero_pedido,
             'productos' => $this->productos->map(function ($producto) {
                 return [
                     'id' => $producto->id,
