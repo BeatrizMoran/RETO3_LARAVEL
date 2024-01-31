@@ -204,15 +204,21 @@ class PedidoController extends Controller
     }
 
 
+    //api
+
     public function pedidosCliente(Request $request)
-    {
-        // Obtén el parámetro 'nombre' del request
-        $cliente_id = $request->input('cliente_id');
-    dd($cliente_id);
+{
+    $request->validate([
+        'cliente_id' => 'required|numeric',
+    ]);
 
-        // Busca productos cuyo nombre coincida con el parámetro 'q'
-        $pedidos = Pedido::where('cliente_id', $cliente_id)->get();
+    $cliente_id = $request->input('cliente_id');
+    $pedidos = Pedido::where('cliente_id', $cliente_id)->get(); // 10 pedidos por página
 
-        return response()->json($pedidos);
+    if ($pedidos->isEmpty()) {
+        return response()->json(['message' => 'No se encontraron pedidos para el cliente especificado'], 404);
     }
+
+    return response()->json($pedidos);
+}
 }

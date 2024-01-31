@@ -64,5 +64,13 @@ class CategoriaController extends Controller
         //
     }
 
+    //api
+
+    public function categoriasAPI()
+    {
+        $categorias = Categoria::all();
+        return response()->json($categorias);
+    }
+
 
 }

@@ -93,4 +93,22 @@ class ClienteController extends Controller
 
         return redirect()->back();
     }
+
+    //api
+
+    public function comprobarCliente(Request $request)
+    {
+        $request->validate([
+            'codigo_cliente' => 'required',
+        ]);
+
+        $codigo_cliente = $request->input('codigo_cliente');
+        $cliente = Cliente::where('codigo_cliente', $codigo_cliente)->get();
+
+        if (!$cliente) {
+            return response()->json(['error' => 'Cliente no encontrado para el código especificado'], 404);
+        }
+
+        return response()->json($cliente);
+    }
 }

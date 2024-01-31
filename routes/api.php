@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Http\Request;
@@ -21,6 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/productos', [ProductoController::class, 'productosAPI']);
+Route::get('/productos', [ProductoController::class, 'buscarProductos']);
 
 Route::get('/pedidos', [PedidoController::class, 'pedidosCliente']);
+
+Route::get('/cliente', [ClienteController::class, 'comprobarCliente']);
+
+Route::get('/categorias', [CategoriaController::class, 'categoriasAPI']);
