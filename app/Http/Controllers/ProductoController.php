@@ -206,7 +206,12 @@ class ProductoController extends Controller
 
     public function buscarProductos(Request $request)
     {
-        return ProductoResource::collection(Producto::all());
+        // Obtén el parámetro 'nombre' del request
+        $nombre = $request->input('nombre');
 
+        // Busca productos cuyo nombre coincida con el parámetro 'q'
+        $productos = Producto::where('nombre', 'LIKE', "%$nombre%")->get();
+
+        return ProductoResource::collection($productos);
     }
 }
