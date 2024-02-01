@@ -10,7 +10,7 @@
     @vite(['resources/sass/app.scss'])
 </head>
 
-<body class="d-flex flex-column" style="min-height: 100vh;">
+<body class="d-flex flex-column mainClass" style="min-height: 100vh;">
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -54,7 +54,7 @@
         </nav>
     </header>
 
-    <main class="mainClass ">
+    <main >
         @yield('content')
     </main>
 
