@@ -8,18 +8,18 @@
             <div class="col-12 col-md-6">
                 <div class="card shadow-lg">
                     <div class="card-header bg-gradient-primary bg-dark text-white">
-                        <h5 class="card-title my-3">Crear Nuevo Permiso</h5>
+                        <h5 class="card-title my-3">Crear nueva categoria</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('permissions.store') }}" method="POST">
+                        <form action="{{ route('categorias.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nombre del Permiso</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <label for="nombre" class="form-label">Nombre de la categoria:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="submit" class="btn btn-success">Guardar</button>
-                                <a href="{{ route('permissions.index') }}" class="btn btn-secondary">Cancelar</a>
+                                <a href="{{ route('categorias.index') }}" class="btn btn-secondary">Cancelar</a>
                             </div>
                         </form>
                     </div>

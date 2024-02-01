@@ -61,7 +61,7 @@
                                                                 <button type="button" class="btn btn-secondary btn-sm"
                                                                     data-bs-dismiss="modal">Cancelar</button>
                                                                 <form method="post"
-                                                                    action="{{ route('productos.destroy', $permission) }}"
+                                                                    action="{{ route('permissions.destroy', $permission) }}"
                                                                     class="d-inline">
                                                                     @csrf
                                                                     @method('DELETE')

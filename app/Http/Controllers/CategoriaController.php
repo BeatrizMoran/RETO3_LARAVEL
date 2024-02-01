@@ -13,7 +13,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::paginate(10);
         return view('categorias.index', compact('categorias'));
     }
 
@@ -30,13 +30,14 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nombre' => 'required|max:255',
-            // otros campos de validación
+        $this->validate($request, [
+            'nombre' => 'required|',
         ]);
 
-        $categoria = Categoria::create($validatedData);
-        return redirect()->route('categorias.index');
+        Categoria::create(['nombre' => $request->input('nombre')]);
+
+        return redirect()->route('categorias.index')
+            ->with('success', 'Categoria creada exitosamente');
     }
 
     /**
