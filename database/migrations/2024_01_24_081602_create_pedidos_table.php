@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->enum('estado', ['solicitado', 'en preparacion', 'en entrega', "entregado"]);
+            $table->enum('estado', ['solicitado', 'en preparacion', 'en entrega', 'entregado']);
             $table->double('total');
             $table->unsignedBigInteger('cliente_id')->nullable();
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            $table->bigInteger('numero_pedido');
             $table->timestamps();
         });
     }

@@ -95,6 +95,7 @@ class ClienteController extends Controller
     }
 
     //api
+
     public function comprobarCliente(Request $request)
 {
     $request->validate([
@@ -117,6 +118,32 @@ class ClienteController extends Controller
 
     // Si no se encuentra ningún cliente con el código proporcionado
     return response()->json(['error' => 'Cliente no encontrado para el código especificado'], 404);
+}
+
+public function actualizarCliente(Request $request, $id)
+{
+    $cliente = Cliente::find($id);
+
+    if (!$cliente) {
+        return response()->json(['error' => 'Cliente no encontrado'], 404);
+    }
+
+    $request->validate([
+        'codigo_cliente' => 'unique:clientes,codigo_cliente,' . $cliente->id,
+        'nombre' => 'required|string',
+        'direccion' => 'required|string',
+        'telefono' => 'required|string',
+    ]);
+
+    // Cifrar el nuevo código de cliente antes de actualizar
+    $request->merge([
+        'codigo_cliente' => Crypt::encrypt($request->input('codigo_cliente')),
+    ]);
+
+    // Actualizar los datos del cliente
+    $cliente->update($request->all());
+
+    return response()->json(['mensaje' => 'Cliente actualizado con éxito']);
 }
 }
 
