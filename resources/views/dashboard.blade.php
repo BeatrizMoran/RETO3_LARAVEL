@@ -27,6 +27,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-6 col-md-4 col-lg-3 mb-3">
+                        <div class="card shadow-sm text-center bg-info bg-gradient text-white">
+                            <div class="card-body p-3">
+                                <h5 class="card-title mb-2">Categorias</h5>
+                                <a href="#" class="d-block mb-3">
+                                    <i class="fa-solid fa-list-check fa-2x"></i>
+                                </a>
+                                <a href="{{ route('categorias.index') }}" class="btn btn-sm btn-outline-light">ENTRAR</a>
+                            </div>
+                        </div>
+                    </div>
                 @endrole
 
                 @role('responsable|administrativo|comercial')
@@ -45,13 +56,35 @@
 
                 @role('responsable')
                     <div class="col-6 col-md-4 col-lg-3 mb-3">
-                        <div class="card shadow-sm text-center bg-warning bg-gradient text-white">
+                        <div class="card shadow-sm text-center bg-primary bg-gradient text-white">
                             <div class="card-body p-3">
                                 <h5 class="card-title mb-2">Estadísticas</h5>
                                 <a href="#" class="d-block mb-3">
                                     <i class="fa-solid fa-chart-line fa-2x"></i>
                                 </a>
                                 <a href="{{ route('pedidos.grafica') }}" class="btn btn-sm btn-outline-light">ENTRAR</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 mb-3">
+                        <div class="card shadow-sm text-center bg-success bg-gradient text-white">
+                            <div class="card-body p-3">
+                                <h5 class="card-title mb-2">Roles</h5>
+                                <a href="#" class="d-block mb-3">
+                                    <i class="fa-solid fa-chart-line fa-2x"></i>
+                                </a>
+                                <a href="{{ route('roles.index') }}" class="btn btn-sm btn-outline-light">ENTRAR</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 mb-3">
+                        <div class="card shadow-sm text-center bg-warning bg-gradient text-white">
+                            <div class="card-body p-3">
+                                <h5 class="card-title mb-2">Permisos</h5>
+                                <a href="#" class="d-block mb-3">
+                                    <i class="fa-solid fa-chart-line fa-2x"></i>
+                                </a>
+                                <a href="{{ route('permisos.index') }}" class="btn btn-sm btn-outline-light">ENTRAR</a>
                             </div>
                         </div>
                     </div>

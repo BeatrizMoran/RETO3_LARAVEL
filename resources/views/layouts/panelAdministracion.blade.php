@@ -24,7 +24,8 @@
         </button>
     </nav>
     <!-- Menú lateral (offcanvas para móviles) -->
-    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebar"
+        aria-labelledby="sidebarLabel">
         <div class="offcanvas-header">
             <div class="p-4 text-center">
                 <a href="#" class="d-block mb-3 text-decoration-none">
@@ -159,8 +160,15 @@
                             <li class="nav-item m-2 p-2">
                                 <a href="{{ route('dashboard.productos') }}"
                                     class="nav-link{{ request()->is('dashboard/productos') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-list-check  me-3 fs-5 p-1"></i>
+                                    <i class="fa-solid fa-box-open  me-3 fs-5 p-1"></i>
                                     <span class="d-none d-md-inline p-1 ">Productos</span>
+                                </a>
+                            </li>
+                            <li class="nav-item m-2 p-2">
+                                <a href="{{ route('categorias.index') }}"
+                                    class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
+                                    <i class="fa-solid fa-tags  me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline p-1 ">Categorias</span>
                                 </a>
                             </li>
                         @endrole
@@ -168,7 +176,7 @@
                             <li class="nav-item m-2 p-2">
                                 <a href="{{ route('pedidos.index') }}"
                                     class="nav-link{{ request()->is('pedidos') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-clipboard me-3 fs-5 p-1"></i>
+                                    <i class="fa-solid fa-receipt me-3 fs-5 p-1"></i>
                                     <span class="d-none d-md-inline p-2">Pedidos</span>
                                 </a>
                             </li>
@@ -186,16 +194,23 @@
                         @role('responsable')
                             <li class="nav-item m-2 p-2">
                                 <a href="{{ route('usuarios.index') }}"
-                                    class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
+                                    class="nav-link{{ request()->is('usuarios') ? ' active' : '' }}">
                                     <i class="fa-solid fa-users  me-3 fs-5 p-1"></i>
                                     <span class="d-none d-md-inline ">Usuarios</span>
                                 </a>
                             </li>
                             <li class="nav-item m-2 p-2">
                                 <a href="{{ route('roles.index') }}"
-                                    class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-list  me-3 fs-5 p-1"></i>
+                                    class="nav-link{{ request()->is('roles') ? ' active' : '' }}">
+                                    <i class="fa-solid fa-user-shield  me-3 fs-5 p-1"></i>
                                     <span class="d-none d-md-inline  p-1">Roles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item m-2 p-2">
+                                <a href="{{ route('permisos.index') }}"
+                                    class="nav-link{{ request()->is('permisos') ? ' active' : '' }}">
+                                    <i class="fa-solid fa-key  me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline  p-1">Permisos</span>
                                 </a>
                             </li>
                         @endrole

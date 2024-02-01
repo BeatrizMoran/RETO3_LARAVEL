@@ -9,68 +9,81 @@ use Illuminate\Http\Request;
 class CategoriaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra un listado de las categorías.
      */
     public function index()
     {
-        //
+        $categorias = Categoria::all();
+        return view('categorias.index', compact('categorias'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear una nueva categoría.
      */
     public function create()
     {
-        //
+        return view('categorias.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda una nueva categoría en la base de datos.
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nombre' => 'required|max:255',
+            // otros campos de validación
+        ]);
+
+        $categoria = Categoria::create($validatedData);
+        return redirect()->route('categorias.index');
     }
 
     /**
-     * Display the specified resource.
+     * Muestra una categoría específica.
      */
     public function show(Categoria $categoria)
     {
-        //
+        return view('categorias.show', compact('categoria'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario de edición para una categoría existente.
      */
     public function edit(Categoria $categoria)
     {
-        //
+        return view('categorias.edit', compact('categoria'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza una categoría en la base de datos.
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $validatedData = $request->validate([
+            'nombre' => 'required|max:255',
+            // otros campos de validación
+        ]);
+
+        $categoria->update($validatedData);
+        return redirect()->route('categorias.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina una categoría de la base de datos.
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+        return redirect()->route('categorias.index');
     }
 
-    //api
-
+    /**
+     * Devuelve todas las categorías en formato JSON.
+     */
     public function categoriasAPI()
     {
         $categorias = Categoria::all();
         return response()->json($categorias);
     }
-
-
 }
