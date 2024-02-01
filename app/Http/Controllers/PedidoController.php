@@ -285,6 +285,33 @@ class PedidoController extends Controller
 
     return PedidoResource::collection($pedidos);
 }
+
+public function crearPedido(Request $request)
+    {
+        $request->validate([
+            'estado' => 'required|in:solicitado,en preparacion,en entrega,entregado',
+            'total' => 'required|numeric',
+            'cliente_id' => 'nullable|exists:clientes,id',
+            'productos' => 'required|array',
+            'productos.*.id' => 'required|exists:productos,id',
+            'productos.*.cantidad' => 'required|integer|min:1',
+        ]);
+
+        $numero_pedido = $this->generateCodigoPedido();
+
+        $datosPedido = $request->except('productos');
+        $datosPedido['numero_pedido'] = $numero_pedido;
+
+        $pedido = Pedido::create($datosPedido);
+
+        foreach ($request->productos as $producto) {
+            // Adjuntar productos al pedido a través de la tabla intermedia
+            $pedido->productos()->attach($producto['id'], ['cantidad' => $producto['cantidad']]);
+        }
+
+        return response()->json(['mensaje' => 'Pedido creado con éxito', 'pedido' => $pedido], 201);
+    }
+    
 }
 
 

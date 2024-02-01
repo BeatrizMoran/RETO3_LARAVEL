@@ -50,3 +50,7 @@ Route::get('/categorias', [CategoriaController::class, 'categoriasAPI']);
 
 //actualizar cliente
 Route::put('/cliente/actualizar/{id}', [ClienteController::class, 'actualizarCliente']);
+
+//crear pedido
+
+Route::post('/pedidos/crear',  [PedidoController::class, 'crearPedido']);
