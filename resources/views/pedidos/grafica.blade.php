@@ -31,6 +31,8 @@
             const dates = @json($dates);
             const totals = @json($totals);
 
+            const meses = @json($meses);
+            const mesesTotal = @json($totalMes);
 
 
             // Crear la gráfica de barras
@@ -61,9 +63,9 @@
             new Chart(ctx2, {
                 type: 'pie',
                 data: {
-                    labels: totals,
+                    labels: meses,
                     datasets: [{
-                        data: dates,
+                        data: mesesTotal,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.5)',
                             'rgba(54, 162, 235, 0.5)',

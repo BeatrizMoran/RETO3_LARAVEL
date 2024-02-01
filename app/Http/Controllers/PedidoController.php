@@ -261,10 +261,10 @@ class PedidoController extends Controller
             ->groupBy('month')
             ->get();
 
-        $mesesPedidos = $pedidosPorMes->pluck('month');
-        $totalPedidosPorMes = $pedidosPorMes->pluck('total');
+        $meses = $pedidosPorMes->pluck('month');
+        $totalMes = $pedidosPorMes->pluck('total');
 
-        return view('pedidos.grafica', compact('dates', 'totals', 'mesesPedidos', 'totalPedidosPorMes'));
+        return view('pedidos.grafica', compact('dates', 'totals', 'meses', 'totalMes'));
     }
 
 
