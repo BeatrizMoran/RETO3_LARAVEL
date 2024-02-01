@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title text-center">Total de ganancias por dia</h5>
+                        <h5 class="card-title text-center">Total de ganancias por dia y mes</h5>
                     </div>
                     <div class="card-body">
                         <canvas id="myChart"></canvas>
