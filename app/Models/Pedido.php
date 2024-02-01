@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pedido extends Model
 {
     use HasFactory;
-    protected $guarded = ["numero_pedido"];
+    protected $guarded = [];
 
     public function users(){
         return $this->belongsToMany(User::class, 'pedidos_usuarios', 'pedido_id', 'usuario_id')->withTimestamps();

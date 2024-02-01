@@ -6,6 +6,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,7 @@ Route::get('/pedidos', [PedidoController::class, 'pedidosCliente']);
 Route::get('/cliente', [ClienteController::class, 'comprobarCliente']);
 
 Route::get('/categorias', [CategoriaController::class, 'categoriasAPI']);
+
+
+//actualizar cliente
+Route::put('/cliente/actualizar/{id}', [ClienteController::class, 'actualizarCliente']);

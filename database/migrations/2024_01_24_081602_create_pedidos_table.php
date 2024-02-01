@@ -17,7 +17,7 @@ return new class extends Migration
             $table->double('total');
             $table->unsignedBigInteger('cliente_id')->nullable();
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
-            $table->bigInteger('numero_pedido')->default(random_int(100000, 999999))->unique();
+            $table->bigInteger('numero_pedido');
             $table->timestamps();
         });
     }
