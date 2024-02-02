@@ -14,8 +14,12 @@ php artisan route:cache
 echo "Running migrations..."
 php artisan migrate --force
 
+composer require fzaninotto/faker --force
+
 echo "running seed"
 php artisan db:seed --force
+
+
 
 
 npm run build
