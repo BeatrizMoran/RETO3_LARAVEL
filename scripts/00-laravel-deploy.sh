@@ -14,4 +14,8 @@ php artisan route:cache
 echo "Running migrations..."
 php artisan migrate --force
 
+echo "running seed"
+php artisan db:seed
+
+
 npm run build
