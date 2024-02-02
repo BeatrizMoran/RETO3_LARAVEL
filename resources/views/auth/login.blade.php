@@ -5,18 +5,18 @@
     <div class="row justify-content-center align-items-center min-vh-100">
         <!-- La imagen ahora ocupa 5 columnas en pantallas medianas y grandes -->
         <div class="col-md-5 d-none d-md-block">
-            <img src="{{ asset('storage/images/WaifuLogin.png') }}" class="img-fluid" alt="Login Image" />
+            <img src="{{ asset('/images/WaifuLogin.png') }}" class="img-fluid" alt="Login Image" />
         </div>
-        
+
         <!-- El formulario ahora ocupa 7 columnas en pantallas medianas y grandes para balancear con la imagen -->
         <div class="col-md-7">
             <div class="card border-0 shadow">
                 <div class="card-header bg-success text-white text-center">{{ __('Login') }}</div>
-                
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        
+
                         <!-- Agrupación de campos de entrada con íconos para mejorar la UX -->
                         <div class="mb-4">
                             <label for="email" class="form-label">{{ __('Email Address') }}</label>
@@ -30,7 +30,7 @@
                             </span>
                             @enderror
                         </div>
-                        
+
                         <div class="mb-4">
                             <label for="password" class="form-label">{{ __('Password') }}</label>
                             <div class="input-group">
@@ -43,18 +43,18 @@
                             </span>
                             @enderror
                         </div>
-                        
+
                         <div class="mb-4 form-check">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label class="form-check-label" for="remember">
                                 {{ __('Remember Me') }}
                             </label>
                         </div>
-                        
+
                         <div class="mb-4 text-center">
                             <button type="submit" class="btn btn-success btn-lg">{{ __('Login') }}</button>
                         </div>
-                        
+
                         @if (Route::has('password.request'))
                         <div class="text-center">
                             <a class="btn btn-link" href="{{ route('password.request') }}">

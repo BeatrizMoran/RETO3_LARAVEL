@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="{{ asset('storage/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}">
 
     <title>@yield('title')</title>
     @vite(['resources/sass/app.scss'])
@@ -16,7 +16,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('welcome') }}">
-                    <img src="{{ asset('storage/images/Killerlogo.png') }}" class="img-fluid" alt="LogoKiller"
+                    <img src="{{ asset('/images/Killerlogo.png') }}" class="img-fluid" alt="LogoKiller"
                         width="50" height="50">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
