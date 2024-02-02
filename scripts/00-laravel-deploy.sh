@@ -12,7 +12,7 @@ NGINX_RESTART_CMD="sudo service nginx restart"  # Comando para reiniciar Nginx
 # Actualiza el código de la aplicación desde el repositorio (puede ser Git, por ejemplo)
 echo "Actualizando el código fuente..."
 cd $APP_DIR
-git pull origin master
+git pull origin main
 
 # Instala o actualiza las dependencias de Composer
 echo "Instalando o actualizando dependencias de Composer..."
@@ -31,7 +31,7 @@ $PHP_BIN $ARTISAN_BIN route:cache
 
 # Ejecuta las migraciones de la base de datos
 echo "Ejecutando migraciones de base de datos..."
-$PHP_BIN $ARTISAN_BIN migrate_fresh --seed #--force
+$PHP_BIN $ARTISAN_BIN migrate:fresh --seed #--force
 
 # Instala dependencias de Node.js (opcional, si se utilizan)
 if [ -f "$APP_DIR/package.json" ]; then
