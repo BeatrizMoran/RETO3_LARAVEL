@@ -38,7 +38,7 @@ if [ -f "$APP_DIR/package.json" ]; then
     echo "Instalando dependencias de Node.js..."
     cd $APP_DIR
     $NPM_BIN install
-    $NPM_BIN run production  # Otra opción como 'dev' dependiendo de tu entorno
+    $NPM_BIN run build  # Otra opción como 'dev' dependiendo de tu entorno
 fi
 
 # Reinicia Nginx
