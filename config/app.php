@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use ConsoleTVs\Charts\Facades\Charts;
 
 return [
 
@@ -163,6 +164,7 @@ return [
         /*
          * Application Service Providers...
          */
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -182,7 +184,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
     ])->toArray(),
 
 ];
