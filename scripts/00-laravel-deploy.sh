@@ -14,7 +14,9 @@ php artisan route:cache
 echo "Running migrations..."
 php artisan migrate --force
 
-composer require fzaninotto/faker --force
+composer require faker --force
+
+php artisan config:clear
 
 echo "running seed"
 php artisan db:seed --force
