@@ -3,8 +3,10 @@
 
 // Variables
 @import "variables";
-
+//scss adicional
+@import url("welcome");
 // Bootstrap
+
 @import "bootstrap/scss/bootstrap";
 
 body {
