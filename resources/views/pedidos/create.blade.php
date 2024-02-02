@@ -3,7 +3,8 @@
 @section('title', 'Página Específica')
 
 @section('content')
-    <div class="container mt-4">
+<div class="row">
+    <div class="col">
         <h1 class="mb-4">Realizar Pedido</h1>
 
         <form action="{{ route('pedidos.store') }}" method="POST">
@@ -46,7 +47,7 @@
             </div>
         </form>
     </div>
-
+</div>
     @vite(['resources/js/pedido.js'])
 
 @endsection

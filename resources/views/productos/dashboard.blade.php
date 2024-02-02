@@ -107,8 +107,8 @@
             </div>
         </div>
     </div>
-
-    <div class="d-flex justify-content-center">
+<div class="row">
+    <div class="col-12 d-flex justify-content-center">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 @if ($productos->previousPageUrl())
@@ -147,6 +147,8 @@
             </ul>
         </nav>
     </div>
+</div>
+
 
 @endsection
 

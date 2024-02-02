@@ -3,10 +3,11 @@
 @section('title', 'Editar Permiso')
 
 @section('content')
-<div class="container mt-4">
     <div class="row">
         <div class="col-12">
-            <h1>Editar Permiso: {{ $permission->name }}</h1>
+            <div>
+                <h1>Editar Permiso: {{ $permission->name }}</h1>
+            </div>
             <form action="{{ route('permissions.update', $permission) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -19,5 +20,4 @@
             </form>
         </div>
     </div>
-</div>
 @endsection

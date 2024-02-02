@@ -98,10 +98,9 @@
         </div>
     </div>
 
-
-    <div class="d-flex justify-content-center ">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
+        <nav class="row" aria-label="Page navigation example">
+           <div class="col">
+            <ul class="pagination d-flex justify-content-center">
                 @if ($users->previousPageUrl())
                     <li class="page-item">
                         <a class="page-link" href="{{ $users->previousPageUrl() }}" aria-label="Previous">
@@ -122,8 +121,8 @@
                     </li>
                 @endif
             </ul>
+           </div>
         </nav>
-    </div>
 
 
 

@@ -3,7 +3,6 @@
 @section('title', 'Crear Permiso')
 
 @section('content')
-<div class="container mt-4">
     <div class="row">
         <div class="col-12">
             <h1>Crear Nuevo Permiso</h1>
@@ -18,5 +17,4 @@
             </form>
         </div>
     </div>
-</div>
 @endsection

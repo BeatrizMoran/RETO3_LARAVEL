@@ -3,7 +3,9 @@
 @section('title', 'Página Específica')
 
 @section('content')
-    <div class="container">
+
+<div class="row">
+    <div class="col">
         <h1>Actualizar Producto</h1>
 
         <!-- Formulario de Creación -->
@@ -50,6 +52,7 @@
             <button type="submit" class="btn btn-primary">Crear Producto</button>
         </form>
     </div>
+</div>
 @endsection
 
 @section('footer', '©️ Cervezas Killer')

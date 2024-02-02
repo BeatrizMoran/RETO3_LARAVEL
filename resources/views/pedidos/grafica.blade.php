@@ -3,7 +3,8 @@
 @section('title', 'Gráfica de Pedidos')
 
 @section('content')
-    <div class="container mt-5">
+
+
         <div class="row justify-content-center align-items-center" style="min-height: 80vh;">
             <div class="col-md-8">
                 <div class="card">
@@ -16,7 +17,8 @@
                 </div>
             </div>
         </div>
-    </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>

@@ -3,7 +3,18 @@
 @section('title', 'Página Específica')
 
 @section('content')
-    <div class="container">
+<div class="row">
+    <div class="col">
+        @if ($errors->has('categorias'))
+            <div class="alert alert-danger">
+                <strong>{{ $errors->first('categorias') }}</strong>
+            </div>
+        @endif
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
         <h1>Crear Producto</h1>
 
         <!-- Formulario de Creación -->
@@ -62,6 +73,8 @@
             <a href="{{ route('dashboard.productos') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
+</div>
+
 @endsection
 
 @section('footer', '©️ Cervezas Killer')

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+<div class="row">
+    <div class="col-12">
         <h1>Editar Cliente</h1>
         <form action="{{ route('clientes.update', $cliente) }}" method="POST" class="needs-validation" novalidate>
             @csrf
@@ -41,4 +42,6 @@
             <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
     </div>
+</div>
+
 @endsection

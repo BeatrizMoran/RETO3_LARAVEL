@@ -4,8 +4,6 @@
 
 @section('content')
 
-
-
     <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center my-3">
             <div class="card my-4 shadow-lg w-90 px-5">
@@ -101,46 +99,44 @@
         </div>
     </div>
 
+    <nav class="row" aria-label="Page navigation example">
+        <ul class="pagination d-flex justify-content-center">
+            @if ($pedidos->previousPageUrl())
+                <li class="page-item">
+                    <a class="page-link" href="{{ $pedidos->appends(request()->except('page'))->previousPageUrl() }}"
+                        <span aria-hidden="true" class="text-dark">&laquo;</span>
+                    </a>
+                </li>
+            @endif
 
-    <div class="d-flex justify-content-center">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                @if ($pedidos->previousPageUrl())
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $pedidos->appends(request()->except('page'))->previousPageUrl() }}"
-                            <span aria-hidden="true" class="text-dark">&laquo;</span>
-                        </a>
-                    </li>
-                @endif
+            @if ($pedidos->currentPage() > 3)
+                <li class="page-item"><span class="page-link">1</span></li>
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+            @endif
 
-                @if ($pedidos->currentPage() > 3)
-                    <li class="page-item"><span class="page-link">1</span></li>
-                    <li class="page-item disabled"><span class="page-link">...</span></li>
-                @endif
+            @for ($i = max(1, $pedidos->currentPage() - 2); $i <= min($pedidos->lastPage(), $pedidos->currentPage() + 2); $i++)
+                <li class="page-item @if ($i == $pedidos->currentPage()) active @endif">
+                    <a class="page-link"
+                        href="{{ $pedidos->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
+                </li>
+            @endfor
 
-                @for ($i = max(1, $pedidos->currentPage() - 2); $i <= min($pedidos->lastPage(), $pedidos->currentPage() + 2); $i++)
-                    <li class="page-item @if ($i == $pedidos->currentPage()) active @endif">
-                        <a class="page-link"
-                            href="{{ $pedidos->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
-                    </li>
-                @endfor
+            @if ($pedidos->currentPage() < $pedidos->lastPage() - 2)
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+                <li class="page-item"><span class="page-link">{{ $pedidos->lastPage() }}</span></li>
+            @endif
 
-                @if ($pedidos->currentPage() < $pedidos->lastPage() - 2)
-                    <li class="page-item disabled"><span class="page-link">...</span></li>
-                    <li class="page-item"><span class="page-link">{{ $pedidos->lastPage() }}</span></li>
-                @endif
+            @if ($pedidos->nextPageUrl())
+                <li class="page-item">
+                    <a class="page-link" href="{{ $pedidos->appends(request()->except('page'))->nextPageUrl() }}"
+                        aria-label="Next">
+                        <span aria-hidden="true" class="text-dark">&raquo;</span>
+                    </a>
+                </li>
+            @endif
+        </ul>
+    </nav>
 
-                @if ($pedidos->nextPageUrl())
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $pedidos->appends(request()->except('page'))->nextPageUrl() }}"
-                            aria-label="Next">
-                            <span aria-hidden="true" class="text-dark">&raquo;</span>
-                        </a>
-                    </li>
-                @endif
-            </ul>
-        </nav>
-    </div>
 
 
 

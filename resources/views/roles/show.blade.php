@@ -3,10 +3,11 @@
 @section('title', 'Ver Rol')
 
 @section('content')
-    <div class="container mt-4">
         <div class="row">
             <div class="col-12">
-                <h1>Rol: {{ $role->name }}</h1>
+                <div>
+                    <h1>Rol: {{ $role->name }}</h1>
+                </div>
                 <div>
                     <a href="{{ route('roles.edit', $role) }}" class="btn btn-warning">Editar</a>
                     <a href="{{ route('roles.index') }}" class="btn btn-secondary">Regresar a la Lista</a>
@@ -21,5 +22,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

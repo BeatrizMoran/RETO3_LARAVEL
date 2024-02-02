@@ -69,7 +69,7 @@ Route::middleware(['role:responsable'])->group(function () {
     Route::get('/pedidos/grafica', [PedidoController::class, 'graficaPedidos'])->name('pedidos.grafica');
     Route::resource('/usuarios', UserController::class);
     Route::resource('roles', RoleController::class);
-    Route::resource('permissions', PermissionController::class);
+    Route::resource('/permissions', PermissionController::class);
 });
 
 

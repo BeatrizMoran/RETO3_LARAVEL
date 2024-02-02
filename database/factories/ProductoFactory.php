@@ -5,6 +5,8 @@ namespace Database\Factories;
 use App\Models\Producto;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProductoFactory extends Factory
 {
@@ -21,25 +23,40 @@ class ProductoFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
-        $this->faker->unique()->word; // Reiniciar el contador de valores únicos
+{
+    $this->faker->unique()->word; // Reiniciar el contador de valores únicos
 
-        return [
-            'codigo_referencia' => 'PROD-' . $this->faker->unique()->regexify('[A-Za-z0-9]{5}'),
-            'nombre' => $this->faker->sentence,
-            'precio' => $this->faker->randomFloat(2, 1, 100),
-            'imagen' => $this->getRandomImage(),
-            'formato' => $this->faker->randomElement(['20CL', '25CL', '33CL', '1L', 'Barril']),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ];
-    }
+    // Obtener la lista de archivos en la carpeta storage/app/public/images/
+    $imageFiles = Storage::files('public/images');
 
-    private function getRandomImage()
-    {
-        $randomWidth = $this->faker->numberBetween(300, 800);
-        $randomHeight = $this->faker->numberBetween(300, 800);
+    // Seleccionar una imagen al azar de la lista
+    $randomImage = $this->faker->randomElement($imageFiles);
 
-        return "https://picsum.photos/{$randomWidth}/{$randomHeight}";
-    }
+    // Obtener el nombre de la imagen
+    $imageName = pathinfo($randomImage, PATHINFO_BASENAME);
+
+    return [
+        'codigo_referencia' => 'PROD-' . $this->faker->unique()->regexify('[A-Za-z0-9]{5}'),
+        'nombre' => $this->faker->sentence,
+        'precio' => $this->faker->randomFloat(2, 1, 100),
+        'imagen' => asset('storage/images/' . $imageName),
+        'formato' => $this->faker->randomElement(['20CL', '25CL', '33CL', '1L', 'Barril']),
+        'created_at' => now(),
+        'updated_at' => now(),
+    ];
+}
+
+private function getRandomImage(): string
+{
+    // Obtener la lista de archivos en la carpeta storage/images/
+    $imageFiles = Storage::files('images');
+
+    // Seleccionar una imagen al azar de la lista
+    $randomImage = $this->faker->randomElement($imageFiles);
+
+    // Obtener la ruta relativa de la imagen
+    $relativePath = str_replace('storage/', 'storage/app/', $randomImage);
+
+    return $relativePath;
+}
 }

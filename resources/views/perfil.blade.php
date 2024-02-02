@@ -4,22 +4,23 @@
 
 @section('content')
 
-    <div class="container d-flex justify-content-center my-4 ">
+    <div class=" row d-flex justify-content-center my-4 ">
         <!-- Primer div -->
-        <div class="rounded-4 w-100 p-3 bg-primary position-relative"
+        <div class=" col-10 rounded-4 p-3 bg-primary position-relative"
             style="height: 230px; background: url('{{ url('fondo-perfil.jpg') }}'); background-size: cover;">
         </div>
         <!-- Segundo div -->
-        <div class="position-absolute rounded-4 p-3 bg-light bg-degraded card card-body mx-3 mx-md-4 mt-n6"
+        <div class=" col-12 position-absolute rounded-4 p-3 bg-light bg-degraded card card-body mx-3 mx-md-4 mt-n6"
             style="70%;z-index: 2;top:180px;width:60%;">
             <div class="card">
-                <div class="card-header dark:bg-dark">
+                <div class=" card-header dark:bg-dark">
                     Informacion Perfil
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
                     <img src="{{ asset('storage/images/default.jpg') }}" alt="foto-perfil" class="rounded-circle m-2"
                         width="100" height="100">
                 </div>
+
                 <div class="card-body">
                     <form action="##" method="POST">
                         @csrf

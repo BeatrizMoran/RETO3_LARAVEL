@@ -91,9 +91,9 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
+    <nav class="row" aria-label="Page navigation example">
+        <div class="col">
+            <ul class="pagination d-flex justify-content-center">
                 @if ($clientes->previousPageUrl())
                     <li class="page-item">
                         <a class="page-link" href="{{ $clientes->appends(request()->except('page'))->previousPageUrl() }}"
@@ -128,8 +128,9 @@
                     </li>
                 @endif
             </ul>
-        </nav>
-    </div>
+        </div>
+
+    </nav>
 
 
 

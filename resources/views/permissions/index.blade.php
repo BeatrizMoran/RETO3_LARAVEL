@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center my-3">
-            <div class="card my-4 shadow-lg w-90 px-5">
+            <div class="card my-4 shadow-lg  px-5">
                 <div class="card-header p-0 position-relative mx-3 z-index-2" style="margin-top: -1.5rem;">
                     <div
                         class="bg-gradient-primary bg-dark rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">

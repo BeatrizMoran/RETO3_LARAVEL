@@ -3,9 +3,9 @@
 @section('title', 'Editar Rol')
 
 @section('content')
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
+    <div class="row">
+        <div class="col-12">
+            <div>
                 <h1>Editar Rol: {{ $role->name }}</h1>
                 <form action="{{ route('roles.update', $role) }}" method="POST">
                     @csrf
@@ -31,6 +31,7 @@
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </form>
             </div>
+
         </div>
     </div>
 @endsection
