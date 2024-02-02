@@ -19,8 +19,11 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN apk update
 RUN apk add --no-cache npm
+
+RUN npm install -D sass
 RUN npm install
 RUN npm run build
+RUN npm run production
 
 
 CMD ["/start.sh"]
