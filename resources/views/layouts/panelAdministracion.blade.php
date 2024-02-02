@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ asset('storage/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}">
 
     <title>@yield('title')</title>
     @vite(['resources/sass/app.scss'])
@@ -16,7 +16,7 @@
     <!-- Navbar para dispositivos móviles -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
         <a class="navbar-brand" href="#">
-            <img src="{{ asset('storage/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer">
+            <img src="{{ asset('/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
             aria-controls="sidebar">
@@ -29,8 +29,8 @@
         <div class="offcanvas-header">
             <div class="p-4 text-center">
                 <a href="#" class="d-block mb-3 text-decoration-none">
-                    <img src="{{ asset('storage/images/Killerlogo.png') }}" width="50" height="50"
-                        class="img-fluid" alt="">
+                    <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50" class="img-fluid"
+                        alt="">
                     <span class="fs-4  d-md-inline ">Cervezas Killer</span>
                 </a>
                 <hr class="w-100">
@@ -104,7 +104,7 @@
                                 <a href="#"
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('storage/images/Killerlogo.png') }}" alt="" width="32"
+                                    <img src="{{ asset('/images/Killerlogo.png') }}" alt="" width="32"
                                         height="32" class="rounded-circle me-2">
                                     <strong>{{ auth()->user()->name }}</strong>
                                 </a>
@@ -138,7 +138,7 @@
                 class="col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
                 <div class="p-4 text-center">
                     <a href="#" class="d-block mb-3 text-decoration-none">
-                        <img src="{{ asset('storage/images/Killerlogo.png') }}" width="50" height="50"
+                        <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50"
                             class="img-fluid" alt="">
                         <span class="fs-4 d-none d-md-inline ">Cervezas Killer</span>
                     </a>
@@ -222,9 +222,10 @@
                                 <a href="#"
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('storage/images/Killerlogo.png') }}" alt=""
-                                        width="32" height="32" class="rounded-circle me-2">
-                                    <strong>{{ auth()->user()->name }}</strong>
+                                    <img src="{{ asset('/images/Killerlogo.png') }}" alt="" width="32"
+                                        height="32" class="rounded-circle me-2">
+                                    <strong>{{ strlen(auth()->user()->name) > 10 ? substr(auth()->user()->name, 0, 10) . '...' : auth()->user()->name }}</strong>
+
                                 </a>
                                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
                                     <li><a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a></li>

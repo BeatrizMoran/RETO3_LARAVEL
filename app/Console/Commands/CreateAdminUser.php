@@ -14,19 +14,10 @@ class CreateAdminUser extends Command
 
     public function handle()
     {
-        // Reemplaza 'admin@example.com' y 'password' con variables de entorno o un mecanismo seguro
-        $email = env('ADMIN_EMAIL', 'jjamaica19@gmail.com');
-        $password = env('ADMIN_PASSWORD', '12345678');
-
-        if (User::where('email', $email)->exists()) {
-            $this->info('El usuario administrador ya existe.');
-            return;
-        }
-
         $admin = User::create([
-            'name' => 'Javier',
-            'email' => $email,
-            'password' => Hash::make($password),
+            'name' => 'bea',
+            'email' => 'bea@email.com',
+            'password' => Hash::make('12345678'),
             'email_verified_at' => now(),
         ]);
 
