@@ -35,7 +35,7 @@ $PHP_BIN $ARTISAN_BIN storage:link
 
 # Ejecuta las migraciones de la base de datos
 echo "Ejecutando migraciones de base de datos..."
-$PHP_BIN $ARTISAN_BIN migrate --force && $PHP_BIN $ARTISAN_BIN app:create-admin
+$PHP_BIN $ARTISAN_BIN migrate --force && $PHP_BIN $ARTISAN_BIN create:admin
 
 # Instala dependencias de Node.js (opcional, si se utilizan)
 if [ -f "$APP_DIR/package.json" ]; then
