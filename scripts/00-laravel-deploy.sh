@@ -16,6 +16,7 @@ php artisan migrate --force
 
 composer require fzaninotto/faker
 
+
 php artisan config:clear
 
 echo "running seed"

@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "fzaninotto/faker": "~1.5",
+        "fzaninotto/faker": "^1.9",
         "consoletvs/charts": "^6.6",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
