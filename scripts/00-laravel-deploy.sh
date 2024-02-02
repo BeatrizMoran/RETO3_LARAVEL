@@ -31,7 +31,7 @@ $PHP_BIN $ARTISAN_BIN route:cache
 
 # Ejecuta las migraciones de la base de datos
 echo "Ejecutando migraciones de base de datos..."
-$PHP_BIN $ARTISAN_BIN migrate --force
+$PHP_BIN $ARTISAN_BIN migrate_fresh --seed #--force
 
 # Instala dependencias de Node.js (opcional, si se utilizan)
 if [ -f "$APP_DIR/package.json" ]; then
