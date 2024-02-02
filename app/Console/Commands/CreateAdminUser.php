@@ -15,8 +15,8 @@ class CreateAdminUser extends Command
     public function handle()
     {
         $admin = User::create([
-            'name' => 'bea',
-            'email' => 'bea@email.com',
+            'name' => 'javier',
+            'email' => 'jjamaica19@gmail.com',
             'password' => Hash::make('12345678'),
             'email_verified_at' => now(),
         ]);
