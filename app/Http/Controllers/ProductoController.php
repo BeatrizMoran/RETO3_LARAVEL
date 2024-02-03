@@ -49,8 +49,8 @@ class ProductoController extends Controller
 
     public function productosAPI()
     {
-        // $productos = Producto::with('categorias')->get();
-        return ProductoResource::collection(Producto::all());
+        $productos = Producto::with('categorias')->get();
+        return ProductoResource::collection($productos);
     }
 
     public function dashboard()
@@ -213,6 +213,6 @@ class ProductoController extends Controller
             ->where('nombre', 'like', '%' . $search . '%')
             ->get();
 
-            return ProductoResource::collection($productos);
-        }
+        return ProductoResource::collection($productos);
+    }
 }

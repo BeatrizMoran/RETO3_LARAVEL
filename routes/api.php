@@ -40,6 +40,8 @@ Route::get('/images/{filename}', function ($filename) {
 })->name('image.show');
 
 Route::get('/productos', [ProductoController::class, 'buscarProductos']);
+//Route::get('/productos/todos', [ProductoController::class, 'productosAPI']);
+
 
 Route::get('/pedidos', [PedidoController::class, 'pedidosCliente']);
 
