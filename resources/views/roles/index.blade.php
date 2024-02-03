@@ -20,18 +20,18 @@
                 </div>
                 <div class="card-body px-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table table-striped table-hover align-items-center mb-0 p-4 text-center">
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Acciones</th>
-                            </tr>
+                        <table class="table table-striped table-hover align-items-center mb-0 text-center">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Acciones</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 @foreach ($roles as $rol)
                                     <tr>
                                         <td>{{ $rol->id }}</td>
-
                                         <td>{{ $rol->name }}</td>
                                         <td class="p-1">
                                             <a href="{{ route('roles.show', $rol) }}" class="btn btn-primary btn-sm">
@@ -43,21 +43,19 @@
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
 
-                                                <!-- VENTANA MODAL -->
+                                                <!-- Modal -->
                                                 <div class="modal fade" id="confirmDeleteModal_{{ $rol->id }}"
                                                     tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="confirmDeleteModalLabel">
-                                                                    Confirmar Borrado del Rol #{{ $rol->name }}
-                                                                </h5>
+                                                                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar
+                                                                    Borrado del Rol #{{ $rol->name }}</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                     aria-label="Cerrar"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                ¿Estás seguro de que deseas borrar el rol
-                                                                "{{ $rol->name }}"?
+                                                                ¿Estás seguro de que deseas borrar el rol "{{ $rol->name }}"?
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary btn-sm"
@@ -75,12 +73,12 @@
                                                 </div>
                                             @endrole
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
+
                 </div>
                 <div class="d-flex justify-content-center">
                     <nav aria-label="Page navigation example">

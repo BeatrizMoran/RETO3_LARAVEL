@@ -3,8 +3,6 @@
 @section('title', 'Página Específica')
 
 @section('content')
-
-
     <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center my-3">
             <div class="card my-4 shadow-lg w-90 px-5">
@@ -21,8 +19,8 @@
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table table-striped table-hover align-items-center mb-0 p-4 text-center">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover mb-0 text-center">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -37,19 +35,19 @@
                             <tbody>
                                 @forelse($productos as $producto)
                                     <tr>
-                                        <td class="p-1">{{ $producto->id }}</td>
-                                        <td class="p-1">{{ $producto->codigo_referencia }}</td>
-                                        <td class="p-1">{{ $producto->nombre }}</td>
-                                        <td class="p-1">{{ $producto->precio }}</td>
-                                        <td class="p-1">{{ $producto->formato }}</td>
-                                        <td class="p-1">
+                                        <td>{{ $producto->id }}</td>
+                                        <td>{{ $producto->codigo_referencia }}</td>
+                                        <td>{{ $producto->nombre }}</td>
+                                        <td>{{ $producto->precio }}</td>
+                                        <td>{{ $producto->formato }}</td>
+                                        <td>
                                             <select class="form-select" multiple disabled size="2">
                                                 @foreach ($producto->categorias as $categoria)
                                                     <option>{{ $categoria->nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td class="p-1">
+                                        <td>
                                             <a href="{{ route('productos.show', $producto) }}"
                                                 class="btn btn-primary btn-sm">
                                                 <i class="fa-solid fa-eye"></i>
@@ -93,7 +91,6 @@
                                                 </div>
                                             @endrole
                                         </td>
-
                                     </tr>
                                 @empty
                                     <tr>
@@ -103,6 +100,7 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>

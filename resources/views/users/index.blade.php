@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="row ">
         <div class="col-12 d-flex justify-content-center align-items-center my-3">
             <div class="card my-4 shadow-lg w-90 px-5">
                 <div class="card-header p-0 position-relative mx-3 z-index-2" style="margin-top: -1.5rem;">
@@ -20,8 +20,8 @@
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table table-striped table-hover align-items-center mb-0 p-4 text-center">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-items-center mb-0 text-center">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -31,7 +31,6 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-
                             <tbody>
                                 @forelse($users as $user)
                                     <tr>
@@ -39,35 +38,35 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            @forelse($user->roles as $rol)
-                                                {{ $rol->name }}<br>
+                                            @forelse($user->roles as $role)
+                                                {{ $role->name }}<br>
                                             @empty
                                                 No tiene roles asignados
                                             @endforelse
                                         </td>
                                         <td class="p-1">
-                                            <a href="{{ route('usuarios.show', $user) }}" class="btn btn-primary btn-md"><i
-                                                    class="fa-solid fa-eye"></i></a>
-                                            <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal"
-                                                data-bs-target="#confirmDeleteModal_{{ $user->id }}"
-                                                data-product-id="{{ $user->id }}">
+                                            <a href="{{ route('usuarios.show', $user) }}" class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#confirmDeleteModal_{{ $user->id }}">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
 
-                                            <!-- VENTANA MODAL -->
+                                            <!-- Modal -->
                                             <div class="modal fade" id="confirmDeleteModal_{{ $user->id }}"
                                                 tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="confirmDeleteModalLabel">
-                                                                Confirmar Borrado {{ $user->id }}</h5>
+                                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar
+                                                                Borrado {{ $user->id }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Cerrar"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <p>¿Estás seguro de que deseas borrar este usuario?</p>
-                                                            <p>- Se borraran tambien los pedidos asociados</p>
+                                                            <p>- Se borrarán también los pedidos asociados</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -76,8 +75,8 @@
                                                                 action="{{ route('usuarios.destroy', $user) }}">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <input type="submit" class="btn btn-danger"
-                                                                    value="Eliminar">
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Eliminar</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -87,19 +86,20 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No hay clientes</td>
+                                        <td colspan="5" class="text-center">No hay usuarios registrados</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-        <nav class="row" aria-label="Page navigation example">
-           <div class="col">
+    <nav class="row" aria-label="Page navigation example">
+        <div class="col">
             <ul class="pagination d-flex justify-content-center">
                 @if ($users->previousPageUrl())
                     <li class="page-item">
@@ -121,8 +121,8 @@
                     </li>
                 @endif
             </ul>
-           </div>
-        </nav>
+        </div>
+    </nav>
 
 
 

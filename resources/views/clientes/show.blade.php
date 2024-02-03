@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.panelAdministracion')
 
 @section('content')
     <div class="row">
@@ -12,16 +12,16 @@
                     Información del Cliente
                 </div>
                 <div class="card-body">
-                    <dl>
+                    <dl class="row">
                         <dt class="col-sm-4">Código del Cliente:</dt>
-                        <dd class="col-sm-8">{{ $cliente->codigo_cliente }}</dd>
+                        <dd class="col-sm-8">{{ Crypt::decrypt($cliente->codigo_cliente) }}</dd>
 
                         <dt class="col-sm-4">Nombre:</dt>
                         <dd class="col-sm-8">{{ $cliente->nombre }}</dd>
-
+                        <dt class="col-sm-4">Email:</dt>
+                        <dd class="col-sm-8">{{ $cliente->email }}</dd>
                         <dt class="col-sm-4">Dirección:</dt>
                         <dd class="col-sm-8">{{ $cliente->direccion }}</dd>
-
                         <dt class="col-sm-4">Teléfono:</dt>
                         <dd class="col-sm-8">{{ $cliente->telefono }}</dd>
                     </dl>

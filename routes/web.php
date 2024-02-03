@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductoController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,10 +26,12 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/catalogo', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
+Route::get('/buscar-productos', [ProductoController::class, 'buscarProductos'])->name('buscar.productos');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
+    Route::put('/perfil/update/{user}', [UserProfileController::class, 'update'])->name('perfil.update');
 
     Route::get('/perfil', function () {
         return view('perfil');
@@ -62,6 +66,9 @@ Route::middleware(['role:responsable|administrativo'])->group(function () {
     Route::delete('/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
     Route::resource('/clientes', ClienteController::class);
+    Route::resource('/categorias', CategoriaController::class);
+    Route::resource('/permisos', PermissionController::class);
+
 });
 
 

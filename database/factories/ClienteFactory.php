@@ -20,6 +20,7 @@ class ClienteFactory extends Factory
         return [
             'codigo_cliente' => Crypt::encrypt('KILLER-' . $this->faker->unique()->numberBetween(100000, 999999)),
             'nombre' => $this->faker->name,
+            'email' => fake()->unique()->safeEmail(),
             'direccion' => $this->faker->address,
             'telefono' => $this->faker->phoneNumber,
         ];

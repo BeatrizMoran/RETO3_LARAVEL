@@ -12,7 +12,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::all(); // Obtener todos los permisos
+        $permissions = Permission::paginate(10); // Obtener todos los permisos
         return view('permissions.index', compact('permissions'));
     }
     /**
