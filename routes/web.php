@@ -50,7 +50,7 @@ Route::middleware(['role:responsable|comercial'])->group(function () {
 
     Route::get('/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
     Route::post('/pedidos/store', [PedidoController::class, 'store'])->name('pedidos.store');
-    Route::delete('/pedidos/destroy/{id}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
+    Route::delete('/pedidos/destroy/{pedido}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
     Route::get('/pedidos/edit/{pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
     Route::put('/pedidos/update/{pedido}', [PedidoController::class, 'update'])->name('pedidos.update');
 });
@@ -66,9 +66,7 @@ Route::middleware(['role:responsable|administrativo'])->group(function () {
     Route::delete('/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
     Route::resource('/clientes', ClienteController::class);
-    Route::resource('/categorias', CategoriaController::class);
     Route::resource('/permisos', PermissionController::class);
-
 });
 
 
@@ -77,6 +75,8 @@ Route::middleware(['role:responsable'])->group(function () {
     Route::resource('/usuarios', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
+    Route::resource('/categorias', CategoriaController::class);
+
 });
 
 

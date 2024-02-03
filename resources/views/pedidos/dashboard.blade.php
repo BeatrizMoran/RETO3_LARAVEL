@@ -66,7 +66,7 @@
                                                                     data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                ¿Estás seguro de que deseas borrar este producto?
+                                                                ¿Estás seguro de que deseas borrar este pedido?
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
