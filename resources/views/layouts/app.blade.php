@@ -54,7 +54,7 @@
         </nav>
     </header>
 
-    <main >
+    <main class="container" >
         @yield('content')
     </main>
 
