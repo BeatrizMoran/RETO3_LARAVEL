@@ -10,11 +10,10 @@
     @vite(['resources/sass/app.scss'])
 </head>
 
-<body class="d-flex flex-column mainClass" style="min-height: 100vh;">
+<div class="container-fluid d-flex flex-column mainClass" style="min-height: 100vh;">
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="col">
                 <a class="navbar-brand" href="{{ route('welcome') }}">
                     <img src="{{ asset('/images/Killerlogo.png') }}" class="img-fluid" alt="LogoKiller"
                         width="50" height="50">
@@ -52,28 +51,28 @@
 
             </div>
         </nav>
-    </header>
 
-    <main class="container" >
-        @yield('content')
-    </main>
-
-    <footer class="bg-dark text-center text-white py-4 mt-auto">
-        <div class="container">
-            @yield('footer')
-
+    <div class="row" >
+        <div class="col">
+            @yield('content')
         </div>
-    </footer>
-    <!-- Mensaje de Consentimiento de Cookies -->
-    <div id="cookieConsentContainer" class="fixed-bottom bg-light p-3 text-center" style="display: none;">
-        <p>Este sitio utiliza cookies para mejorar la experiencia del usuario. <a href="#">Más información</a>.
-        </p>
-        <button id="acceptCookie" class="btn btn-primary">Aceptar</button>
-        <button id="declineCookie" class="btn btn-secondary">Rechazar</button>
     </div>
 
-
+    <div class="row bg-dark text-center text-white py-4 mt-auto">
+        <div class="col">
+            @yield('footer')
+        </div>
+    </div>
+    <!-- Mensaje de Consentimiento de Cookies -->
+    <div id="cookieConsentContainer" class="row fixed-bottom bg-light p-3 text-center" style="display: none;">
+        <div class="col">
+            <p>Este sitio utiliza cookies para mejorar la experiencia del usuario. <a href="#">Más información</a>.
+            </p>
+            <button id="acceptCookie" class="btn btn-primary">Aceptar</button>
+            <button id="declineCookie" class="btn btn-secondary">Rechazar</button>
+        </div>
+    </div>
     @vite(['resources/js/app.js']) @vite(['resources/js/buscar.js'])
-</body>
+</div>
 
 </html>

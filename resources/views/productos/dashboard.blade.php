@@ -3,8 +3,6 @@
 @section('title', 'Página Específica')
 
 @section('content')
-
-
     <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center my-3">
             <div class="card my-4 shadow-lg w-90 px-5">

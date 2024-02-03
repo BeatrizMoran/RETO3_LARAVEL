@@ -21,16 +21,16 @@
                 <a href="{{ $edit ? url()->previous() : route('dashboard.productos') }}"
                     class="btn btn-secondary mb-md-3">Volver</a>
 
-        <!-- Formulario de Creación -->
-        <form method="post" action="{{ route('productos.update', $producto) }}" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <!-- Nombre -->
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre"
-                    {{ $edit ? 'required' : 'disabled' }} value="{{ $producto->nombre }}">
-            </div>
+                <!-- Formulario de Creación -->
+                <form method="post" action="{{ route('productos.update', $producto) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <!-- Nombre -->
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre"
+                            {{ $edit ? 'required' : 'disabled' }} value="{{ $producto->nombre }}">
+                    </div>
 
                     <!-- Precio -->
                     <div class="mb-3">
@@ -42,12 +42,12 @@
                         </div>
                     </div>
 
-            <!-- Imagen -->
-            <div class="mb-3">
-                <label for="imagen" class="form-label">Imagen</label>
-                <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*"
-                    {{ $edit ? 'enabled' : 'disabled' }}>
-            </div>
+                    <!-- Imagen -->
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*"
+                            {{ $edit ? 'enabled' : 'disabled' }}>
+                    </div>
 
                     <!-- Formato -->
                     <div class="mb-3">

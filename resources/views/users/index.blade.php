@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="row ">
         <div class="col-12 d-flex justify-content-center align-items-center my-3">
             <div class="card my-4 shadow-lg w-90 px-5">
                 <div class="card-header p-0 position-relative mx-3 z-index-2" style="margin-top: -1.5rem;">
@@ -48,28 +48,35 @@
                                             <a href="{{ route('usuarios.show', $user) }}" class="btn btn-primary btn-sm">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal_{{ $user->id }}">
+                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#confirmDeleteModal_{{ $user->id }}">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="confirmDeleteModal_{{ $user->id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="confirmDeleteModal_{{ $user->id }}"
+                                                tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Borrado {{ $user->id }}</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar
+                                                                Borrado {{ $user->id }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Cerrar"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <p>¿Estás seguro de que deseas borrar este usuario?</p>
                                                             <p>- Se borrarán también los pedidos asociados</p>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                            <form method="post" action="{{ route('usuarios.destroy', $user) }}">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cancelar</button>
+                                                            <form method="post"
+                                                                action="{{ route('usuarios.destroy', $user) }}">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Eliminar</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -91,8 +98,8 @@
         </div>
     </div>
 
-        <nav class="row" aria-label="Page navigation example">
-           <div class="col">
+    <nav class="row" aria-label="Page navigation example">
+        <div class="col">
             <ul class="pagination d-flex justify-content-center">
                 @if ($users->previousPageUrl())
                     <li class="page-item">
@@ -114,8 +121,8 @@
                     </li>
                 @endif
             </ul>
-           </div>
-        </nav>
+        </div>
+    </nav>
 
 
 

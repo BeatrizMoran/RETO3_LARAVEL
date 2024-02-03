@@ -22,12 +22,13 @@
         <div class="col-12">
             <h1 class="mb-4">Detalles del pedido</h1>
 
-        <div class="mb-4">
-            <a href="{{ route('pedidos.edit', $pedido) }}" class="btn btn-primary mb-3">Editar</a>
-            <a href="{{ $edit ? route('pedidos.show', $pedido) : route('pedidos.index') }}" class="btn btn-secondary mb-3">Volver</a>
-        </div>
+            <div class="mb-4">
+                <a href="{{ route('pedidos.edit', $pedido) }}" class="btn btn-primary mb-3">Editar</a>
+                <a href="{{ $edit ? route('pedidos.show', $pedido) : route('pedidos.index') }}"
+                    class="btn btn-secondary mb-3">Volver</a>
+            </div>
 
-            <form action="{{ route('pedidos.update', $pedido) }}" method="POST">
+            <form class="row" action="{{ route('pedidos.update', $pedido) }}" method="POST">
                 @csrf
                 @method('PUT')
 

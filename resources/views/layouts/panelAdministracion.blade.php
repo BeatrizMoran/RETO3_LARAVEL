@@ -134,7 +134,7 @@
 
     <div class="container-fluid ">
         <div class="row flex-nowrap min-vh-100">
-            <aside
+            <div
                 class="col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
                 <div class="p-4 text-center">
                     <a href="#" class="d-block mb-3 text-decoration-none">
@@ -254,20 +254,16 @@
                         </div>
                     </div>
                 @endauth
-            </aside>
-            <main class="col px-md-4 min-vh-100">
+            </div>
+            <div class="col px-md-4 min-vh-100">
                 @include('layouts._partials.messages')
                 @yield('content')
-            </main>
+            </div>
         </div>
     </div>
 
-
     <script src="https://kit.fontawesome.com/2f23627a24.js" crossorigin="anonymous"></script>
     @vite(['resources/js/app.js'])
-</div>
-
-
-
+</body>
 
 </html>

@@ -7,14 +7,14 @@
                 <h1 class="mb-4">Detalle del Cliente</h1>
             </div>
 
-        <div class="card">
-            <div class="card-header">
-                Información del Cliente
-            </div>
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-4">Código del Cliente:</dt>
-                    <dd class="col-sm-8">{{ Crypt::decrypt($cliente->codigo_cliente) }}</dd>
+            <div class="card">
+                <div class="card-header">
+                    Información del Cliente
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Código del Cliente:</dt>
+                        <dd class="col-sm-8">{{ Crypt::decrypt($cliente->codigo_cliente) }}</dd>
 
                         <dt class="col-sm-4">Nombre:</dt>
                         <dd class="col-sm-8">{{ $cliente->nombre }}</dd>

@@ -91,45 +91,48 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    @if ($clientes->previousPageUrl())
-                        <li class="page-item">
-                            <a class="page-link"
-                                href="{{ $clientes->appends(request()->except('page'))->previousPageUrl() }}">
-                                <span aria-hidden="true" class="text-dark">&laquo;</span>
-                            </a>
-                        </li>
-                    @endif
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        @if ($clientes->previousPageUrl())
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="{{ $clientes->appends(request()->except('page'))->previousPageUrl() }}">
+                                    <span aria-hidden="true" class="text-dark">&laquo;</span>
+                                </a>
+                            </li>
+                        @endif
 
-                    @if ($clientes->currentPage() > 3)
-                        <li class="page-item"><span class="page-link">1</span></li>
-                        <li class="page-item disabled"><span class="page-link">...</span></li>
-                    @endif
+                        @if ($clientes->currentPage() > 3)
+                            <li class="page-item"><span class="page-link">1</span></li>
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        @endif
 
-                    @for ($i = max(1, $clientes->currentPage() - 2); $i <= min($clientes->lastPage(), $clientes->currentPage() + 2); $i++)
-                        <li class="page-item @if ($i == $clientes->currentPage()) active @endif">
-                            <a class="page-link"
-                                href="{{ $clientes->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
-                        </li>
-                    @endfor
+                        @for ($i = max(1, $clientes->currentPage() - 2); $i <= min($clientes->lastPage(), $clientes->currentPage() + 2); $i++)
+                            <li class="page-item @if ($i == $clientes->currentPage()) active @endif">
+                                <a class="page-link"
+                                    href="{{ $clientes->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
 
-                    @if ($clientes->currentPage() < $clientes->lastPage() - 2)
-                        <li class="page-item disabled"><span class="page-link">...</span></li>
-                        <li class="page-item"><span class="page-link">{{ $clientes->lastPage() }}</span></li>
-                    @endif
+                        @if ($clientes->currentPage() < $clientes->lastPage() - 2)
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                            <li class="page-item"><span class="page-link">{{ $clientes->lastPage() }}</span></li>
+                        @endif
 
-                    @if ($clientes->nextPageUrl())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $clientes->appends(request()->except('page'))->nextPageUrl() }}"
-                                aria-label="Next">
-                                <span aria-hidden="true" class="text-dark">&raquo;</span>
-                            </a>
-                        </li>
-                    @endif
-                </ul>
-            </nav>
+                        @if ($clientes->nextPageUrl())
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="{{ $clientes->appends(request()->except('page'))->nextPageUrl() }}"
+                                    aria-label="Next">
+                                    <span aria-hidden="true" class="text-dark">&raquo;</span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 @endsection
