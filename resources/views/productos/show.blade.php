@@ -52,12 +52,14 @@
                     <!-- Formato -->
                     <div class="mb-3">
                         <label for="formato" class="form-label">Formato</label>
-                        <select class="form-select" id="formato" name="formato" required>
+                        <select class="form-select" id="formato" name="formato" required  {{ $edit ? 'enabled' : 'disabled' }}>
                             @foreach (\App\Enums\FormatoEnum::cases() as $formato)
-                                <option value="{{ $formato->value }}">{{ $formato->value }}</option>
+                                <option value="{{ $formato->value }}" @if ($formato->value == $producto->formato) selected @endif>
+                                    {{ $formato->value }}</option>
                             @endforeach
                         </select>
                     </div>
+
 
                     <!-- CATEGORIAS -->
                     <div class="mb-3">
