@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Detalles')
+@section('title', 'Ver producto')
 
 @section('content')
     <div class="container">

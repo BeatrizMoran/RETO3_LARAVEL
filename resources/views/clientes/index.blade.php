@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Panel de Clientes')
+@section('title', 'Clientes')
 
 @section('content')
     <div class="container">

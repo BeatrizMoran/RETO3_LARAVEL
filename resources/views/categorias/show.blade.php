@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Ver Permiso')
+@section('title', 'Ver categoria')
 
 @section('content')
 <div class="container mt-4">
