@@ -159,11 +159,6 @@ class ProductoController extends Controller
         // Obtener las categorías seleccionadas del formulario
         $categoriasSeleccionadas = $request->input('categorias', []);
 
-        // Comprobar si el campo categorias está vacío
-        if (empty($categoriasSeleccionadas)) {
-            return redirect()->back()->withErrors(['categorias' => 'Debes seleccionar al menos una categoría.'])->withInput();
-        }
-
         // Excluir el campo categorias e imagen de la request
         $datosProducto = $request->except(['categorias', 'imagen']);
 
