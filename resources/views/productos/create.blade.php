@@ -3,24 +3,12 @@
 @section('title', 'Página Específica')
 
 @section('content')
-<div class="row">
-    <div class="col">
-        @if ($errors->has('categorias'))
-            <div class="alert alert-danger">
-                <strong>{{ $errors->first('categorias') }}</strong>
-            </div>
-        @endif
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <h1>Crear Producto</h1>
+    <div class="container">
+        <h1 class="mb-4">Crear Producto</h1>
 
         <!-- Formulario de Creación -->
         <form method="post" action="{{ route('productos.store') }}" enctype="multipart/form-data">
             @csrf
-
 
             <!-- Nombre -->
             <div class="mb-3">
@@ -52,25 +40,29 @@
 
             <!-- CATEGORIAS -->
             <div class="mb-3">
-                <label for="categoria" class="form-label">Categoria</label>
+                <div class="card p-3">
+                    <label for="categoria" class="form-label">Categoría</label>
 
-                <div class="row">
-                    @foreach ($categorias as $categoria)
-                        <div class="col-6 col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="categorias[]"
-                                    value="{{ $categoria->id }}" id="{{ $categoria->nombre }}">
-                                <label class="form-check-label"
-                                    for="{{ $categoria->nombre }}">{{ $categoria->nombre }}</label>
+                    <div class="row">
+                        @foreach ($categorias as $categoria)
+                            <div class="col-6 col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="categorias[]"
+                                        value="{{ $categoria->id }}" id="{{ $categoria->nombre }}">
+                                    <label class="form-check-label"
+                                        for="{{ $categoria->nombre }}">{{ $categoria->nombre }}</label>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
-            <!-- Botón de Envío -->
-            <button type="submit" class="btn btn-primary">Crear Producto</button>
-            <a href="{{ route('dashboard.productos') }}" class="btn btn-secondary">Cancelar</a>
+            <!-- Botones de Envío y Cancelar -->
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Crear Producto</button>
+                <a href="{{ route('dashboard.productos') }}" class="btn btn-secondary">Cancelar</a>
+            </div>
         </form>
     </div>
 </div>

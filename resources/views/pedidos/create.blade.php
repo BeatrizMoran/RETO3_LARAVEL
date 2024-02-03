@@ -32,11 +32,11 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 my-2">
                         <input type="number" class="form-control" name="cantidad[]" placeholder="Cantidad" required>
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-outline-primary mb-2" id="btnAgregarProducto"
+                        <button type="button" class="btn btn-outline-primary m-2" id="btnAgregarProducto"
                             data-productos="{{ json_encode($productos) }}">Añadir Producto</button>
                     </div>
                 </div>

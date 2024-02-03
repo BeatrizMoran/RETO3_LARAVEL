@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductoController;
@@ -24,6 +25,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/catalogo', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
+Route::get('/buscar-productos', [ProductoController::class, 'buscarProductos'])->name('buscar.productos');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -62,6 +64,9 @@ Route::middleware(['role:responsable|administrativo'])->group(function () {
     Route::delete('/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
     Route::resource('/clientes', ClienteController::class);
+    Route::resource('/categorias', CategoriaController::class);
+    Route::resource('/permisos', PermissionController::class);
+
 });
 
 

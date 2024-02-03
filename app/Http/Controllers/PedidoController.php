@@ -135,14 +135,14 @@ class PedidoController extends Controller
 
 
     private function generateCodigoPedido()
-{
-    do {
-        $numero_pedido = random_int(100000, 999999);
-    } while (Pedido::where('numero_pedido', $numero_pedido)->exists());
+    {
+        do {
+            $numero_pedido = random_int(100000, 999999);
+        } while (Pedido::where('numero_pedido', $numero_pedido)->exists());
 
 
-    return $numero_pedido;
-}
+        return $numero_pedido;
+    }
     /**
      * Display the specified resource.
      */
@@ -249,16 +249,22 @@ class PedidoController extends Controller
 
     public function graficaPedidos()
     {
-        $pedidos = Pedido::selectRaw('sum(total) as total, date(created_at) as date')
+        $pedidosPorFecha = Pedido::selectRaw('sum(total) as total, date(created_at) as date')
             ->groupBy('date')
             ->get();
 
+        $dates = $pedidosPorFecha->pluck('date');
+        $totals = $pedidosPorFecha->pluck('total');
 
-        $dates = $pedidos->pluck('date');
-        $totals = $pedidos->pluck('total');
 
+        $pedidosPorMes = Pedido::selectRaw('sum(total) as total, DATE_FORMAT(created_at, "%Y-%m") as month')
+            ->groupBy('month')
+            ->get();
 
-        return view('pedidos.grafica', compact('dates', 'totals'));
+        $meses = $pedidosPorMes->pluck('month');
+        $totalMes = $pedidosPorMes->pluck('total');
+
+        return view('pedidos.grafica', compact('dates', 'totals', 'meses', 'totalMes'));
     }
 
 
@@ -268,25 +274,25 @@ class PedidoController extends Controller
 
 
     public function pedidosCliente(Request $request)
-{
-    $request->validate([
-        'cliente_id' => 'required|numeric',
-    ]);
+    {
+        $request->validate([
+            'cliente_id' => 'required|numeric',
+        ]);
 
 
-    $cliente_id = $request->input('cliente_id');
-    $pedidos = Pedido::with('productos')->where('cliente_id', $cliente_id)->get();
+        $cliente_id = $request->input('cliente_id');
+        $pedidos = Pedido::with('productos')->where('cliente_id', $cliente_id)->get();
 
 
-    if ($pedidos->isEmpty()) {
-        return response()->json(['message' => 'No se encontraron pedidos para el cliente especificado'], 404);
+        if ($pedidos->isEmpty()) {
+            return response()->json(['message' => 'No se encontraron pedidos para el cliente especificado'], 404);
+        }
+
+
+        return PedidoResource::collection($pedidos);
     }
 
-
-    return PedidoResource::collection($pedidos);
-}
-
-public function crearPedido(Request $request)
+    public function crearPedido(Request $request)
     {
         $request->validate([
             'estado' => 'required|in:solicitado,en preparacion,en entrega,entregado',
@@ -311,10 +317,4 @@ public function crearPedido(Request $request)
 
         return response()->json(['mensaje' => 'Pedido creado con éxito', 'pedido' => $pedido], 201);
     }
-    
 }
-
-
-
-
-

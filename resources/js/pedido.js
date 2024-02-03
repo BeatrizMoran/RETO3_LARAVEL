@@ -22,13 +22,13 @@ function agregarProducto(productos) {
     newRow.className = 'row mb-2 producto-row';
 
     newRow.innerHTML = `
-        <div class="col-md-6">
+        <div class="col-md-6 my-2">
             <select class="form-select" name="producto[]" required>
                 <!-- Genera opciones dinámicamente desde la lista de productos -->
                 ${productos.map(producto => `<option value="${producto.id}">${producto.nombre}</option>`).join('')}
             </select>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 my-2">
             <input type="number" class="form-control" name="cantidad[]" placeholder="Cantidad" required>
         </div>
         <div class="col-md-2">

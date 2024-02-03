@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     use HasFactory;
-    protected $fillable = ['codigo_cliente', 'nombre', 'direccion', 'telefono'];
+    protected $guarded = ['codigo_cliente', 'nombre', 'direccion', 'telefono'];
 
     public function pedidos()
     {
