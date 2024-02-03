@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Página Específica')
+@section('title', 'Crear categoria')
 
 @section('content')
     <div class="container">
@@ -46,6 +46,9 @@
                             @foreach (\App\Enums\FormatoEnum::cases() as $formato)
                                 <option value="{{ $formato->value }}">{{ $formato->value }}</option>
                             @endforeach
+                            @error('formato')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </select>
 
                     </div>
@@ -66,6 +69,9 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                @error('categorias[]')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
