@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Ver Permiso')
+@section('title', 'Ver permiso')
 
 @section('content')
     <div class="row">

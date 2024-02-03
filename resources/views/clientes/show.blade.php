@@ -1,5 +1,7 @@
 @extends('layouts.panelAdministracion')
 
+@section('title', 'Ver cliente')
+
 @section('content')
     <div class="row">
         <div class="col-12">

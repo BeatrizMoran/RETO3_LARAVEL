@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Crear categoria')
+@section('title', 'Crear producto')
 
 @section('content')
     <div class="container">

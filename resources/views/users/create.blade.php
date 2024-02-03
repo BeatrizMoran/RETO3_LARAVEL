@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Página Específica')
+@section('title', 'Crear usuario')
 
 @section('content')
     <div class="container my-5">
@@ -27,12 +27,12 @@
             </div>
                 <form id="userForm" action="{{ route('usuarios.store') }}" method="POST" class="col-12 col-md-8 col-lg-6">
                     @csrf
-    
+
                     <div class="form-group mb-3">
                         <label for="nombre" class="form-label">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" name="name" required>
                     </div>
-    
+
                     <div class="form-group mb-3">
                         <label for="email" class="form-label">Email:</label>
                         <div class="input-group">
@@ -40,7 +40,7 @@
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                     </div>
-    
+
                     <div class="form-group mb-3">
                         <label for="role" class="form-label">Rol:</label>
                         <select name="roles[]" class="form-select">
@@ -49,7 +49,7 @@
                             @endforeach
                         </select>
                     </div>
-    
+
                     <div class="form-group mb-3">
                         <label for="password" class="form-label">Contraseña:</label>
                         <div class="input-group">
@@ -60,7 +60,7 @@
                             </button>
                         </div>
                     </div>
-    
+
                     <div class="form-group mb-3">
                         <label for="confirmPassword" class="form-label">Confirmar Contraseña:</label>
                         <div class="input-group">
@@ -71,12 +71,12 @@
                             </button>
                         </div>
                     </div>
-    
+
                     <button type="submit" class="btn btn-success mt-4">Crear Usuario</button>
                     <a href="{{ route('usuarios.index') }}" class="btn btn-secondary mt-4 ms-2">Cancelar</a>
                 </form>
             </div>
-            
+
     </div>
 
     @vite(['resources/js/user.js'])
