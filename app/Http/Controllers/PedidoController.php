@@ -256,8 +256,7 @@ class PedidoController extends Controller
         $dates = $pedidosPorFecha->pluck('date');
         $totals = $pedidosPorFecha->pluck('total');
 
-
-        $pedidosPorMes = Pedido::selectRaw('sum(total) as total, DATE_FORMAT(created_at, "%Y-%m") as month')
+        $pedidosPorMes = Pedido::selectRaw('sum(total) as total, TO_CHAR(created_at, \'YYYY-MM\') as month')
             ->groupBy('month')
             ->get();
 
