@@ -34,6 +34,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/perfil', function () {
         return view('perfil');
     })->name('perfil');
+
+    Route::get('/perfil/edit', [UserController::class, 'perfilEdit'])->name('perfil.edit');
+
+    Route::put('/perfil/update', [UserController::class, 'update'])->name('perfil.update');
+
+
 });
 
 Route::middleware(['role:responsable|comercial|administrativo'])->group(function () {

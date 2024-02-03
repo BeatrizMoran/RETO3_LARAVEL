@@ -16,15 +16,16 @@
                 <div class=" card-header dark:bg-dark">
                     Informacion Perfil
                 </div>
+                <a href="{{route('perfil.edit')}}">Modificar datos</a>
                 <div class="d-flex justify-content-center align-items-center">
                     <img src="{{ asset('storage/images/default.jpg') }}" alt="foto-perfil" class="rounded-circle m-2"
                         width="100" height="100">
                 </div>
 
                 <div class="card-body">
-                    <form action="##" method="POST">
+                    <form action="{{route('perfil.update')}}" method="POST">
                         @csrf
-
+                        @method("PUT")
                         <!-- Nombre -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>

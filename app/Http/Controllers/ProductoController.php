@@ -213,6 +213,6 @@ class ProductoController extends Controller
             ->where('nombre', 'like', '%' . $search . '%')
             ->get();
 
-        return response()->json(['productos' => $productos]);
-    }
+            return ProductoResource::collection($productos);
+        }
 }

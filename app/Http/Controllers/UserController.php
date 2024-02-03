@@ -149,4 +149,10 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+
+    public function perfilEdit(){
+        return view("perfil", [
+            "edit" => true
+        ]);
+    }
 }
