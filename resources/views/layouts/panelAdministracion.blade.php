@@ -11,11 +11,9 @@
     @vite(['resources/css/app.css'])
 </head>
 
-<body>
-
-    <!-- Navbar para dispositivos móviles -->
+<div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/dashboard">
             <img src="{{ asset('/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -23,7 +21,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
-    <!-- Menú lateral (offcanvas para móviles) -->
     <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebar"
         aria-labelledby="sidebarLabel">
         <div class="offcanvas-header">
@@ -96,7 +93,6 @@
                                 </a>
                             </li>
                         @endrole
-                        <!-- Repite la estructura para otros roles y enlaces -->
                     </ul>
                     <div class="mt-auto p-4">
                         <div class="d-flex align-items-center">
@@ -134,8 +130,7 @@
 
     <div class="container-fluid ">
         <div class="row flex-nowrap min-vh-100">
-            <div
-                class="col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
+            <div class="col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
                 <div class="p-4 text-center">
                     <a href="#" class="d-block mb-3 text-decoration-none">
                         <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50"
@@ -214,7 +209,6 @@
                                 </a>
                             </li>
                         @endrole
-                        <!-- Repite la estructura para otros roles y enlaces -->
                     </ul>
                     <div class="mt-auto p-4">
                         <div class="d-flex align-items-center">
@@ -222,8 +216,8 @@
                                 <a href="#"
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('storage/images/' . auth()->user()->imagen) }}" alt="" width="32"
-                                        height="32" class="rounded-circle me-2">
+                                    <img src="{{ asset('storage/images/' . auth()->user()->imagen) }}" alt=""
+                                        width="32" height="32" class="rounded-circle me-2">
                                     <strong>{{ strlen(auth()->user()->name) > 10 ? substr(auth()->user()->name, 0, 10) . '...' : auth()->user()->name }}</strong>
 
                                 </a>
@@ -242,7 +236,6 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- Toggle aquí -->
                             <label class="switch ms-3" for="dark-mode-toggle">
                                 <input type="checkbox" id="dark-mode-toggle">
                                 <span class="slider">
@@ -250,7 +243,6 @@
                                     <i class="fas fa-sun"></i>
                                 </span>
                             </label>
-                            <!-- Fin del toggle -->
                         </div>
                     </div>
                 @endauth
@@ -260,10 +252,16 @@
                 @yield('content')
             </div>
         </div>
+
     </div>
 
+    <div class="row bg-dark text-center text-white py-4" style="max-height: 100vh">
+        <div class="col">
+            @yield('footer')
+        </div>
+    </div>
     <script src="https://kit.fontawesome.com/2f23627a24.js" crossorigin="anonymous"></script>
     @vite(['resources/js/app.js'])
-</body>
+</div>
 
 </html>

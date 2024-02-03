@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Página Específica')
+@section('title', 'Perfil')
 
 @section('content')
 
@@ -55,11 +55,6 @@
         </div>
 
     </div>
-
-
-
-
-
 
 @endsection
 
