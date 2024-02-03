@@ -29,7 +29,7 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="name" name="name"
-                                value="{{ auth()->user()->name }}" disabled>
+                                value="{{ auth()->user()->name }}" >
                         </div>
 
                         <!-- Correo Electrónico -->
@@ -43,11 +43,11 @@
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>
                             <input type="file" class="form-control" id="imagen" name="imagen"
-                                value="{{ auth()->user()->imagen ?? './avatar.png' }}" disabled>
+                                value="{{ auth()->user()->imagen ?? './avatar.png' }}" >
                         </div>
 
                         <!-- Botón de Enviar -->
-                        <button type="submit" class="btn btn-primary" disabled>Enviar</button>
+                        <button type="submit" class="btn btn-primary" >Enviar</button>
                     </form>
 
                 </div>
