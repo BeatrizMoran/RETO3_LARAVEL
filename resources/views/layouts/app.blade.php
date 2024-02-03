@@ -12,47 +12,46 @@
 
 <div class="container-fluid d-flex flex-column mainClass" style="min-height: 100vh;">
 
-        <nav class="row navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="col">
-                <a class="navbar-brand" href="{{ route('welcome') }}">
-                    <img src="{{ asset('/images/Killerlogo.png') }}" class="img-fluid" alt="LogoKiller"
-                        width="50" height="50">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav me-auto my-2 my-lg-0 " style="--bs-scroll-height: 100px;"">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('welcome') }}">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos.catalogo') }}">Catalogo</a>
-                        </li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ route('welcome') }}">
+                <img src="{{ asset('/images/Killerlogo.png') }}" class="img-fluid" alt="LogoKiller" width="50"
+                    height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 " style="--bs-scroll-height: 100px;"">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('welcome') }}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('productos.catalogo') }}">Catalogo</a>
+                    </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Sobre nosotros
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Empresa</a></li>
-                                <li><a class="dropdown-item" href="#">Servicios</a></li>
-                                <li><a class="dropdown-item" href="#">Terminos legales</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="d-flex ">
-                        <a class="btn btn-success" href="login">Iniciar sesion</a>
-                    </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Sobre nosotros
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Empresa</a></li>
+                            <li><a class="dropdown-item" href="#">Servicios</a></li>
+                            <li><a class="dropdown-item" href="#">Terminos legales</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex ">
+                    <a class="btn btn-success" href="login">Iniciar sesion</a>
                 </div>
-
             </div>
-        </nav>
 
-    <div class="row" >
+        </div>
+    </nav>
+
+    <div class="row">
         <div class="col">
             @yield('content')
         </div>
@@ -66,7 +65,8 @@
     <!-- Mensaje de Consentimiento de Cookies -->
     <div id="cookieConsentContainer" class="row fixed-bottom bg-light p-3 text-center" style="display: none;">
         <div class="col">
-            <p>Este sitio utiliza cookies para mejorar la experiencia del usuario. <a href="#">Más información</a>.
+            <p>Este sitio utiliza cookies para mejorar la experiencia del usuario. <a href="#">Más
+                    información</a>.
             </p>
             <button id="acceptCookie" class="btn btn-primary">Aceptar</button>
             <button id="declineCookie" class="btn btn-secondary">Rechazar</button>
