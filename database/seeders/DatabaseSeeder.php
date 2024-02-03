@@ -23,20 +23,9 @@ class DatabaseSeeder extends Seeder
 
             RoleSeeder::class,
             UserSeeder::class,
-            /*    CategoriaSeeder::class,
-            ProductoCategoriaSeeder::class, */
-            //ProductoSeeder::class,
-            // Producto::factory(30)->create()
-
-
+            CategoriaSeeder::class,
+            ProductoCategoriaSeeder::class,
 
         ]);
-
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
