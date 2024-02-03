@@ -17,19 +17,19 @@
                     Informacion Perfil
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('storage/images/default.jpg') }}" alt="foto-perfil" class="rounded-circle m-2"
+                    <img src="{{ asset('storage/images/' . auth()->user()->imagen) }}" alt="foto-perfil" class="rounded-circle m-2"
                         width="100" height="100">
                 </div>
 
                 <div class="card-body">
-                    <form action="##" method="POST">
+                    <form action="{{ route('perfil.update', auth()->user()) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
+                        @method('PUT')
                         <!-- Nombre -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="name" name="name"
-                                value="{{ auth()->user()->name }}" >
+                                value="{{ auth()->user()->name }}">
                         </div>
 
                         <!-- Correo Electrónico -->
@@ -42,12 +42,11 @@
                         <!-- Imagen -->
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>
-                            <input type="file" class="form-control" id="imagen" name="imagen"
-                                value="{{ auth()->user()->imagen ?? './avatar.png' }}" >
+                            <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
                         </div>
 
                         <!-- Botón de Enviar -->
-                        <button type="submit" class="btn btn-primary" >Enviar</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
                     </form>
 
                 </div>

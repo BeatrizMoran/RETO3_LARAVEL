@@ -9,6 +9,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,7 @@ Route::get('/buscar-productos', [ProductoController::class, 'buscarProductos'])-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
+    Route::put('/perfil/update/{user}', [UserProfileController::class, 'update'])->name('perfil.update');
 
     Route::get('/perfil', function () {
         return view('perfil');
