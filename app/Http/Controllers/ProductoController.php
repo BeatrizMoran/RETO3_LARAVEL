@@ -201,13 +201,13 @@ class ProductoController extends Controller
 
     public function buscarProductos(Request $request)
     {
-        $search = $request->input('nombre');
-
+        $search = strtolower($request->input('nombre'));
+    
         // Realiza la lógica de búsqueda aquí, por ejemplo:
         $productos = Producto::with('categorias')
-            ->where('nombre', 'like', '%' . $search . '%')
+            ->whereRaw('LOWER(nombre) like ?', '%' . $search . '%')
             ->get();
-
-            return response()->json(['productos' => $productos]);
-        }
+    
+        return response()->json(['productos' => $productos]);
+    }
 }
