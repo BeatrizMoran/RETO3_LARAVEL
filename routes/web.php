@@ -27,6 +27,9 @@ Auth::routes(['verify' => true]);
 
 Route::get('/catalogo', [ProductoController::class, 'catalogo'])->name('productos.catalogo');
 Route::get('/buscar-productos', [ProductoController::class, 'buscarProductos'])->name('buscar.productos');
+Route::get('/storage/{archivo}', function ($archivo) {
+    return response()->file(storage_path("app/public/images/{$archivo}"));
+})->where('archivo', '.*');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -76,7 +79,6 @@ Route::middleware(['role:responsable'])->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
     Route::resource('/categorias', CategoriaController::class);
-
 });
 
 
