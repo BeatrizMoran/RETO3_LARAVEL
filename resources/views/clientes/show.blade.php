@@ -1,5 +1,7 @@
 @extends('layouts.panelAdministracion')
 
+@section('title', 'Ver cliente')
+
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -18,10 +20,10 @@
 
                         <dt class="col-sm-4">Nombre:</dt>
                         <dd class="col-sm-8">{{ $cliente->nombre }}</dd>
-
+                        <dt class="col-sm-4">Email:</dt>
+                        <dd class="col-sm-8">{{ $cliente->email }}</dd>
                         <dt class="col-sm-4">Dirección:</dt>
                         <dd class="col-sm-8">{{ $cliente->direccion }}</dd>
-
                         <dt class="col-sm-4">Teléfono:</dt>
                         <dd class="col-sm-8">{{ $cliente->telefono }}</dd>
                     </dl>

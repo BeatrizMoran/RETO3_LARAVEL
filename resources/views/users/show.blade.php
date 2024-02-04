@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Página Específica')
+@section('title', 'Ver usuario')
 
 @section('content')
     <div class="container-fluid">

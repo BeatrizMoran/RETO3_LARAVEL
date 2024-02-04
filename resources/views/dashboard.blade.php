@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Página Específica')
+@section('title', 'Panel de gestion')
 
 @section('content')
     <div class="dashboard row">
@@ -121,7 +121,7 @@
             </div>
         @endauth
         </div>
-        
+
     </div>
 @endsection
 

@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Gráfica de Pedidos')
+@section('title', 'Estadisticas')
 
 @section('content')
 

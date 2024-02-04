@@ -9,6 +9,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,7 @@ Route::get('/buscar-productos', [ProductoController::class, 'buscarProductos'])-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [ProductoController::class, 'dashboard'])->name('dashboard');
+    Route::put('/perfil/update/{user}', [UserProfileController::class, 'update'])->name('perfil.update');
 
     Route::get('/perfil', function () {
         return view('perfil');
@@ -70,9 +72,7 @@ Route::middleware(['role:responsable|administrativo'])->group(function () {
     Route::delete('/productos/destroy/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
     Route::resource('/clientes', ClienteController::class);
-    Route::resource('/categorias', CategoriaController::class);
     Route::resource('/permisos', PermissionController::class);
-
 });
 
 
@@ -81,6 +81,8 @@ Route::middleware(['role:responsable'])->group(function () {
     Route::resource('/usuarios', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
+    Route::resource('/categorias', CategoriaController::class);
+
 });
 
 

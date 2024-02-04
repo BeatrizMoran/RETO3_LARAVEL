@@ -70,8 +70,7 @@
                         class="text-decoration-none">conocenos!</a> </small>
             </div>
             <div class="col-md-5 my-2">
-                <img src="{{ asset('/images/logo2.png') }}" class="rounded float-end img-fluid"
-                    alt="Sobre Nosotros">
+                <img src="{{ asset('/images/logo2.png') }}" class="rounded float-end img-fluid" alt="Sobre Nosotros">
             </div>
         </div>
     </div>

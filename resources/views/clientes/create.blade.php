@@ -32,6 +32,13 @@
                         @endif
                     </div>
                     <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <div class="input-group">
+                            <span class="input-group-text">@</span>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
                         <label for="direccion" class="form-label">Dirección</label>
                         <input type="text" class="form-control" id="direccion" name="direccion" required>
                         @if ($errors->has('direccion'))
@@ -56,7 +63,6 @@
                 </form>
             </div>
         </div>
-
     </div>
 
     @vite(['resources/js/cliente.js'])

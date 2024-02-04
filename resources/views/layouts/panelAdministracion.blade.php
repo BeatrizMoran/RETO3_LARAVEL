@@ -11,19 +11,17 @@
     @vite(['resources/css/app.css'])
 </head>
 
-<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
+    <a class="navbar-brand mx-3" href="/dashboard">
+        <img src="{{ asset('/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+        aria-controls="sidebar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+<div class="container-fluid">
 
-    <!-- Navbar para dispositivos móviles -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
-        <a class="navbar-brand" href="#">
-            <img src="{{ asset('/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-            aria-controls="sidebar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-    <!-- Menú lateral (offcanvas para móviles) -->
     <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebar"
         aria-labelledby="sidebarLabel">
         <div class="offcanvas-header">
@@ -82,10 +80,24 @@
                         @endrole
                         @role('responsable')
                             <li class="nav-item m-2 p-2">
+                                <a href="{{ route('categorias.index') }}"
+                                    class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
+                                    <i class="fa-solid fa-tags  me-3 fs-5 p-1"></i>
+                                    <span class="d-md-inline">Categorias</span>
+                                </a>
+                            </li>
+                            <li class="nav-item m-2 p-2">
                                 <a href="{{ route('usuarios.index') }}"
                                     class="nav-link{{ request()->is('/usuarios') ? ' active' : '' }}">
                                     <i class="fa-solid fa-users  me-3 fs-5 p-1"></i>
                                     <span class="d-md-inline ">Usuarios</span>
+                                </a>
+                            </li>
+                            <li class="nav-item m-2 p-2">
+                                <a href="{{ route('permisos.index') }}"
+                                    class="nav-link{{ request()->is('permisos') ? ' active' : '' }}">
+                                    <i class="fa-solid fa-key  me-3 fs-5 p-1"></i>
+                                    <span class=" d-md-inline">Permisos</span>
                                 </a>
                             </li>
                             <li class="nav-item m-2 p-2">
@@ -96,7 +108,6 @@
                                 </a>
                             </li>
                         @endrole
-                        <!-- Repite la estructura para otros roles y enlaces -->
                     </ul>
                     <div class="mt-auto p-4">
                         <div class="d-flex align-items-center">
@@ -139,7 +150,7 @@
                 <div class="p-4 text-center">
                     <a href="#" class="d-block mb-3 text-decoration-none">
                         <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50"
-                            class="img-fluid" alt="">
+                            class="img-fluid mx-3" alt="">
                         <span class="fs-4 d-none d-md-inline ">Cervezas Killer</span>
                     </a>
                     <hr class="w-100">
@@ -164,13 +175,6 @@
                                     <span class="d-none d-md-inline p-1 ">Productos</span>
                                 </a>
                             </li>
-                            <li class="nav-item m-2 p-2">
-                                <a href="{{ route('categorias.index') }}"
-                                    class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-tags  me-3 fs-5 p-1"></i>
-                                    <span class="d-none d-md-inline p-1 ">Categorias</span>
-                                </a>
-                            </li>
                         @endrole
                         @role('responsable|administrativo|comercial')
                             <li class="nav-item m-2 p-2">
@@ -193,6 +197,13 @@
                         @endrole
                         @role('responsable')
                             <li class="nav-item m-2 p-2">
+                                <a href="{{ route('categorias.index') }}"
+                                    class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
+                                    <i class="fa-solid fa-tags  me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline p-1 ">Categorias</span>
+                                </a>
+                            </li>
+                            <li class="nav-item m-2 p-2">
                                 <a href="{{ route('usuarios.index') }}"
                                     class="nav-link{{ request()->is('usuarios') ? ' active' : '' }}">
                                     <i class="fa-solid fa-users  me-3 fs-5 p-1"></i>
@@ -214,7 +225,6 @@
                                 </a>
                             </li>
                         @endrole
-                        <!-- Repite la estructura para otros roles y enlaces -->
                     </ul>
                     <div class="mt-auto p-4">
                         <div class="d-flex align-items-center">
@@ -222,8 +232,8 @@
                                 <a href="#"
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('/images/Killerlogo.png') }}" alt="" width="32"
-                                        height="32" class="rounded-circle me-2">
+                                    <img src="{{ asset('storage/images/' . auth()->user()->imagen) }}" alt=""
+                                        width="32" height="32" class="rounded-circle me-2">
                                     <strong>{{ strlen(auth()->user()->name) > 10 ? substr(auth()->user()->name, 0, 10) . '...' : auth()->user()->name }}</strong>
 
                                 </a>
@@ -242,7 +252,6 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- Toggle aquí -->
                             <label class="switch ms-3" for="dark-mode-toggle">
                                 <input type="checkbox" id="dark-mode-toggle">
                                 <span class="slider">
@@ -250,7 +259,6 @@
                                     <i class="fas fa-sun"></i>
                                 </span>
                             </label>
-                            <!-- Fin del toggle -->
                         </div>
                     </div>
                 @endauth
@@ -260,10 +268,16 @@
                 @yield('content')
             </div>
         </div>
+
     </div>
 
+    <div class="row bg-dark text-center text-white py-4" style="max-height: 100vh">
+        <div class="col">
+            @yield('footer')
+        </div>
+    </div>
     <script src="https://kit.fontawesome.com/2f23627a24.js" crossorigin="anonymous"></script>
     @vite(['resources/js/app.js'])
-</body>
+</div>
 
 </html>

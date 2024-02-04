@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Pedido;
+use App\Notifications\ClienteCreadoNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
@@ -33,14 +34,15 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'codigo_cliente' => 'required|unique:clientes,codigo_cliente|max:255', // Asegurarse de que el código del cliente sea único en la tabla de clientes
+            'codigo_cliente' => 'required|unique:clientes,codigo_cliente|max:255',
             'nombre' => 'required|max:255',
+            'email' => 'required|email|unique:clientes,email',
             'direccion' => 'required|max:255',
-            'telefono' => 'required|max:255' // Puedes agregar validaciones adicionales para el teléfono si es necesario
+            'telefono' => 'required|max:255'
         ]);
         $validatedData['codigo_cliente'] = Crypt::encrypt($validatedData['codigo_cliente']);
         $cliente = Cliente::create($validatedData);
-
+        $cliente->notify(new ClienteCreadoNotification($cliente));
         session()->flash('success', 'Cliente creado correctamente');
 
         return redirect()->route('clientes.index');
@@ -97,53 +99,52 @@ class ClienteController extends Controller
     //api
 
     public function comprobarCliente(Request $request)
-{
-    $request->validate([
-        'codigo_cliente' => 'required',
-    ]);
+    {
+        $request->validate([
+            'codigo_cliente' => 'required',
+        ]);
 
-    $codigo_cliente_no_cifrado = $request->input('codigo_cliente');
-    $clientes = Cliente::all();
+        $codigo_cliente_no_cifrado = $request->input('codigo_cliente');
+        $clientes = Cliente::all();
 
-    // Buscar entre todos los clientes
-    foreach ($clientes as $cliente) {
-        // Desencriptar el código almacenado y verificar si coincide
-        $codigo_cliente_cifrado = $cliente->codigo_cliente;
-        $codigo_cliente_desencriptado = Crypt::decrypt($codigo_cliente_cifrado);
+        // Buscar entre todos los clientes
+        foreach ($clientes as $cliente) {
+            // Desencriptar el código almacenado y verificar si coincide
+            $codigo_cliente_cifrado = $cliente->codigo_cliente;
+            $codigo_cliente_desencriptado = Crypt::decrypt($codigo_cliente_cifrado);
 
-        if ($codigo_cliente_no_cifrado === $codigo_cliente_desencriptado) {
-            return response()->json($cliente);
+            if ($codigo_cliente_no_cifrado === $codigo_cliente_desencriptado) {
+                return response()->json($cliente);
+            }
         }
+
+        // Si no se encuentra ningún cliente con el código proporcionado
+        return response()->json(['error' => 'Cliente no encontrado para el código especificado'], 404);
     }
 
-    // Si no se encuentra ningún cliente con el código proporcionado
-    return response()->json(['error' => 'Cliente no encontrado para el código especificado'], 404);
-}
+    public function actualizarCliente(Request $request, $id)
+    {
+        $cliente = Cliente::find($id);
 
-public function actualizarCliente(Request $request, $id)
-{
-    $cliente = Cliente::find($id);
+        if (!$cliente) {
+            return response()->json(['error' => 'Cliente no encontrado'], 404);
+        }
 
-    if (!$cliente) {
-        return response()->json(['error' => 'Cliente no encontrado'], 404);
+        $request->validate([
+            'codigo_cliente' => 'unique:clientes,codigo_cliente,' . $cliente->id,
+            'nombre' => 'required|string',
+            'direccion' => 'required|string',
+            'telefono' => 'required|string',
+        ]);
+
+        // Cifrar el nuevo código de cliente antes de actualizar
+        $request->merge([
+            'codigo_cliente' => Crypt::encrypt($request->input('codigo_cliente')),
+        ]);
+
+        // Actualizar los datos del cliente
+        $cliente->update($request->all());
+
+        return response()->json(['mensaje' => 'Cliente actualizado con éxito']);
     }
-
-    $request->validate([
-        'codigo_cliente' => 'unique:clientes,codigo_cliente,' . $cliente->id,
-        'nombre' => 'required|string',
-        'direccion' => 'required|string',
-        'telefono' => 'required|string',
-    ]);
-
-    // Cifrar el nuevo código de cliente antes de actualizar
-    $request->merge([
-        'codigo_cliente' => Crypt::encrypt($request->input('codigo_cliente')),
-    ]);
-
-    // Actualizar los datos del cliente
-    $cliente->update($request->all());
-
-    return response()->json(['mensaje' => 'Cliente actualizado con éxito']);
 }
-}
-

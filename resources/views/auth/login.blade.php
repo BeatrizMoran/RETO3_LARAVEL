@@ -3,8 +3,8 @@
 @section('content')
 
     <div class="row justify-content-center pt-5">
-        <!-- La imagen ahora ocupa 5 columnas en pantallas medianas y grandes -->
-        <div class="col-md-5 d-none d-md-block">
+
+        <div class="col-md-3 d-none d-md-block">
             <img src="{{ asset('/images/WaifuLogin.png') }}" class="img-fluid" alt="Login Image" />
         </div>
 

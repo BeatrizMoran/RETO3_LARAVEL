@@ -1,6 +1,6 @@
 @extends('layouts.panelAdministracion')
 
-@section('title', 'Página Específica')
+@section('title', 'Crear producto')
 
 @section('content')
     <div class="container">
@@ -16,18 +16,27 @@
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        @error('nombre')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Precio -->
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio</label>
                         <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
+                        @error('precio')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Imagen -->
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
+                        @error('imagen')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Formato -->
@@ -37,7 +46,11 @@
                             @foreach (\App\Enums\FormatoEnum::cases() as $formato)
                                 <option value="{{ $formato->value }}">{{ $formato->value }}</option>
                             @endforeach
+                            @error('formato')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </select>
+
                     </div>
 
                     <!-- CATEGORIAS -->
@@ -56,6 +69,9 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                @error('categorias[]')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
