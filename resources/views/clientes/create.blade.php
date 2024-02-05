@@ -57,7 +57,7 @@
                         @endif
                     </div>
                     <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <input type="submit" class="btn btn-primary" value="Crear">
                         <a href="{{ route('clientes.index') }}" class="btn btn-secondary">Cancelar</a>
                     </div>
                 </form>
