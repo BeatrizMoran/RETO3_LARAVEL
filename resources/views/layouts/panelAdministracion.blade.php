@@ -13,7 +13,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
     <a class="navbar-brand mx-3" href="/dashboard">
-        <img src="{{ asset('/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer">
+        <img src="{{ asset('/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer" >
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
         aria-controls="sidebar">
