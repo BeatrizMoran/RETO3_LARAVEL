@@ -77,6 +77,10 @@ class ClienteController extends Controller
             'telefono' => 'required|max:255' // Puedes agregar validaciones adicionales para el teléfono si es necesario
         ]);
 
+        $validatedData['codigo_cliente'] = Crypt::encrypt($validatedData['codigo_cliente']);
+
+
+
         $cliente->update($validatedData);
 
         session()->flash('success', 'Cliente actualizado correctamente');
