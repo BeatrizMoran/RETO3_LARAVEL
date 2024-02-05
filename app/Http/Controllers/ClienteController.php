@@ -70,7 +70,6 @@ class ClienteController extends Controller
     public function update(Request $request, Cliente $cliente)
     {
         $validatedData = $request->validate([
-            'codigo_cliente' => 'required|max:255|unique:clientes,codigo_cliente,' . $cliente->id, // Ignora el código del cliente actual
             'nombre' => 'required|max:255',
             'direccion' => 'required|max:255',
             'telefono' => 'required|max:255' // Puedes agregar validaciones adicionales para el teléfono si es necesario
