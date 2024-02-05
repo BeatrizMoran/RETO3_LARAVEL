@@ -5,7 +5,7 @@
     <div class="row justify-content-center pt-5">
 
         <div class="col-md-3 d-none d-md-block">
-            <img src="{{ asset('/images/WaifuLogin.png') }}" class="img-fluid" alt="Login Image" />
+            <img src="{{ asset('/images/logo2.png') }}" class="img-fluid" alt="Login Image" />
         </div>
 
         <!-- El formulario ahora ocupa 7 columnas en pantallas medianas y grandes para balancear con la imagen -->
