@@ -35,10 +35,12 @@ class ClienteController extends Controller
     {
         $validatedData = $request->validate([
             'codigo_cliente' => 'required|unique:clientes,codigo_cliente|max:255',
+            'email' => 'required|unique:clientes,email|max:255',
             'nombre' => 'required|max:255',
             'direccion' => 'required|max:255',
             'telefono' => 'required|max:255'
         ]);
+
         $validatedData['codigo_cliente'] = Crypt::encrypt($validatedData['codigo_cliente']);
         $cliente = Cliente::create($validatedData);
         //$cliente->notify(new ClienteCreadoNotification($cliente));
@@ -75,7 +77,6 @@ class ClienteController extends Controller
             'telefono' => 'required|max:255' // Puedes agregar validaciones adicionales para el teléfono si es necesario
         ]);
 
-        $validatedData['codigo_cliente'] = Crypt::encrypt($validatedData['codigo_cliente']);
 
 
 
