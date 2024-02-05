@@ -31,17 +31,7 @@
                         <a class="nav-link" href="{{ route('productos.catalogo') }}">Catalogo</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Sobre nosotros
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Empresa</a></li>
-                            <li><a class="dropdown-item" href="#">Servicios</a></li>
-                            <li><a class="dropdown-item" href="#">Terminos legales</a></li>
-                        </ul>
-                    </li>
+
                 </ul>
                 <div class="d-flex ">
                     <a class="btn btn-success" href="login">Iniciar sesion</a>

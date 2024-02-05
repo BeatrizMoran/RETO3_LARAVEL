@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("codigo_cliente")->unique();
             $table->string("nombre");
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string("direccion");
             $table->string("telefono");
             $table->timestamps();
