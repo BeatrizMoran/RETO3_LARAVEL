@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-7">
                 <h1 class="mb-4">Crear Cliente</h1>
-                <form action="{{ route('clientes.store') }}" method="POST">
+                <form action="{{ route('clientes.store') }}" method="POST"  enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="codigo_cliente" class="form-label">Código Cliente</label>

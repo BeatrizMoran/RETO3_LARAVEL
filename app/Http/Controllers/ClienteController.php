@@ -36,13 +36,13 @@ class ClienteController extends Controller
         $validatedData = $request->validate([
             'codigo_cliente' => 'required|unique:clientes,codigo_cliente|max:255',
             'nombre' => 'required|max:255',
-            'email' => 'required|email|unique:clientes,email',
+            'email' => 'required|email:clientes,email',
             'direccion' => 'required|max:255',
             'telefono' => 'required|max:255'
         ]);
         $validatedData['codigo_cliente'] = Crypt::encrypt($validatedData['codigo_cliente']);
         $cliente = Cliente::create($validatedData);
-        $cliente->notify(new ClienteCreadoNotification($cliente));
+        //$cliente->notify(new ClienteCreadoNotification($cliente));
         session()->flash('success', 'Cliente creado correctamente');
 
         return redirect()->route('clientes.index');
@@ -73,6 +73,7 @@ class ClienteController extends Controller
         $validatedData = $request->validate([
             'codigo_cliente' => 'required|max:255|unique:clientes,codigo_cliente,' . $cliente->id, // Ignora el código del cliente actual
             'nombre' => 'required|max:255',
+            'email' => 'required|email:clientes,email',
             'direccion' => 'required|max:255',
             'telefono' => 'required|max:255' // Puedes agregar validaciones adicionales para el teléfono si es necesario
         ]);
