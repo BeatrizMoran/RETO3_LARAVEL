@@ -7,7 +7,7 @@ COMPOSER_BIN="composer"  # Comando Composer
 NPM_BIN="npm"            # Comando npm
 PHP_BIN="php"            # Comando PHP
 ARTISAN_BIN="artisan"    # Comando Artisan
-NGINX_RESTART_CMD="service nginx restart"  # Comando para reiniciar Nginx
+NGINX_RESTART_CMD="sudo service nginx restart"  # Comando para reiniciar Nginx
 
 # Actualiza el código de la aplicación desde el repositorio (puede ser Git, por ejemplo)
 echo "Actualizando el código fuente..."
@@ -54,3 +54,17 @@ echo "Limpiando la caché de Laravel..."
 $PHP_BIN $ARTISAN_BIN cache:clear
 
 echo "¡Despliegue completado!"
+
+
+echo "Running composer"
+composer global require hirak/prestissimo
+composer install --no-dev --working-dir=/var/www/html
+
+echo "Caching config..."
+php artisan config:cache
+
+echo "Caching routes..."
+php artisan route:cache
+
+echo "Running migrations..."
+php artisan migrate --force
