@@ -54,17 +54,3 @@ echo "Limpiando la caché de Laravel..."
 $PHP_BIN $ARTISAN_BIN cache:clear
 
 echo "¡Despliegue completado!"
-
-
-echo "Running composer"
-composer global require hirak/prestissimo
-composer install --no-dev --working-dir=/var/www/html
-
-echo "Caching config..."
-php artisan config:cache
-
-echo "Caching routes..."
-php artisan route:cache
-
-echo "Running migrations..."
-php artisan migrate --force
