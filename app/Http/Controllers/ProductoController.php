@@ -86,7 +86,7 @@ class ProductoController extends Controller
         //excluir el campo categorias de la request
         //$datosProducto = $request->except('categorias');
         $codigo_referencia = $this->generateUniqueCodigoReferencia();
-        $imageName = 'storage/' . time() . '.' . $extension;
+        $imageName = 'storage/images/' . time() . '.' . $request->imagen->extension();
         $request->imagen->storeAs('images', $imageName, 'public');
         $producto = new Producto([
             'nombre' => $request->input('nombre'),
@@ -168,7 +168,7 @@ class ProductoController extends Controller
 
         // Si se proporciona una nueva imagen, almacenarla y actualizar la propiedad 'imagen'
         if ($request->hasFile('imagen')) {
-            $imageName = time() . '.' . $request->imagen->extension();
+            $imageName = 'storage/images/' . time() . '.' . $request->imagen->extension();
             $request->imagen->storeAs('images', $imageName, 'public');
             $producto->imagen = $imageName;
             $producto->save();

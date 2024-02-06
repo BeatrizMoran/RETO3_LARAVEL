@@ -52,7 +52,8 @@
                     <!-- Formato -->
                     <div class="mb-3">
                         <label for="formato" class="form-label">Formato</label>
-                        <select class="form-select" id="formato" name="formato" required  {{ $edit ? 'enabled' : 'disabled' }}>
+                        <select class="form-select" id="formato" name="formato" required
+                            {{ $edit ? 'enabled' : 'disabled' }}>
                             @foreach (\App\Enums\FormatoEnum::cases() as $formato)
                                 <option value="{{ $formato->value }}" @if ($formato->value == $producto->formato) selected @endif>
                                     {{ $formato->value }}</option>
@@ -88,8 +89,11 @@
             </div>
             <div class="col-12 col-md-6 text-center">
                 <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-                    <img class="img-fluid " src="{{ asset( $producto->imagen) }}"
-                        alt="Imagen del Producto">
+                    @if (file_exists(public_path('storage/images/' . $producto->imagen)))
+                        <img src="{{ asset('storage/images/' . $producto->imagen) }}" alt="Producto">
+                    @else
+                        <img src="{{ asset($producto->imagen) }}" alt="Producto">
+                    @endif
                 </div>
             </div>
         </div>
