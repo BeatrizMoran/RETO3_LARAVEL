@@ -92,7 +92,7 @@ class ProductoSeeder extends Seeder
                 'nombre' => $nombres[$nombreIndex],
                 'codigo_referencia' => 'PROD-' . uniqid(),
                 'precio' => rand(10, 100), // Precio aleatorio entre 10 y 100
-                'imagen' => 'public/images/' . $imagenes[$imagenIndex], // Imagen aleatoria del array
+                'imagen' => $imagenes[$imagenIndex], // Imagen aleatoria del array
                 'formato' => ['20CL', '25CL', '33CL', '1L', 'Barril'][rand(0, 4)], // Formato aleatorio
                 'created_at' => now(),
                 'updated_at' => now(),
