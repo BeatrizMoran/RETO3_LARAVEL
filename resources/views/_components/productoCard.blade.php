@@ -1,8 +1,8 @@
 <div class="card shadow mb-4">
-    @if (file_exists(public_path('storage/images/' . $producto->imagen)))
-        <img src="{{ asset('storage/images/' . $producto->imagen) }}" alt="Producto" class="cartaCatalogo card-img-top" style="max-height: 50vh; object-fit: cover;">
+    @if (file_exists(public_path('storage/images/' . $imagen)))
+        <img src="{{ asset('storage/images/' . $imagen) }}" alt="Producto" class="cartaCatalogo card-img-top" style="max-height: 50vh; object-fit: cover;">
     @else
-        <img src="{{ asset($producto->imagen) }}" alt="Producto" class="cartaCatalogo card-img-top" style="max-height: 50vh; object-fit: cover;">
+        <img src="{{ asset($imagen) }}" alt="Producto" class="cartaCatalogo card-img-top" style="max-height: 50vh; object-fit: cover;">
     @endif
 
     <div class="card-body">
