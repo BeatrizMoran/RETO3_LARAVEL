@@ -8,6 +8,7 @@ use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductoRequest;
 use App\Http\Resources\ProductoResource;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -205,9 +206,10 @@ class ProductoController extends Controller
 
         // Realiza la lógica de búsqueda aquí, por ejemplo:
         $productos = Producto::with('categorias')
-            ->where('nombre', 'like', '%' . $search . '%')
+            ->where(DB::raw('LOWER(nombre)'), 'like', '%' . strtolower($search) . '%')
             ->get();
 
         return response()->json(['productos' => $productos]);
     }
+
 }
