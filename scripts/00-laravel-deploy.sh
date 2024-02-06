@@ -33,9 +33,9 @@ $PHP_BIN $ARTISAN_BIN route:cache
 echo "Creando enlace simbólico de storage a public..."
 $PHP_BIN $ARTISAN_BIN storage:link
 
-# Ejecuta las migraciones de la base de datos
- #echo "Ejecutando migraciones de base de datos..."
- #$PHP_BIN $ARTISAN_BIN migrate --force && $PHP_BIN $ARTISAN_BIN db:seed --force
+ #Ejecuta las migraciones de la base de datos
+ echo "Ejecutando migraciones de base de datos..."
+ PHP_BIN $ARTISAN_BIN migrate --force && $PHP_BIN $ARTISAN_BIN db:seed --force
 
 # Instala dependencias de Node.js (opcional, si se utilizan)
 if [ -f "$APP_DIR/package.json" ]; then
