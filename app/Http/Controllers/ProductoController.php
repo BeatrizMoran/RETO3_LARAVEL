@@ -86,7 +86,8 @@ class ProductoController extends Controller
         //excluir el campo categorias de la request
         //$datosProducto = $request->except('categorias');
         $codigo_referencia = $this->generateUniqueCodigoReferencia();
-        $imageName = time() . '.' . $request->imagen->extension();
+        $imageName = 'storage/images/' . time() . '.' . $request->imagen->extension();
+
         $request->imagen->storeAs('images', $imageName, 'public');
         $producto = new Producto([
             'nombre' => $request->input('nombre'),
