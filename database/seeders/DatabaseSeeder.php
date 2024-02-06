@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
 
             RoleSeeder::class,
             UserSeeder::class,
-            ClienteSeeder::class
+            ClienteSeeder::class,
+            ProductoSeeder::class
+
 
           /*   CategoriaSeeder::class,
             ProductoCategoriaSeeder::class, */

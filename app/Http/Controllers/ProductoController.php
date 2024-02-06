@@ -60,7 +60,7 @@ class ProductoController extends Controller
 
     public function dashboardProductos()
     {
-        $productos = Producto::with('categorias')->paginate(10);
+        $productos = Producto::with('categorias')->orderBy('id')->paginate(10);
 
         return view("productos.dashboard", compact("productos"));
     }
