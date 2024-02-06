@@ -7,7 +7,7 @@ COMPOSER_BIN="composer"  # Comando Composer
 NPM_BIN="npm"            # Comando npm
 PHP_BIN="php"            # Comando PHP
 ARTISAN_BIN="artisan"    # Comando Artisan
-NGINX_RESTART_CMD="sudo service nginx restart"  # Comando para reiniciar Nginx
+NGINX_RESTART_CMD="service nginx restart"  # Comando para reiniciar Nginx
 
 # Actualiza el código de la aplicación desde el repositorio (puede ser Git, por ejemplo)
 echo "Actualizando el código fuente..."
