@@ -88,7 +88,7 @@
             </div>
             <div class="col-12 col-md-6 text-center">
                 <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-                    <img class="img-fluid " src="{{ asset('storage/images/' . $producto->imagen) }}"
+                    <img class="img-fluid " src="{{ asset( $producto->imagen) }}"
                         alt="Imagen del Producto">
                 </div>
             </div>
