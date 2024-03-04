@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use App\Models\User; // Asegúrate de que esta sea la ruta correcta al modelo User
+
+use App\Models\User;
 
 class UserProfileController extends Controller
 {
-     /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, User $user)
     {
 
@@ -22,7 +18,7 @@ class UserProfileController extends Controller
 
         $user->update($datos);
 
-        // Si se proporciona una nueva imagen, almacenarla y actualizar la propiedad 'imagen'
+
         if ($request->hasFile('imagen')) {
             $imageName = time() . '.' . $request->imagen->extension();
             $request->imagen->storeAs('images', $imageName, 'public');
