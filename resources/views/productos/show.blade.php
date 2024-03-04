@@ -90,9 +90,9 @@
             <div class="col-12 col-md-6 text-center">
                 <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
                     @if (file_exists(public_path('storage/images/' . $producto->imagen)))
-                        <img src="{{ asset('storage/images/' . $producto->imagen) }}" alt="Producto">
+                        <img src="{{ asset('storage/images/' . $producto->imagen) }}" alt="Producto" class="img-fluid">
                     @else
-                        <img src="{{ asset($producto->imagen) }}" alt="Producto">
+                        <img src="{{ asset($producto->imagen) }}" alt="Producto" class="img-fluid">
                     @endif
                 </div>
             </div>
